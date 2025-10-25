@@ -50,7 +50,7 @@ export default function Home() {
               {latestProducts.slice(0, 8).map((product) => (
                 <div key={product.id} className="product-card">
                   <h3>{product.name}</h3>
-                  <p>{product.brand.name}</p>
+                  <p>{product.brand?.name}</p>
                   {/* ProductCard component will be added here */}
                 </div>
               ))}
@@ -66,7 +66,7 @@ export default function Home() {
               {mostEnquired.slice(0, 8).map((product) => (
                 <div key={product.id} className="product-card">
                   <h3>{product.name}</h3>
-                  <p>{product.brand.name}</p>
+                  <p>{product.brand?.name}</p>
                   <span className="enquiry-count">
                     {product.enquiryCount} inquiries
                   </span>

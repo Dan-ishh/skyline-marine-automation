@@ -33,7 +33,7 @@ export default function ProductDetailPage() {
     if (selectedProduct) {
       openInquiryModal({
         brandId: selectedProduct.brandId,
-        brandName: selectedProduct.brand.name,
+        brandName: selectedProduct.brand?.name || "",
         productId: selectedProduct.id,
         productName: selectedProduct.name,
       });
@@ -59,21 +59,26 @@ export default function ProductDetailPage() {
             <a href="/">Home</a> &gt;
             <a href="/brands">Brands</a> &gt;
             <a href={`/brands/${brandSlug}`}>
-              {selectedProduct?.brand.name || "Brand"}
+              {selectedProduct?.brand?.name || "Brand"}
             </a>{" "}
             &gt;
             <span>{selectedProduct?.name || "Loading..."}</span>
           </nav>
 
-          {loading && <p>Loading product...</p>}
+          {loading && (
+            <div className="loading">
+              <div className="spinner"></div>
+              <p>Loading product details...</p>
+            </div>
+          )}
 
-          {error && <p className="error">{error}</p>}
+          {error && <div className="error">⚠️ {error}</div>}
 
-          {selectedProduct && (
+          {selectedProduct && !loading && (
             <div className="product-detail">
               <div className="product-gallery">
                 {/* Image Gallery will be added here */}
-                {selectedProduct.images.length > 0 && (
+                {selectedProduct.images.length > 0 ? (
                   <Image
                     src={selectedProduct.images[0]}
                     alt={selectedProduct.name}
@@ -81,27 +86,32 @@ export default function ProductDetailPage() {
                     height={400}
                     priority
                   />
+                ) : (
+                  <div className="placeholder-image">
+                    <span>📦</span>
+                    <p>No image available</p>
+                  </div>
                 )}
               </div>
 
               <div className="product-info">
                 <h1>{selectedProduct.name}</h1>
-                <p className="brand-name">{selectedProduct.brand.name}</p>
+                <p className="brand-name">{selectedProduct.brand?.name}</p>
 
                 {selectedProduct.category && (
                   <p className="category">
-                    Category: {selectedProduct.category}
+                    📂 {selectedProduct.category}
                   </p>
                 )}
 
                 <div className="description">
-                  <h2>Description</h2>
+                  <h2>📋 Description</h2>
                   <p>{selectedProduct.description}</p>
                 </div>
 
                 {Object.keys(selectedProduct.specifications).length > 0 && (
                   <div className="specifications">
-                    <h2>Specifications</h2>
+                    <h2>⚙️ Technical Specifications</h2>
                     <table>
                       <tbody>
                         {Object.entries(selectedProduct.specifications).map(
@@ -119,8 +129,17 @@ export default function ProductDetailPage() {
                   </div>
                 )}
 
+                {selectedProduct.enquiryCount > 0 && (
+                  <div className="enquiry-stats">
+                    <span className="icon">💬</span>
+                    <span className="text">
+                      {selectedProduct.enquiryCount} inquiries received
+                    </span>
+                  </div>
+                )}
+
                 <button className="inquire-button" onClick={handleInquireClick}>
-                  Inquire Now
+                  📧 Inquire Now
                 </button>
               </div>
             </div>

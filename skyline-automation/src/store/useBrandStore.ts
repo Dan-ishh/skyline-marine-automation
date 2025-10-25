@@ -5,6 +5,7 @@
 
 import { create } from "zustand";
 import { Brand } from "../types";
+import { getAllBrands, getBrandBySlug } from "../data";
 
 interface BrandState {
   // State
@@ -32,18 +33,13 @@ export const useBrandStore = create<BrandState>((set, get) => ({
     set({ loading: true, error: null });
 
     try {
-      // TODO: Replace with actual API call
-      // const response = await fetch('/api/brands');
-      // const data = await response.json();
-
       // Simulating API call with mock data
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
-      // Mock data will be imported here
-      // For now, set empty array
-      set({ brands: [], loading: false });
+      const brands = getAllBrands();
+      set({ brands, loading: false });
 
-      console.log("Brands fetched successfully");
+      console.log("Brands fetched successfully:", brands.length);
     } catch (error) {
       set({
         error:
@@ -58,15 +54,10 @@ export const useBrandStore = create<BrandState>((set, get) => ({
     set({ loading: true, error: null });
 
     try {
-      // TODO: Replace with actual API call
-      // const response = await fetch(`/api/brands/${slug}`);
-      // const data = await response.json();
-
       // Simulating API call
       await new Promise((resolve) => setTimeout(resolve, 300));
 
-      const { brands } = get();
-      const brand = brands.find((b) => b.slug === slug);
+      const brand = getBrandBySlug(slug);
 
       if (!brand) {
         throw new Error("Brand not found");

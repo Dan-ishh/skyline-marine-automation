@@ -5,6 +5,13 @@
 
 import { create } from "zustand";
 import { Product, ProductFilter } from "../types";
+import {
+  getAllProducts,
+  getProductsByBrand,
+  getProductBySlug,
+  getLatestProducts,
+  getMostEnquiredProducts,
+} from "../data";
 
 interface ProductState {
   // State
@@ -43,14 +50,11 @@ export const useProductStore = create<ProductState>((set, get) => ({
     set({ loading: true, error: null });
 
     try {
-      // TODO: Replace with actual API call
-      // const response = await fetch('/api/products');
-      // const data = await response.json();
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      set({ products: [], loading: false });
-      console.log("Products fetched successfully");
+      const products = getAllProducts();
+      set({ products, loading: false });
+      console.log("Products fetched successfully:", products.length);
     } catch (error) {
       set({
         error:
@@ -65,13 +69,9 @@ export const useProductStore = create<ProductState>((set, get) => ({
     set({ loading: true, error: null });
 
     try {
-      // TODO: Replace with actual API call
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
-      // Filter products by brand from existing products
-      const { products } = get();
-      const brandProducts = products.filter((p) => p.brandId === brandId);
-
+      const brandProducts = getProductsByBrand(brandId);
       set({ products: brandProducts, loading: false });
     } catch (error) {
       set({
@@ -87,13 +87,9 @@ export const useProductStore = create<ProductState>((set, get) => ({
     set({ loading: true, error: null });
 
     try {
-      // TODO: Replace with actual API call
       await new Promise((resolve) => setTimeout(resolve, 300));
 
-      const { products } = get();
-      const product = products.find(
-        (p) => p.slug === productSlug && p.brand.slug === brandSlug
-      );
+      const product = getProductBySlug(productSlug);
 
       if (!product) {
         throw new Error("Product not found");
@@ -114,15 +110,9 @@ export const useProductStore = create<ProductState>((set, get) => ({
     set({ loading: true, error: null });
 
     try {
-      // TODO: Replace with actual API call
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
-      const { products } = get();
-      const latest = products
-        .filter((p) => p.isLatest)
-        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-        .slice(0, 8);
-
+      const latest = getLatestProducts(8);
       set({ latestProducts: latest, loading: false });
     } catch (error) {
       set({
@@ -140,14 +130,9 @@ export const useProductStore = create<ProductState>((set, get) => ({
     set({ loading: true, error: null });
 
     try {
-      // TODO: Replace with actual API call
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
-      const { products } = get();
-      const mostEnquired = products
-        .sort((a, b) => b.enquiryCount - a.enquiryCount)
-        .slice(0, 8);
-
+      const mostEnquired = getMostEnquiredProducts(8);
       set({ mostEnquired, loading: false });
     } catch (error) {
       set({

@@ -18,14 +18,14 @@ export interface Product {
   /** Brand ID (foreign key) */
   brandId: string;
 
-  /** Brand object reference */
-  brand: Brand;
+  /** Brand object reference (optional, populated when needed) */
+  brand?: Brand;
 
   /** Array of product image URLs */
   images: string[];
 
-  /** Primary thumbnail image */
-  thumbnail: string;
+  /** Primary thumbnail image (optional) */
+  thumbnail?: string;
 
   /** Detailed product description */
   description: string;
@@ -33,20 +33,20 @@ export interface Product {
   /** Product specifications as key-value pairs */
   specifications: Record<string, string>;
 
-  /** Product category (e.g., "Outboard Motors", "Marine Electronics") */
-  category?: string;
+  /** Product category (e.g., "Main Engines", "Automation", "Hydraulic Pump") */
+  category: string;
 
-  /** Product price (optional, may not show for all products) */
+  /** Product price (optional, 0 means price on request) */
   price?: number;
 
   /** Availability status */
-  isAvailable: boolean;
+  inStock: boolean;
 
   /** Number of inquiries received for this product */
   enquiryCount: number;
 
-  /** Flag for latest/new products */
-  isLatest: boolean;
+  /** Flag for featured products (shown prominently) */
+  featured: boolean;
 
   /** Creation timestamp */
   createdAt: Date;
