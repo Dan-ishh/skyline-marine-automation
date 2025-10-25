@@ -7,16 +7,18 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { categories } from "@/src/data";
 
 interface NavLink {
   label: string;
   href: string;
+  hasMegaMenu?: boolean;
 }
 
 const navLinks: NavLink[] = [
   { label: "HOME", href: "/" },
-  { label: "BRANDS", href: "/brands" },
-  { label: "PRODUCTS", href: "/brands" }, // Links to brands page which shows products
+  { label: "BRANDS", href: "/brands", hasMegaMenu: true },
+  { label: "PRODUCTS", href: "/products" },
   { label: "CONTACT US", href: "/contact" },
 ];
 
@@ -24,6 +26,7 @@ export default function Navbar() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showBrandsMegaMenu, setShowBrandsMegaMenu] = useState(false);
 
   // Handle scroll effect
   useEffect(() => {
@@ -56,6 +59,15 @@ export default function Navbar() {
   const isActiveLink = (href: string) => {
     if (href === "/") {
       return router.pathname === "/";
+    }
+    // Exact match for /brands and /products to avoid conflicts
+    if (href === "/brands") {
+      return (
+        router.pathname === "/brands" || router.pathname.startsWith("/brands/")
+      );
+    }
+    if (href === "/products") {
+      return router.pathname === "/products";
     }
     return router.pathname.startsWith(href);
   };
@@ -175,7 +187,16 @@ export default function Navbar() {
             {/* Desktop Navigation */}
             <ul className="navbar__nav">
               {navLinks.map((link) => (
-                <li key={link.href} className="navbar__nav-item">
+                <li
+                  key={link.href}
+                  className="navbar__nav-item"
+                  onMouseEnter={() =>
+                    link.hasMegaMenu && setShowBrandsMegaMenu(true)
+                  }
+                  onMouseLeave={() =>
+                    link.hasMegaMenu && setShowBrandsMegaMenu(false)
+                  }
+                >
                   <Link
                     href={link.href}
                     className={`navbar__nav-link ${
@@ -183,7 +204,44 @@ export default function Navbar() {
                     }`}
                   >
                     {link.label}
+                    {link.hasMegaMenu && (
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="currentColor"
+                        style={{ marginLeft: "6px", display: "inline-block" }}
+                      >
+                        <path d="M6 9L1 4h10z" />
+                      </svg>
+                    )}
                   </Link>
+
+                  {/* Brands Mega Menu */}
+                  {link.hasMegaMenu && showBrandsMegaMenu && (
+                    <div
+                      className="navbar__mega-menu"
+                      onMouseEnter={() => setShowBrandsMegaMenu(true)}
+                      onMouseLeave={() => setShowBrandsMegaMenu(false)}
+                    >
+                      <div className="navbar__mega-menu-container">
+                        <h3 className="navbar__mega-menu-title">
+                          Product Categories
+                        </h3>
+                        <div className="navbar__mega-menu-grid">
+                          {categories.map((category) => (
+                            <Link
+                              key={category.id}
+                              href={`/brands?category=${category.slug}`}
+                              className="navbar__mega-menu-item"
+                            >
+                              {category.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

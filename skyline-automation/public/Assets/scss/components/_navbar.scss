@@ -147,10 +147,12 @@
 
   &__nav-item {
     margin: 0;
+    position: relative;
   }
 
   &__nav-link {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 0.75rem 1.25rem;
     color: $text-primary;
     text-decoration: none;
@@ -179,6 +181,97 @@
     @include respond-to("desktop") {
       padding: 0.65rem 1rem;
       font-size: 0.8125rem;
+    }
+  }
+
+  // Mega Menu (Brands Dropdown)
+  &__mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    max-width: 90vw;
+    background: $white;
+    box-shadow: 0 8px 32px rgba($black, 0.15);
+    border-radius: $border-radius-lg;
+    padding: 2rem;
+    margin-top: 0;
+    padding-top: 2.5rem; // Extra padding to create seamless hover area
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+
+    // Create invisible bridge between nav link and dropdown
+    &::before {
+      content: "";
+      position: absolute;
+      top: -0.5rem;
+      left: 0;
+      right: 0;
+      height: 0.5rem;
+      background: transparent;
+    }
+
+    @include respond-to("desktop") {
+      width: 700px;
+      padding: 1.5rem;
+      padding-top: 2rem;
+    }
+  }
+
+  &__mega-menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__mega-menu-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $primary-color;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba($primary-color, 0.1);
+  }
+
+  &__mega-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+
+    @include respond-to("desktop") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__mega-menu-item {
+    padding: 0.75rem 1rem;
+    color: $text-primary;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: $border-radius-sm;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.08);
+      color: $secondary-color;
+      border-color: rgba($secondary-color, 0.2);
+      transform: translateX(4px);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
   }
 
