@@ -4,8 +4,8 @@
  * Displays contact information and inquiry form
  */
 
-import Head from 'next/head';
-import { useUIStore } from '@/src/store';
+import Head from "next/head";
+import { useUIStore } from "@/src/store";
 
 export default function ContactPage() {
   const { openInquiryModal } = useUIStore();
@@ -18,7 +18,10 @@ export default function ContactPage() {
     <>
       <Head>
         <title>Contact Us - Skyline Marine Automation</title>
-        <meta name="description" content="Get in touch with Skyline Marine Automation. Contact us for inquiries about marine equipment and products." />
+        <meta
+          name="description"
+          content="Get in touch with Skyline Marine Automation. Contact us for inquiries about marine equipment and products."
+        />
       </Head>
 
       <div className="contact-page">
@@ -34,7 +37,9 @@ export default function ContactPage() {
                 <div className="contact-item">
                   <h3>Email</h3>
                   <p>
-                    <a href="mailto:info@skylinemarine.com">info@skylinemarine.com</a>
+                    <a href="mailto:info@skylinemarine.com">
+                      info@skylinemarine.com
+                    </a>
                   </p>
                 </div>
 
@@ -48,8 +53,10 @@ export default function ContactPage() {
                 <div className="contact-item">
                   <h3>Address</h3>
                   <p>
-                    123 Marine Drive<br />
-                    Harbor City, HC 12345<br />
+                    123 Marine Drive
+                    <br />
+                    Harbor City, HC 12345
+                    <br />
                     United States
                   </p>
                 </div>
@@ -57,8 +64,10 @@ export default function ContactPage() {
                 <div className="contact-item">
                   <h3>Business Hours</h3>
                   <p>
-                    Monday - Friday: 9:00 AM - 6:00 PM<br />
-                    Saturday: 10:00 AM - 4:00 PM<br />
+                    Monday - Friday: 9:00 AM - 6:00 PM
+                    <br />
+                    Saturday: 10:00 AM - 4:00 PM
+                    <br />
                     Sunday: Closed
                   </p>
                 </div>
@@ -67,12 +76,12 @@ export default function ContactPage() {
 
             <div className="inquiry-section">
               <h2>Send Us an Inquiry</h2>
-              <p>Interested in a specific product? Fill out our inquiry form and we'll get back to you shortly.</p>
-              
-              <button 
-                className="inquire-button"
-                onClick={handleInquireClick}
-              >
+              <p>
+                Interested in a specific product? Fill out our inquiry form and
+                we'll get back to you shortly.
+              </p>
+
+              <button className="inquire-button" onClick={handleInquireClick}>
                 Inquire Now
               </button>
             </div>

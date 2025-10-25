@@ -5,6 +5,7 @@
 ### ✅ Pages Implemented
 
 1. **Home Page** (`/`)
+
    - File: `src/pages/index.tsx`
    - Sections:
      - Banner with hero content
@@ -14,12 +15,14 @@
    - Uses: `useProductStore`, `useUIStore`
 
 2. **Brands Listing** (`/brands`)
+
    - File: `src/pages/brands/index.tsx`
    - Shows all available brands in a grid
    - Uses: `useBrandStore`
    - Features: Loading states, error handling
 
 3. **Brand Products** (`/brands/[brandSlug]`)
+
    - File: `src/pages/brands/[brandSlug]/index.tsx`
    - Dynamic route for each brand
    - Shows all products for selected brand
@@ -27,6 +30,7 @@
    - Uses: `useBrandStore`, `useProductStore`
 
 4. **Individual Product** (`/brands/[brandSlug]/[productSlug]`)
+
    - File: `src/pages/brands/[brandSlug]/[productSlug].tsx`
    - Dynamic route for each product
    - Features:
@@ -65,11 +69,13 @@
 ### User Journey Examples:
 
 1. **Browse by Brand:**
+
    ```
    Home → Brands → Select Brand → View Products → Select Product → Inquire
    ```
 
 2. **Quick Inquiry:**
+
    ```
    Home → Click "Inquire Now" → Fill Form → Submit
    ```
@@ -84,6 +90,7 @@
 ## 🎯 Key Features Per Page
 
 ### Home Page
+
 - ✅ Header with navigation
 - ✅ Banner section
 - ✅ Latest products section (dynamic)
@@ -93,12 +100,14 @@
 - 🔄 Connects to: `useProductStore.fetchLatestProducts()`, `fetchMostEnquired()`
 
 ### Brands Page
+
 - ✅ Grid of all brands
 - ✅ Brand cards (logo, name, description)
 - ✅ Click to view brand products
 - 🔄 Connects to: `useBrandStore.fetchBrands()`
 
 ### Brand Products Page
+
 - ✅ Breadcrumb navigation
 - ✅ Brand header (logo, name, description)
 - ✅ Products grid for selected brand
@@ -106,6 +115,7 @@
 - 🔄 Connects to: `useBrandStore.fetchBrandBySlug()`, `useProductStore.fetchProductsByBrand()`
 
 ### Product Detail Page
+
 - ✅ Breadcrumb navigation
 - ✅ Image gallery (main image + thumbnails ready)
 - ✅ Product name and brand
@@ -117,6 +127,7 @@
 - 🔄 Connects to: `useProductStore.fetchProductBySlug()`, `useUIStore.openInquiryModal()`
 
 ### Contact Page
+
 - ✅ Contact information (email, phone, address)
 - ✅ Business hours
 - ✅ "Inquire Now" button
@@ -128,6 +139,7 @@
 ## 🎨 Components Needed (Next Steps)
 
 ### Priority 1: Essential Components
+
 1. **Navbar** - Navigation with links to Home, Brands, Contact
 2. **Footer** - Company info, links, copyright
 3. **InquiryPopup** - Modal form with:
@@ -139,12 +151,14 @@
    - Message (optional)
 
 ### Priority 2: Page Components
+
 4. **BrandCard** - Display brand in grid
 5. **ProductCard** - Display product in grid
 6. **ImageGallery** - Product images with thumbnails
 7. **ProductDetails** - Product info section
 
 ### Priority 3: Sections
+
 8. **Banner** - Home page hero section
 9. **LatestProducts** - Section component
 10. **MostEnquiredProducts** - Section component
@@ -155,6 +169,7 @@
 ## 📋 Implementation Status
 
 ### ✅ Completed
+
 - [x] All 5 pages created
 - [x] Dynamic routing set up
 - [x] Zustand store integration
@@ -165,6 +180,7 @@
 - [x] Error handling
 
 ### 🔄 Ready for Implementation
+
 - [ ] Navbar component
 - [ ] Footer component
 - [ ] InquiryPopup modal
@@ -180,6 +196,7 @@
 ## 🚀 Next Steps
 
 ### Phase 1: Layout Components (Critical)
+
 ```
 1. Create Navbar component
    - Logo
@@ -196,6 +213,7 @@
 ```
 
 ### Phase 2: Inquiry Modal (Critical)
+
 ```
 4. Create InquiryPopup component
    - Form with all fields
@@ -208,6 +226,7 @@
 ```
 
 ### Phase 3: Product Display
+
 ```
 6. Create ProductCard component
 7. Create BrandCard component
@@ -216,6 +235,7 @@
 ```
 
 ### Phase 4: Styling
+
 ```
 10. Create SCSS modules for each page
 11. Style all components
@@ -224,6 +244,7 @@
 ```
 
 ### Phase 5: Data & Integration
+
 ```
 14. Create mock data (brands.ts, products.ts)
 15. Update Zustand stores to use mock data
@@ -240,7 +261,7 @@
 
 ```typescript
 // From any page
-import { useUIStore } from '@/src/store';
+import { useUIStore } from "@/src/store";
 
 const { openInquiryModal } = useUIStore();
 
@@ -249,10 +270,10 @@ openInquiryModal();
 
 // With prefilled data (from product page)
 openInquiryModal({
-  brandId: '123',
-  brandName: 'Yamaha',
-  productId: '456',
-  productName: 'F150 Outboard Motor',
+  brandId: "123",
+  brandName: "Yamaha",
+  productId: "456",
+  productName: "F150 Outboard Motor",
 });
 ```
 

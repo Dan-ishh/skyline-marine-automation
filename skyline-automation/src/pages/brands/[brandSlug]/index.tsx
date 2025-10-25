@@ -4,20 +4,28 @@
  * Displays all products for a specific brand
  */
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import { useBrandStore, useProductStore } from '@/src/store';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import { useBrandStore, useProductStore } from "@/src/store";
 
 export default function BrandProductsPage() {
   const router = useRouter();
   const { brandSlug } = router.query;
-  
-  const { selectedBrand, loading: brandLoading, fetchBrandBySlug } = useBrandStore();
-  const { products, loading: productsLoading, fetchProductsByBrand } = useProductStore();
+
+  const {
+    selectedBrand,
+    loading: brandLoading,
+    fetchBrandBySlug,
+  } = useBrandStore();
+  const {
+    products,
+    loading: productsLoading,
+    fetchProductsByBrand,
+  } = useProductStore();
 
   useEffect(() => {
-    if (brandSlug && typeof brandSlug === 'string') {
+    if (brandSlug && typeof brandSlug === "string") {
       fetchBrandBySlug(brandSlug);
     }
   }, [brandSlug, fetchBrandBySlug]);
@@ -33,17 +41,24 @@ export default function BrandProductsPage() {
   return (
     <>
       <Head>
-        <title>{selectedBrand?.name || 'Brand'} Products - Skyline Marine Automation</title>
-        <meta name="description" content={`Browse ${selectedBrand?.name || ''} products on Skyline Marine Automation`} />
+        <title>
+          {selectedBrand?.name || "Brand"} Products - Skyline Marine Automation
+        </title>
+        <meta
+          name="description"
+          content={`Browse ${
+            selectedBrand?.name || ""
+          } products on Skyline Marine Automation`}
+        />
       </Head>
 
       <div className="brand-products-page">
         <div className="container">
           {/* Breadcrumb */}
           <nav className="breadcrumb">
-            <a href="/">Home</a> &gt; 
-            <a href="/brands">Brands</a> &gt; 
-            <span>{selectedBrand?.name || 'Loading...'}</span>
+            <a href="/">Home</a> &gt;
+            <a href="/brands">Brands</a> &gt;
+            <span>{selectedBrand?.name || "Loading..."}</span>
           </nav>
 
           {loading && <p>Loading products...</p>}

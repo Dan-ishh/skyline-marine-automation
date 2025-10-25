@@ -4,12 +4,17 @@
  * Main landing page with Banner, Latest Products, Most Enquired Products, and Inquiry Section
  */
 
-import { useEffect } from 'react';
-import Head from 'next/head';
-import { useProductStore, useUIStore } from '@/src/store';
+import { useEffect } from "react";
+import Head from "next/head";
+import { useProductStore, useUIStore } from "@/src/store";
 
 export default function Home() {
-  const { latestProducts, mostEnquired, fetchLatestProducts, fetchMostEnquired } = useProductStore();
+  const {
+    latestProducts,
+    mostEnquired,
+    fetchLatestProducts,
+    fetchMostEnquired,
+  } = useProductStore();
   const { openInquiryModal } = useUIStore();
 
   useEffect(() => {
@@ -21,7 +26,10 @@ export default function Home() {
     <>
       <Head>
         <title>Skyline Marine Automation - Marine Equipment Portal</title>
-        <meta name="description" content="Browse and inquire about premium marine equipment and products from top brands" />
+        <meta
+          name="description"
+          content="Browse and inquire about premium marine equipment and products from top brands"
+        />
       </Head>
 
       <div className="home-page">
@@ -30,9 +38,7 @@ export default function Home() {
           <div className="container">
             <h1>Welcome to Skyline Marine Automation</h1>
             <p>Your trusted source for premium marine equipment</p>
-            <button onClick={() => openInquiryModal()}>
-              Get Started
-            </button>
+            <button onClick={() => openInquiryModal()}>Get Started</button>
           </div>
         </section>
 
@@ -61,7 +67,9 @@ export default function Home() {
                 <div key={product.id} className="product-card">
                   <h3>{product.name}</h3>
                   <p>{product.brand.name}</p>
-                  <span className="enquiry-count">{product.enquiryCount} inquiries</span>
+                  <span className="enquiry-count">
+                    {product.enquiryCount} inquiries
+                  </span>
                   {/* ProductCard component will be added here */}
                 </div>
               ))}
@@ -74,9 +82,7 @@ export default function Home() {
           <div className="container">
             <h2>Have Questions?</h2>
             <p>Get in touch with us for product inquiries and information</p>
-            <button onClick={() => openInquiryModal()}>
-              Inquire Now
-            </button>
+            <button onClick={() => openInquiryModal()}>Inquire Now</button>
           </div>
         </section>
       </div>

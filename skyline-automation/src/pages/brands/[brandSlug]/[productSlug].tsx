@@ -4,21 +4,27 @@
  * Displays detailed product information with photos and inquiry button
  */
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import Image from 'next/image';
-import { useProductStore, useUIStore } from '@/src/store';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import Image from "next/image";
+import { useProductStore, useUIStore } from "@/src/store";
 
 export default function ProductDetailPage() {
   const router = useRouter();
   const { brandSlug, productSlug } = router.query;
-  
-  const { selectedProduct, loading, error, fetchProductBySlug } = useProductStore();
+
+  const { selectedProduct, loading, error, fetchProductBySlug } =
+    useProductStore();
   const { openInquiryModal } = useUIStore();
 
   useEffect(() => {
-    if (brandSlug && productSlug && typeof brandSlug === 'string' && typeof productSlug === 'string') {
+    if (
+      brandSlug &&
+      productSlug &&
+      typeof brandSlug === "string" &&
+      typeof productSlug === "string"
+    ) {
       fetchProductBySlug(brandSlug, productSlug);
     }
   }, [brandSlug, productSlug, fetchProductBySlug]);
@@ -37,22 +43,30 @@ export default function ProductDetailPage() {
   return (
     <>
       <Head>
-        <title>{selectedProduct?.name || 'Product'} - Skyline Marine Automation</title>
-        <meta name="description" content={selectedProduct?.description || 'Product details'} />
+        <title>
+          {selectedProduct?.name || "Product"} - Skyline Marine Automation
+        </title>
+        <meta
+          name="description"
+          content={selectedProduct?.description || "Product details"}
+        />
       </Head>
 
       <div className="product-detail-page">
         <div className="container">
           {/* Breadcrumb */}
           <nav className="breadcrumb">
-            <a href="/">Home</a> &gt; 
-            <a href="/brands">Brands</a> &gt; 
-            <a href={`/brands/${brandSlug}`}>{selectedProduct?.brand.name || 'Brand'}</a> &gt; 
-            <span>{selectedProduct?.name || 'Loading...'}</span>
+            <a href="/">Home</a> &gt;
+            <a href="/brands">Brands</a> &gt;
+            <a href={`/brands/${brandSlug}`}>
+              {selectedProduct?.brand.name || "Brand"}
+            </a>{" "}
+            &gt;
+            <span>{selectedProduct?.name || "Loading..."}</span>
           </nav>
 
           {loading && <p>Loading product...</p>}
-          
+
           {error && <p className="error">{error}</p>}
 
           {selectedProduct && (
@@ -73,9 +87,11 @@ export default function ProductDetailPage() {
               <div className="product-info">
                 <h1>{selectedProduct.name}</h1>
                 <p className="brand-name">{selectedProduct.brand.name}</p>
-                
+
                 {selectedProduct.category && (
-                  <p className="category">Category: {selectedProduct.category}</p>
+                  <p className="category">
+                    Category: {selectedProduct.category}
+                  </p>
                 )}
 
                 <div className="description">
@@ -88,21 +104,22 @@ export default function ProductDetailPage() {
                     <h2>Specifications</h2>
                     <table>
                       <tbody>
-                        {Object.entries(selectedProduct.specifications).map(([key, value]) => (
-                          <tr key={key}>
-                            <td><strong>{key}</strong></td>
-                            <td>{value}</td>
-                          </tr>
-                        ))}
+                        {Object.entries(selectedProduct.specifications).map(
+                          ([key, value]) => (
+                            <tr key={key}>
+                              <td>
+                                <strong>{key}</strong>
+                              </td>
+                              <td>{value}</td>
+                            </tr>
+                          )
+                        )}
                       </tbody>
                     </table>
                   </div>
                 )}
 
-                <button 
-                  className="inquire-button"
-                  onClick={handleInquireClick}
-                >
+                <button className="inquire-button" onClick={handleInquireClick}>
                   Inquire Now
                 </button>
               </div>
