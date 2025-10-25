@@ -15,10 +15,37 @@ interface NavLink {
   hasMegaMenu?: boolean;
 }
 
+// Brand names for Brands mega menu
+const brandNames = [
+  "WARTSILA",
+  "ROLLS-ROYCE",
+  "MAN B&W",
+  "WICHMANN",
+  "HYUNDAI HIMSE",
+  "DEUTZ",
+  "MAK",
+  "DAIHATSU",
+  "TURBOCHARGERS",
+  "WINCH",
+  "COMPLETE ENGINES",
+  "AKASAKA",
+  "GENERATORS",
+  "CATERPILLAR",
+  "EMD",
+  "EQUIPMENTS",
+  "OIL WELL EQUIPMENTS",
+  "BLOWERS",
+  "HANSHIN",
+  "MITSUBISHI",
+  "GOVERNOR",
+  "PIELSTICK",
+  "YANMAR",
+];
+
 const navLinks: NavLink[] = [
   { label: "HOME", href: "/" },
   { label: "BRANDS", href: "/brands", hasMegaMenu: true },
-  { label: "PRODUCTS", href: "/products" },
+  { label: "PRODUCTS", href: "/products", hasMegaMenu: true },
   { label: "CONTACT US", href: "/contact" },
 ];
 
@@ -27,6 +54,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showBrandsMegaMenu, setShowBrandsMegaMenu] = useState(false);
+  const [showProductsMegaMenu, setShowProductsMegaMenu] = useState(false);
 
   // Handle scroll effect
   useEffect(() => {
@@ -190,12 +218,24 @@ export default function Navbar() {
                 <li
                   key={link.href}
                   className="navbar__nav-item"
-                  onMouseEnter={() =>
-                    link.hasMegaMenu && setShowBrandsMegaMenu(true)
-                  }
-                  onMouseLeave={() =>
-                    link.hasMegaMenu && setShowBrandsMegaMenu(false)
-                  }
+                  onMouseEnter={() => {
+                    if (link.hasMegaMenu) {
+                      if (link.label === "BRANDS") {
+                        setShowBrandsMegaMenu(true);
+                      } else if (link.label === "PRODUCTS") {
+                        setShowProductsMegaMenu(true);
+                      }
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (link.hasMegaMenu) {
+                      if (link.label === "BRANDS") {
+                        setShowBrandsMegaMenu(false);
+                      } else if (link.label === "PRODUCTS") {
+                        setShowProductsMegaMenu(false);
+                      }
+                    }
+                  }}
                 >
                   <Link
                     href={link.href}
@@ -217,12 +257,40 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {/* Brands Mega Menu */}
-                  {link.hasMegaMenu && showBrandsMegaMenu && (
+                  {/* Brands Mega Menu - Brand Names */}
+                  {link.label === "BRANDS" && showBrandsMegaMenu && (
                     <div
                       className="navbar__mega-menu"
                       onMouseEnter={() => setShowBrandsMegaMenu(true)}
                       onMouseLeave={() => setShowBrandsMegaMenu(false)}
+                    >
+                      <div className="navbar__mega-menu-container">
+                        <h3 className="navbar__mega-menu-title">
+                          Marine Equipment Brands
+                        </h3>
+                        <div className="navbar__mega-menu-grid">
+                          {brandNames.map((brandName) => (
+                            <Link
+                              key={brandName}
+                              href={`/brands?search=${encodeURIComponent(
+                                brandName
+                              )}`}
+                              className="navbar__mega-menu-item"
+                            >
+                              {brandName}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Products Mega Menu - Product Categories */}
+                  {link.label === "PRODUCTS" && showProductsMegaMenu && (
+                    <div
+                      className="navbar__mega-menu"
+                      onMouseEnter={() => setShowProductsMegaMenu(true)}
+                      onMouseLeave={() => setShowProductsMegaMenu(false)}
                     >
                       <div className="navbar__mega-menu-container">
                         <h3 className="navbar__mega-menu-title">
@@ -232,7 +300,7 @@ export default function Navbar() {
                           {categories.map((category) => (
                             <Link
                               key={category.id}
-                              href={`/brands?category=${category.slug}`}
+                              href={`/products?category=${category.slug}`}
                               className="navbar__mega-menu-item"
                             >
                               {category.name}

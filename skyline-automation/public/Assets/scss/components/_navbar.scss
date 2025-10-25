@@ -190,7 +190,7 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    width: 800px;
+    width: 900px;
     max-width: 90vw;
     background: $white;
     box-shadow: 0 8px 32px rgba($black, 0.15);
@@ -213,7 +213,7 @@
     }
 
     @include respond-to("desktop") {
-      width: 700px;
+      width: 800px;
       padding: 1.5rem;
       padding-top: 2rem;
     }
@@ -238,10 +238,14 @@
 
   &__mega-menu-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
 
     @include respond-to("desktop") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include respond-to("tablet") {
       grid-template-columns: repeat(2, 1fr);
     }
   }
