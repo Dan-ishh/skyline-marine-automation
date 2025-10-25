@@ -1,5 +1,6 @@
 import { AppProps } from "next/app";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Navbar } from "@/src/Components";
 import "../Assets/scss/globals.scss";
 
 const geistSans = Geist({
@@ -15,6 +16,7 @@ const geistMono = Geist_Mono({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={`${geistSans.variable} ${geistMono.variable}`}>
+      <Navbar />
       <Component {...pageProps} />
     </div>
   );

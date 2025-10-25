@@ -3,12 +3,15 @@
  * Base styles and resets for the application
  */
 
+@use "sass:color";
+
 @import "./variables";
 @import "./mixins";
 
 // ============================================
 // Component Styles
 // ============================================
+@import "./components/navbar";
 @import "./components/hero-slider";
 
 // ============================================
