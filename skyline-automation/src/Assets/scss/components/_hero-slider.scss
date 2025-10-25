@@ -1,0 +1,371 @@
+/**
+ * Hero Slider Styles
+ */
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background: $black;
+
+  @include tablet {
+    height: 500px;
+  }
+
+  @include mobile {
+    height: 400px;
+  }
+
+  // Slides Container
+  .slides-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  // Individual Slide
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    z-index: 1;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+
+      .slide-content {
+        .subtitle,
+        .title,
+        .description,
+        .cta-button {
+          animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .subtitle {
+          animation-delay: 0.2s;
+        }
+
+        .title {
+          animation-delay: 0.4s;
+        }
+
+        .description {
+          animation-delay: 0.6s;
+        }
+
+        .cta-button {
+          animation-delay: 0.8s;
+        }
+      }
+    }
+
+    // Slide Image
+    .slide-image {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+      // Dark overlay
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.5) 50%,
+          rgba(0, 0, 0, 0.3) 100%
+        );
+        z-index: 1;
+      }
+    }
+
+    // Slide Content
+    .slide-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+
+      .container {
+        max-width: 800px;
+
+        @include tablet {
+          max-width: 600px;
+        }
+
+        @include mobile {
+          max-width: 100%;
+          padding: 0 1.5rem;
+        }
+      }
+
+      .subtitle {
+        display: inline-block;
+        color: $accent-color;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-semibold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        opacity: 0;
+        transform: translateY(30px);
+
+        @include mobile {
+          font-size: $font-size-xs;
+          letter-spacing: 1.5px;
+        }
+      }
+
+      .title {
+        font-size: 3.5rem;
+        font-weight: $font-weight-bold;
+        color: $white;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        transform: translateY(30px);
+
+        @include tablet {
+          font-size: 2.5rem;
+        }
+
+        @include mobile {
+          font-size: 1.875rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .description {
+        font-size: $font-size-lg;
+        color: $gray-200;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        opacity: 0;
+        transform: translateY(30px);
+
+        @include tablet {
+          font-size: $font-size-base;
+          max-width: 500px;
+        }
+
+        @include mobile {
+          font-size: $font-size-sm;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(
+          135deg,
+          $accent-color,
+          darken($accent-color, 10%)
+        );
+        color: $white;
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        text-decoration: none;
+        border-radius: $border-radius-lg;
+        box-shadow: 0 4px 16px rgba($accent-color, 0.4);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+
+        .arrow {
+          font-size: 1.5rem;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba($accent-color, 0.5);
+
+          .arrow {
+            transform: translateX(5px);
+          }
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+
+        @include mobile {
+          padding: 0.875rem 2rem;
+          font-size: $font-size-sm;
+        }
+      }
+    }
+  }
+
+  // Navigation Arrows
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba($white, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba($white, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+
+    span {
+      font-size: 2rem;
+      color: $white;
+      line-height: 1;
+    }
+
+    &:hover {
+      background: rgba($white, 0.2);
+      border-color: rgba($white, 0.4);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    &.prev-arrow {
+      left: 2rem;
+
+      @include mobile {
+        left: 1rem;
+        width: 40px;
+        height: 40px;
+
+        span {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    &.next-arrow {
+      right: 2rem;
+
+      @include mobile {
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+
+        span {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  // Dots Navigation
+  .dots-navigation {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    z-index: 10;
+
+    @include mobile {
+      bottom: 1.5rem;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba($white, 0.3);
+      border: 2px solid rgba($white, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+
+      &:hover {
+        background: rgba($white, 0.5);
+        transform: scale(1.2);
+      }
+
+      &.active {
+        background: $accent-color;
+        border-color: $accent-color;
+        width: 40px;
+        border-radius: 6px;
+      }
+
+      @include mobile {
+        width: 10px;
+        height: 10px;
+
+        &.active {
+          width: 30px;
+        }
+      }
+    }
+  }
+
+  // Auto-play progress indicator
+  .autoplay-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba($white, 0.1);
+    z-index: 10;
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, $accent-color, $primary-color);
+      animation: slideProgress 5s linear;
+      width: 100%;
+      transform-origin: left;
+    }
+  }
+
+  // Animation Keyframes
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideProgress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}

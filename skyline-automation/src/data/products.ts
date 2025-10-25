@@ -16,11 +16,7 @@ export const products: Product[] = [
     description:
       "The Wärtsilä 31 is the most fuel-efficient four-stroke engine currently available on the market. Designed for marine propulsion and power generation.",
     price: 0, // Price on request
-    images: [
-      "/images/products/wartsila-31-1.jpg",
-      "/images/products/wartsila-31-2.jpg",
-      "/images/products/wartsila-31-3.jpg",
-    ],
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
     specifications: {
       "Power Output": "4.2-9.8 MW",
       Speed: "720-1000 rpm",
@@ -44,7 +40,7 @@ export const products: Product[] = [
     description:
       "Two-stroke low-speed diesel engine for large container vessels and bulk carriers.",
     price: 0,
-    images: ["/images/products/man-bw-6s50me-1.jpg"],
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
     specifications: {
       "Power Output": "9,480 kW",
       Speed: "99 rpm",
@@ -68,7 +64,7 @@ export const products: Product[] = [
     description:
       "High-performance V16 diesel engine for commercial marine applications.",
     price: 0,
-    images: ["/images/products/cat-3516c-1.jpg"],
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
     specifications: {
       "Power Output": "2,085-3,386 kW",
       Speed: "1,600-1,800 rpm",
@@ -94,7 +90,7 @@ export const products: Product[] = [
     description:
       "Medium-speed diesel generator for auxiliary power generation onboard vessels.",
     price: 0,
-    images: ["/images/products/yanmar-6ey26w-1.jpg"],
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
     specifications: {
       "Power Output": "1,618 kW",
       Speed: "750 rpm",
@@ -117,7 +113,7 @@ export const products: Product[] = [
     category: "Auxiliary Engines",
     description: "Reliable auxiliary power generation for marine vessels.",
     price: 0,
-    images: ["/images/products/cummins-qsk60-1.jpg"],
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
     specifications: {
       "Power Output": "1,800-2,013 kW",
       Speed: "1,500-1,800 rpm",
@@ -143,7 +139,7 @@ export const products: Product[] = [
     description:
       "Advanced integrated ship automation system for propulsion, power generation, and auxiliary systems.",
     price: 0,
-    images: ["/images/products/nacos-platinum-1.jpg"],
+    images: ["/Assets/images/Products/Automation.jpg"],
     specifications: {
       Type: "Integrated Automation System",
       Features: "Engine Control, Power Management, Alarm Monitoring",
@@ -166,7 +162,7 @@ export const products: Product[] = [
     category: "Automation",
     description: "Comprehensive ship automation and control system.",
     price: 0,
-    images: ["/images/products/sam-electronics-1.jpg"],
+    images: ["/Assets/images/Products/Automation.jpg"],
     specifications: {
       Type: "Ship Automation",
       Modules: "Engine, Thruster, Power Management",
@@ -192,7 +188,7 @@ export const products: Product[] = [
     description:
       "High-efficiency radial turbocharger for medium-speed marine engines.",
     price: 0,
-    images: ["/images/products/man-tcr22-1.jpg"],
+    images: ["/Assets/images/Products/gear-motors-v1.jpg"],
     specifications: {
       Model: "TCR22",
       Type: "Radial",
@@ -215,7 +211,7 @@ export const products: Product[] = [
     category: "Turbo Chargers",
     description: "Compact and efficient turbocharger for auxiliary engines.",
     price: 0,
-    images: ["/images/products/mitsubishi-met83-1.jpg"],
+    images: ["/Assets/images/Products/gear-motors-v1.jpg"],
     specifications: {
       Model: "MET83SE",
       Type: "Single-stage",
@@ -240,7 +236,7 @@ export const products: Product[] = [
     category: "Oil Purifier",
     description: "High-speed separator for fuel oil and lube oil purification.",
     price: 0,
-    images: ["/images/products/mapx-309-1.jpg"],
+    images: ["/Assets/images/Products/filters-v2.jpg"],
     specifications: {
       Model: "MAPX 309",
       Capacity: "9,800 L/h",
@@ -263,7 +259,7 @@ export const products: Product[] = [
     category: "Oil Purifier",
     description: "Self-cleaning oil separator for marine diesel engines.",
     price: 0,
-    images: ["/images/products/westfalia-ose20-1.jpg"],
+    images: ["/Assets/images/Products/filters-v2.jpg"],
     specifications: {
       Model: "OSE 20",
       Throughput: "5,000 L/h",
@@ -289,7 +285,7 @@ export const products: Product[] = [
     description:
       "Variable displacement axial piston pump for marine hydraulic systems.",
     price: 0,
-    images: ["/images/products/rexroth-a10vso-1.jpg"],
+    images: ["/Assets/images/Products/gear-motors-v1.jpg"],
     specifications: {
       Type: "Axial piston",
       Displacement: "18-140 cm³",
@@ -315,7 +311,7 @@ export const products: Product[] = [
     description:
       "Compact brazed plate heat exchanger for marine cooling systems.",
     price: 0,
-    images: ["/images/products/alfa-laval-m15-1.jpg"],
+    images: ["/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg"],
     specifications: {
       Type: "Plate Heat Exchanger",
       "Heat Transfer Area": "1.5-25 m²",
@@ -339,7 +335,7 @@ export const products: Product[] = [
     description:
       "Robust shell and tube heat exchanger for heavy-duty marine applications.",
     price: 0,
-    images: ["/images/products/bowman-shell-tube-1.jpg"],
+    images: ["/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg"],
     specifications: {
       Type: "Shell & Tube",
       "Heat Duty": "50-500 kW",
@@ -365,7 +361,7 @@ export const products: Product[] = [
     description:
       "Marine-duty three-phase induction motor for pumps and compressors.",
     price: 0,
-    images: ["/images/products/abb-m3bp-315-1.jpg"],
+    images: ["/Assets/images/Products/electric-motors-v1.jpg"],
     specifications: {
       Power: "90-200 kW",
       Voltage: "380-690 V",
@@ -388,7 +384,7 @@ export const products: Product[] = [
     category: "Electric Motor",
     description: "Rugged AC motor designed for harsh marine environments.",
     price: 0,
-    images: ["/images/products/siemens-1la8-1.jpg"],
+    images: ["/Assets/images/Products/electric-motors-v1.jpg"],
     specifications: {
       Power: "0.75-355 kW",
       Voltage: "400/690 V",
@@ -414,7 +410,7 @@ export const products: Product[] = [
     description:
       "Thermal-magnetic motor circuit breaker for marine applications.",
     price: 0,
-    images: ["/images/products/tesys-gv3-1.jpg"],
+    images: ["/Assets/images/Products/electric-equipments-v1.jpg"],
     specifications: {
       Type: "Motor Protection",
       "Current Range": "0.25-100 A",
@@ -437,7 +433,7 @@ export const products: Product[] = [
     category: "Switch & Controller",
     description: "Variable frequency drive for marine pump and fan control.",
     price: 0,
-    images: ["/images/products/abb-acs880-1.jpg"],
+    images: ["/Assets/images/Products/electric-equipments-v1.jpg"],
     specifications: {
       "Power Range": "0.75-5,600 kW",
       Voltage: "380-690 V AC",
@@ -462,7 +458,7 @@ export const products: Product[] = [
     category: "Life Boat",
     description: "Freefall lifeboat for offshore and merchant vessels.",
     price: 0,
-    images: ["/images/products/norsafe-magnum-70-1.jpg"],
+    images: ["/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg"],
     specifications: {
       Capacity: "70 persons",
       Length: "9.0 m",
@@ -485,7 +481,7 @@ export const products: Product[] = [
     category: "Life Boat",
     description: "Inflatable life raft meeting SOLAS requirements.",
     price: 0,
-    images: ["/images/products/viking-life-raft-1.jpg"],
+    images: ["/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg"],
     specifications: {
       Capacity: "6-25 persons",
       Type: "Inflatable SOLAS B",
@@ -511,7 +507,7 @@ export const products: Product[] = [
     description:
       "S-band radar with solid-state technology for commercial vessels.",
     price: 0,
-    images: ["/images/products/furuno-far-2228-1.jpg"],
+    images: ["/Assets/images/Products/Automation.jpg"],
     specifications: {
       Frequency: "S-band (3 GHz)",
       "Output Power": "25 kW",
@@ -535,7 +531,7 @@ export const products: Product[] = [
     description:
       "Type approved Electronic Chart Display and Information System.",
     price: 0,
-    images: ["/images/products/jrc-ecdis-1.jpg"],
+    images: ["/Assets/images/Products/Automation.jpg"],
     specifications: {
       Display: '24" TFT LCD',
       Charts: "S-57 ENC",
@@ -561,7 +557,7 @@ export const products: Product[] = [
     description:
       "Oil Discharge Monitoring Equipment for compliance with MARPOL Annex I.",
     price: 0,
-    images: ["/images/products/rivertrace-odme-1.jpg"],
+    images: ["/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg"],
     specifications: {
       Type: "ODME",
       Measurement: "0-100 ppm",
@@ -586,7 +582,7 @@ export const products: Product[] = [
     category: "Anchor & Chain",
     description: "Heavy-duty vertical windlass for large vessels.",
     price: 0,
-    images: ["/images/products/macgregor-windlass-1.jpg"],
+    images: ["/Assets/images/Products/bearings-v1.jpg"],
     specifications: {
       Type: "Vertical Windlass",
       Capacity: "50 tonnes",
@@ -609,7 +605,7 @@ export const products: Product[] = [
     category: "Anchor & Chain",
     description: "Stockless marine anchor for commercial vessels.",
     price: 0,
-    images: ["/images/products/hall-anchor-1.jpg"],
+    images: ["/Assets/images/Products/bearings-v1.jpg"],
     specifications: {
       Type: "Hall Stockless",
       Weight: "8,000 kg",
@@ -634,7 +630,7 @@ export const products: Product[] = [
     category: "Fresh Water Generator",
     description: "Plate-type evaporator for potable water production onboard.",
     price: 0,
-    images: ["/images/products/alfa-laval-jwp-26-1.jpg"],
+    images: ["/Assets/images/Products/filters-v2.jpg"],
     specifications: {
       Capacity: "26 tonnes/day",
       Type: "Plate evaporator",
@@ -658,7 +654,7 @@ export const products: Product[] = [
     description:
       "Energy-efficient fresh water generator with reverse osmosis option.",
     price: 0,
-    images: ["/images/products/wartsila-aquamarin-1.jpg"],
+    images: ["/Assets/images/Products/filters-v2.jpg"],
     specifications: {
       Production: "80 m³/day",
       Technology: "Vacuum distillation",
@@ -683,7 +679,7 @@ export const products: Product[] = [
     category: "Deck Machinery",
     description: "Hydraulic deck crane for cargo handling operations.",
     price: 0,
-    images: ["/images/products/tts-crane-1.jpg"],
+    images: ["/Assets/images/Products/bearings-v1.jpg"],
     specifications: {
       Capacity: "30 tonnes @ 8m",
       Outreach: "25 m",
@@ -706,7 +702,7 @@ export const products: Product[] = [
     category: "Deck Machinery",
     description: "Heavy-duty stern ramp for RoRo vessels.",
     price: 0,
-    images: ["/images/products/macgregor-ramp-1.jpg"],
+    images: ["/Assets/images/Products/bearings-v1.jpg"],
     specifications: {
       Type: "Stern Ramp",
       SWL: "100 tonnes",
@@ -731,7 +727,7 @@ export const products: Product[] = [
     category: "Pump",
     description: "Multi-stage centrifugal pump for marine water systems.",
     price: 0,
-    images: ["/images/products/grundfos-crn-1.jpg"],
+    images: ["/Assets/images/Products/gear-motors-v1.jpg"],
     specifications: {
       Type: "Multistage centrifugal",
       "Flow Rate": "0-64 m³/h",
@@ -754,7 +750,7 @@ export const products: Product[] = [
     category: "Pump",
     description: "Twin-screw pump for heavy fuel oil transfer.",
     price: 0,
-    images: ["/images/products/sulzer-xrw-1.jpg"],
+    images: ["/Assets/images/Products/gear-motors-v1.jpg"],
     specifications: {
       Type: "Twin Screw",
       Capacity: "5-200 m³/h",
@@ -780,7 +776,7 @@ export const products: Product[] = [
     description:
       "Oil-injected rotary screw compressor for marine compressed air systems.",
     price: 0,
-    images: ["/images/products/atlas-copco-ga90-1.jpg"],
+    images: ["/Assets/images/Products/aircompressor-v1.jpg"],
     specifications: {
       Type: "Rotary Screw",
       "Free Air Delivery": "16.5 m³/min",
@@ -803,7 +799,7 @@ export const products: Product[] = [
     category: "Air/Gas/Chilling Compressor",
     description: "Screw compressor water chiller for HVAC systems.",
     price: 0,
-    images: ["/images/products/carrier-30rb-1.jpg"],
+    images: ["/Assets/images/Products/aircompressor-v1.jpg"],
     specifications: {
       "Cooling Capacity": "500-1,500 kW",
       Compressor: "Twin screw",
@@ -829,7 +825,7 @@ export const products: Product[] = [
     description:
       "High-pressure triplex mud pump for offshore drilling operations.",
     price: 0,
-    images: ["/images/products/nov-mud-pump-1.jpg"],
+    images: ["/Assets/images/Products/bearings-v1.jpg"],
     specifications: {
       Type: "Triplex",
       Power: "7,500 HP",
@@ -852,7 +848,7 @@ export const products: Product[] = [
     category: "Offshore Rigs",
     description: "Blowout preventer stack for deepwater drilling.",
     price: 0,
-    images: ["/images/products/cameron-bop-1.jpg"],
+    images: ["/Assets/images/Products/bearings-v1.jpg"],
     specifications: {
       Type: "Subsea BOP",
       "Bore Size": '18-3/4"',
@@ -877,7 +873,7 @@ export const products: Product[] = [
     category: "Electric Item",
     description: "Marine-grade molded case circuit breaker.",
     price: 0,
-    images: ["/images/products/schneider-powerpact-1.jpg"],
+    images: ["/Assets/images/Products/panel-boards-v3.jpg"],
     specifications: {
       Type: "MCCB",
       "Frame Size": "630A",
@@ -900,7 +896,7 @@ export const products: Product[] = [
     category: "Electric Item",
     description: "Low voltage marine switchboard system.",
     price: 0,
-    images: ["/images/products/abb-mns-1.jpg"],
+    images: ["/Assets/images/Products/panel-boards-v3.jpg"],
     specifications: {
       Type: "LV Switchboard",
       "Rated Current": "Up to 6,300 A",
@@ -926,7 +922,7 @@ export const products: Product[] = [
     description:
       "In-line 6-cylinder marine diesel engine with excellent fuel economy.",
     price: 0,
-    images: ["/images/products/volvo-d13-1.jpg"],
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
     specifications: {
       "Power Output": "368-515 kW",
       Speed: "1,800-2,300 rpm",
@@ -949,7 +945,7 @@ export const products: Product[] = [
     category: "Main Engines",
     description: "Medium-speed four-stroke marine diesel engine.",
     price: 0,
-    images: ["/images/products/daihatsu-6dk-28-1.jpg"],
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
     specifications: {
       "Power Output": "3,240 kW",
       Speed: "600 rpm",
@@ -972,7 +968,7 @@ export const products: Product[] = [
     category: "Auxiliary Engines",
     description: "High-speed diesel generator for auxiliary power.",
     price: 0,
-    images: ["/images/products/niigata-28ahx-1.jpg"],
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
     specifications: {
       "Power Output": "1,200 kW",
       Speed: "900 rpm",

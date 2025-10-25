@@ -1,12 +1,13 @@
 /**
  * Home Page
  * Route: /
- * Main landing page with Banner, Latest Products, Most Enquired Products, and Inquiry Section
+ * Main landing page with Hero Slider, Latest Products, Most Enquired Products, and Inquiry Section
  */
 
 import { useEffect } from "react";
 import Head from "next/head";
 import { useProductStore, useUIStore } from "@/src/store";
+import { HeroSlider } from "@/src/Components";
 
 export default function Home() {
   const {
@@ -33,14 +34,8 @@ export default function Home() {
       </Head>
 
       <div className="home-page">
-        {/* Banner Section */}
-        <section className="banner">
-          <div className="container">
-            <h1>Welcome to Skyline Marine Automation</h1>
-            <p>Your trusted source for premium marine equipment</p>
-            <button onClick={() => openInquiryModal()}>Get Started</button>
-          </div>
-        </section>
+        {/* Hero Slider Section */}
+        <HeroSlider />
 
         {/* Latest Products Section */}
         <section className="latest-products">

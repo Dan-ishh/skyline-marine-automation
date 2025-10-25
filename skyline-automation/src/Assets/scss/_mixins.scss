@@ -9,6 +9,23 @@
 // Responsive Breakpoint Mixins
 // ============================================
 
+// Generic respond-to mixin with parameter
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+    @media (max-width: ($breakpoint-md - 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet" {
+    @media (max-width: ($breakpoint-lg - 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == "desktop" {
+    @media (max-width: ($breakpoint-xl - 1px)) {
+      @content;
+    }
+  }
+}
+
 @mixin mobile {
   @media (min-width: $breakpoint-xs) {
     @content;
