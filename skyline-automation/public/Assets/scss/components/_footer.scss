@@ -26,7 +26,7 @@
     margin: 0 auto;
     padding: 0 2rem;
     display: grid;
-    grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 3rem;
 
     @include respond-to("desktop") {
@@ -159,7 +159,7 @@
 
     svg {
       margin-top: 0.125rem;
-      color: $accent-color;
+      color: $orange-color;
     }
   }
 
@@ -171,11 +171,12 @@
     a {
       color: $gray-400;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
       font-size: 0.875rem;
 
       &:hover {
-        color: $accent-color;
+        color: $white;
+        font-weight: 600;
       }
 
       @include respond-to("mobile") {
@@ -213,7 +214,8 @@
     }
 
     &:hover {
-      color: $accent-color;
+      color: $white;
+      font-weight: 600;
       padding-left: 1.25rem;
 
       &::before {
@@ -261,7 +263,17 @@
     }
   }
 
-  &__brand,
+  &__brand {
+    color: $white;
+    text-decoration: none;
+    font-weight: $font-weight-bold;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
   &__powered-by {
     color: $accent-color;
     text-decoration: none;
