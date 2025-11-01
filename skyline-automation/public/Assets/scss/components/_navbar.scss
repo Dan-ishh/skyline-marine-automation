@@ -424,7 +424,6 @@
 
   &__mobile-nav-item {
     margin: 0;
-    border-bottom: 1px solid rgba($primary-color, 0.1);
   }
 
   &__mobile-nav-link {
@@ -435,15 +434,27 @@
     font-weight: 500;
     font-size: 1rem;
     transition: all 0.3s ease;
-
+    border-radius: $border-radius-sm;
+    max-width: fit-content;
+    background-color: $bg-secondary;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 50px;
+    margin: 0.25rem 0;
     &:hover {
       color: $primary-color;
       padding-left: 0.5rem;
     }
 
     &--active {
-      color: $accent-color;
+      color: $white;
       font-weight: 600;
+      background-color: $primary-color;
+
+      &:hover {
+        background-color: color.adjust($primary-color, $lightness: -5%);
+        color: $white;
+      }
     }
   }
 
@@ -452,8 +463,8 @@
     flex-direction: column;
     gap: 1.5rem;
     margin-bottom: 2rem;
-    padding-top: 1rem;
-    // border-top: 2px solid rgba($primary-color, 0.1);
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba($primary-color, 0.15);
   }
 
   &__mobile-contact-group {

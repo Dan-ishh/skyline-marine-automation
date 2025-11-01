@@ -8,7 +8,7 @@ export { default as HeroSlider } from "./HeroSlider";
 
 // Layout Components
 export { default as Navbar } from "./Navbar";
-// export { Footer } from './Footer';
+export { default as Footer } from "./Footer";
 
 // Utility Components
 // export { Error } from './Error';
