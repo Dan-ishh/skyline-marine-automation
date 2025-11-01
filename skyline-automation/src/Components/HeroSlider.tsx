@@ -23,7 +23,7 @@ const slides: Slide[] = [
     subtitle: "Skyline Marine Automation",
     description:
       "Your trusted source for high-quality marine engines, automation systems, and equipment",
-    image: "/Assets/images/Banner/ship.jpg",
+    image: "/Assets/images/Banner/ship-engine.jpg",
     cta: "Explore Products",
     ctaLink: "/brands",
   },
@@ -33,7 +33,7 @@ const slides: Slide[] = [
     subtitle: "Smart Marine Solutions",
     description:
       "State-of-the-art automation and control systems for modern vessels",
-    image: "/Assets/images/Banner/marine.jpg",
+    image: "/Assets/images/Banner/panel.jpg",
     cta: "View Automation",
     ctaLink: "/brands",
   },
@@ -42,19 +42,19 @@ const slides: Slide[] = [
     title: "Power Generation Excellence",
     subtitle: "Diesel Engines & Generators",
     description: "Reliable power solutions from world-leading manufacturers",
-    image: "/Assets/images/Banner/generator.jpg",
+    image: "/Assets/images/Banner/power.jpg",
     cta: "Discover More",
     ctaLink: "/brands",
   },
-  {
-    id: 4,
-    title: "Expert Marine Services",
-    subtitle: "Sales & Support",
-    description: "Comprehensive support for all your marine equipment needs",
-    image: "/Assets/images/Banner/ship2.jpg",
-    cta: "Contact Us",
-    ctaLink: "/contact",
-  },
+  //   {
+  //     id: 4,
+  //     title: "Expert Marine Services",
+  //     subtitle: "Sales & Support",
+  //     description: "Comprehensive support for all your marine equipment needs",
+  //     image: "/Assets/images/Banner/ship2.jpg",
+  //     cta: "Contact Us",
+  //     ctaLink: "/contact",
+  //   },
 ];
 
 export default function HeroSlider() {

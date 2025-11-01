@@ -121,8 +121,9 @@ a {
   transition: color $transition-base $transition-ease;
 
   &:hover {
-    color: $primary-dark;
-    text-decoration: underline;
+    color: $white;
+    // font-weight: bold;
+    text-decoration: none;
   }
 
   &:focus-visible {

@@ -20,7 +20,7 @@
   // Top Bar with Contact Info
   &__top-bar {
     background-color: lighten($primary-color, 5%);
-    color: $white;
+    color: $orange-color;
     padding: 0.75rem 0;
     font-size: 0.875rem;
 
@@ -166,11 +166,14 @@
     &:hover {
       background-color: rgba($primary-color, 0.08);
       color: $primary-color;
+      border-radius: 50px;
+      text-decoration: none;
     }
 
     &--active {
       background-color: $primary-color;
       color: $white;
+      border-radius: 50px;
 
       &:hover {
         background-color: color.adjust($primary-color, $lightness: -5%);
@@ -379,6 +382,40 @@
     }
   }
 
+  // Mobile Close Button
+  &__mobile-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid rgba($primary-color, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    color: $primary-color;
+    transition: all 0.3s ease;
+    z-index: 1002;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $white;
+      transform: rotate(90deg);
+      border-color: $primary-color;
+    }
+
+    &:active {
+      transform: rotate(90deg) scale(0.95);
+    }
+
+    svg {
+      display: block;
+    }
+  }
+
   &__mobile-nav {
     list-style: none;
     padding: 0;
@@ -416,13 +453,13 @@
     gap: 1.5rem;
     margin-bottom: 2rem;
     padding-top: 1rem;
-    border-top: 2px solid rgba($primary-color, 0.1);
+    // border-top: 2px solid rgba($primary-color, 0.1);
   }
 
   &__mobile-contact-group {
     h4 {
       font-size: 0.875rem;
-      color: $primary-color;
+      color: $orange-color;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin: 0 0 0.5rem 0;
@@ -463,7 +500,7 @@
     text-decoration: none;
     font-weight: 600;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 50px;
     border: 2px solid $accent-color;
     transition: all 0.3s ease;
     letter-spacing: 0.5px;

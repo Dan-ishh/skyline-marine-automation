@@ -7,7 +7,7 @@
 // Color Palette - Marine/Industrial Theme
 // ============================================
 
-// Primary Colors
+// Primary Colors (Navy Blue - Marine Theme)
 $primary-color: #003366; // Navy blue (marine theme)
 $primary-dark: #002244;
 $primary-light: #0055aa;
@@ -18,9 +18,14 @@ $secondary-dark: #0055aa;
 $secondary-light: #3399ff;
 
 // Accent Colors
-$accent-color: #ff6b00; // Orange (CTA)
-$accent-dark: #cc5500;
-$accent-light: #ff8833;
+$orange-color: #ff6b00; // Orange (CTA)
+$orange-dark: #cc5500;
+$orange-light: #ff8833;
+
+// Accent Colors (Same as Primary - Navy Blue)
+$accent-color: #003366; // Navy blue (same as primary)
+$accent-dark: #002244; // Darker navy
+$accent-light: #0055aa; // Lighter navy/blue
 
 // Neutral Colors
 $white: #ffffff;
