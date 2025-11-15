@@ -15,36 +15,22 @@ interface NavLink {
   hasMegaMenu?: boolean;
 }
 
-// Brand names for Brands mega menu
-const brandNames = [
-  "WARTSILA",
-  "ROLLS-ROYCE",
-  "MAN B&W",
-  "WICHMANN",
-  "HYUNDAI HIMSE",
-  "DEUTZ",
-  "MAK",
+// Stock/Brand names for Stock mega menu
+const stockBrands = [
+  "STORK WERKSPOOR",
+  "MAN B&W MAIN ENGINE",
+  "SCHALLER",
+  "INGERSOLL RAND",
   "DAIHATSU",
-  "TURBOCHARGERS",
-  "WINCH",
-  "COMPLETE ENGINES",
-  "AKASAKA",
-  "GENERATORS",
-  "CATERPILLAR",
-  "EMD",
-  "EQUIPMENTS",
-  "OIL WELL EQUIPMENTS",
-  "BLOWERS",
-  "HANSHIN",
-  "MITSUBISHI",
-  "GOVERNOR",
-  "PIELSTICK",
+  "ALLEN DIESEL",
   "YANMAR",
+  "BREATHING COMPRESSOR",
+  "WARTSILA",
 ];
 
 const navLinks: NavLink[] = [
   { label: "HOME", href: "/" },
-  { label: "BRANDS", href: "/brands", hasMegaMenu: true },
+  { label: "STOCK", href: "/stock", hasMegaMenu: true },
   { label: "PRODUCTS", href: "/products", hasMegaMenu: true },
   { label: "CONTACT US", href: "/contact" },
 ];
@@ -88,10 +74,10 @@ export default function Navbar() {
     if (href === "/") {
       return router.pathname === "/";
     }
-    // Exact match for /brands and /products to avoid conflicts
-    if (href === "/brands") {
+    // Exact match for /stock and /products to avoid conflicts
+    if (href === "/stock") {
       return (
-        router.pathname === "/brands" || router.pathname.startsWith("/brands/")
+        router.pathname === "/stock" || router.pathname.startsWith("/stock/")
       );
     }
     if (href === "/products") {
@@ -217,7 +203,7 @@ export default function Navbar() {
                   className="navbar__nav-item"
                   onMouseEnter={() => {
                     if (link.hasMegaMenu) {
-                      if (link.label === "BRANDS") {
+                      if (link.label === "STOCK") {
                         setShowBrandsMegaMenu(true);
                       } else if (link.label === "PRODUCTS") {
                         setShowProductsMegaMenu(true);
@@ -226,7 +212,7 @@ export default function Navbar() {
                   }}
                   onMouseLeave={() => {
                     if (link.hasMegaMenu) {
-                      if (link.label === "BRANDS") {
+                      if (link.label === "STOCK") {
                         setShowBrandsMegaMenu(false);
                       } else if (link.label === "PRODUCTS") {
                         setShowProductsMegaMenu(false);
@@ -255,20 +241,21 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {/* Brands Mega Menu - Brand Names */}
-                  {link.label === "BRANDS" && showBrandsMegaMenu && (
+                  {/* Stock Mega Menu - Available Stock Brands */}
+                  {link.label === "STOCK" && showBrandsMegaMenu && (
                     <div className="navbar__mega-menu">
                       <div className="navbar__mega-menu-container">
-                        <h3 className="navbar__mega-menu-title">
-                          Marine Equipment Brands
-                        </h3>
+                        {/* <h3 className="navbar__mega-menu-title">
+                          Available Stock
+                        </h3> */}
                         <div className="navbar__mega-menu-grid">
-                          {brandNames.map((brandName) => (
+                          {stockBrands.map((brandName) => (
                             <Link
                               key={brandName}
-                              href={`/brands?search=${encodeURIComponent(
-                                brandName
-                              )}`}
+                              href={`/stock/${brandName
+                                .toLowerCase()
+                                .replace(/\s+/g, "-")
+                                .replace(/&/g, "and")}`}
                               className="navbar__mega-menu-item"
                             >
                               {brandName}
@@ -283,9 +270,9 @@ export default function Navbar() {
                   {link.label === "PRODUCTS" && showProductsMegaMenu && (
                     <div className="navbar__mega-menu">
                       <div className="navbar__mega-menu-container">
-                        <h3 className="navbar__mega-menu-title">
+                        {/* <h3 className="navbar__mega-menu-title">
                           Product Categories
-                        </h3>
+                        </h3> */}
                         <div className="navbar__mega-menu-grid">
                           {categories.map((category) => (
                             <Link

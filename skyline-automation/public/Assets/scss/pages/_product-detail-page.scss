@@ -1,0 +1,306 @@
+/**
+ * Product Detail Page Styles
+ * Individual product view with inquiry buttons
+ */
+
+.product-detail {
+  padding-top: 80px; // Account for fixed navbar
+
+  &__breadcrumb {
+    background: $gray-100;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    a {
+      color: $primary-color;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $orange-color;
+      }
+    }
+
+    span {
+      color: $text-secondary;
+    }
+  }
+
+  &-loading {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: $text-secondary;
+  }
+
+  &__hero {
+    padding: 4rem 0;
+
+    @include respond-to("tablet") {
+      padding: 3rem 0;
+    }
+
+    @include respond-to("mobile") {
+      padding: 2rem 0;
+    }
+  }
+
+  &__hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+
+    @include respond-to("tablet") {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  &__images {
+    position: relative;
+  }
+
+  &__main-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    background: $gray-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin: 0;
+
+    @include respond-to("mobile") {
+      font-size: 2rem;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid $gray-200;
+    border-bottom: 1px solid $gray-200;
+  }
+
+  &__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__meta-label {
+    font-weight: $font-weight-semibold;
+    color: $text-secondary;
+    min-width: 100px;
+  }
+
+  &__meta-value {
+    color: $text-primary;
+    font-weight: $font-weight-medium;
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 1rem;
+
+    @include respond-to("mobile") {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 1rem 1.5rem;
+    border-radius: $border-radius-sm;
+    font-size: 1rem;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &--primary {
+      background: $primary-color;
+      color: $white;
+      border-color: $primary-color;
+
+      &:hover {
+        background: darken($primary-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+      }
+    }
+
+    &--whatsapp {
+      background: #25d366;
+      color: $white;
+      border-color: #25d366;
+
+      &:hover {
+        background: darken(#25d366, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(#25d366, 0.3);
+      }
+    }
+
+    &--outline {
+      background: transparent;
+      color: $primary-color;
+      border-color: $primary-color;
+
+      &:hover {
+        background: $primary-color;
+        color: $white;
+      }
+    }
+  }
+
+  &__description {
+    h2 {
+      font-size: 1.5rem;
+      color: $primary-color;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: $text-secondary;
+      line-height: 1.7;
+    }
+  }
+
+  &__content {
+    padding: 4rem 0;
+    background: $gray-50;
+
+    @include respond-to("tablet") {
+      padding: 3rem 0;
+    }
+
+    @include respond-to("mobile") {
+      padding: 2rem 0;
+    }
+  }
+
+  &__tabs {
+    h2 {
+      font-size: 2rem;
+      color: $primary-color;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+  }
+
+  &__specs {
+    background: $white;
+    padding: 2rem;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 2px 8px rgba($black, 0.05);
+
+    p {
+      color: $text-secondary;
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+
+  &__cta {
+    padding: 6rem 0;
+    background: linear-gradient(
+      135deg,
+      $primary-color 0%,
+      darken($primary-color, 15%) 100%
+    );
+
+    @include respond-to("tablet") {
+      padding: 4rem 0;
+    }
+
+    @include respond-to("mobile") {
+      padding: 3rem 0;
+    }
+  }
+
+  &__cta-content {
+    text-align: center;
+    color: $white;
+
+    h2 {
+      font-size: 2.5rem;
+      color: $white;
+      margin-bottom: 1rem;
+
+      @include respond-to("mobile") {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+  }
+
+  &__cta-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    @include respond-to("mobile") {
+      flex-direction: column;
+
+      .product-detail__btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    .product-detail__btn--outline {
+      border-color: $white;
+      color: $white;
+
+      &:hover {
+        background: $white;
+        color: $primary-color;
+      }
+    }
+  }
+}

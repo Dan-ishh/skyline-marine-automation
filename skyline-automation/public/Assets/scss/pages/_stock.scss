@@ -1,0 +1,495 @@
+/**
+ * Stock Pages Styles
+ * Stock listing and brand detail pages
+ */
+
+// Stock Page
+.stock-page {
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+.stock-hero {
+  background: linear-gradient(
+    135deg,
+    $primary-color 0%,
+    darken($primary-color, 10%) 100%
+  );
+  color: $white;
+  padding: 6rem 0 4rem;
+  text-align: center;
+
+  @include respond-to("tablet") {
+    padding: 5rem 0 3rem;
+  }
+
+  @include respond-to("mobile") {
+    padding: 4rem 0 2.5rem;
+  }
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    @include respond-to("tablet") {
+      padding: 0 1.5rem;
+    }
+
+    @include respond-to("mobile") {
+      padding: 0 1rem;
+    }
+  }
+
+  &__title {
+    font-size: 3.5rem;
+    font-weight: $font-weight-bold;
+    margin: 0 0 1rem 0;
+    color: $orange-color;
+
+    @include respond-to("tablet") {
+      font-size: 2.75rem;
+    }
+
+    @include respond-to("mobile") {
+      font-size: 2rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+
+    @include respond-to("mobile") {
+      font-size: 1rem;
+    }
+  }
+}
+
+.stock-search {
+  padding: 3rem 0;
+  background: $gray-100;
+
+  @include respond-to("mobile") {
+    padding: 2rem 0;
+  }
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    @include respond-to("tablet") {
+      padding: 0 1.5rem;
+    }
+
+    @include respond-to("mobile") {
+      padding: 0 1rem;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid $gray-300;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $accent-color;
+      box-shadow: 0 0 0 3px rgba($accent-color, 0.1);
+    }
+
+    @include respond-to("mobile") {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.938rem;
+    }
+  }
+}
+
+.stock-grid {
+  padding: 4rem 0;
+
+  @include respond-to("mobile") {
+    padding: 3rem 0;
+  }
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    @include respond-to("tablet") {
+      padding: 0 1.5rem;
+    }
+
+    @include respond-to("mobile") {
+      padding: 0 1rem;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: $text-secondary;
+    font-size: 1.125rem;
+  }
+}
+
+.stock-card {
+  display: block;
+  background: $white;
+  border: 2px solid $gray-200;
+  border-radius: $border-radius-lg;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    border-color: $accent-color;
+    box-shadow: 0 8px 24px rgba($black, 0.1);
+    transform: translateY(-4px);
+
+    .stock-card__link {
+      color: $accent-color;
+      transform: translateX(4px);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin: 0;
+
+    @include respond-to("mobile") {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__description {
+    color: $text-secondary;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $text-primary;
+    font-weight: $font-weight-semibold;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+
+    svg {
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+// Stock Brand Page
+.stock-brand-page {
+  min-height: 100vh;
+  padding-bottom: 4rem;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+
+    @include respond-to("tablet") {
+      padding: 3rem 1.5rem;
+    }
+
+    @include respond-to("mobile") {
+      padding: 2rem 1rem;
+    }
+  }
+
+  &__back-link {
+    display: inline-block;
+    color: $accent-color;
+    text-decoration: none;
+    font-weight: $font-weight-semibold;
+    margin-top: 2rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: darken($accent-color, 10%);
+    }
+  }
+}
+
+.stock-brand-hero {
+  background: linear-gradient(
+    135deg,
+    $primary-color 0%,
+    darken($primary-color, 10%) 100%
+  );
+  color: $white;
+  padding: 4rem 0 3rem;
+
+  @include respond-to("tablet") {
+    padding: 3rem 0 2.5rem;
+  }
+
+  @include respond-to("mobile") {
+    padding: 2.5rem 0 2rem;
+  }
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    @include respond-to("tablet") {
+      padding: 0 1.5rem;
+    }
+
+    @include respond-to("mobile") {
+      padding: 0 1rem;
+    }
+  }
+
+  &__back {
+    display: inline-block;
+    color: $white;
+    text-decoration: none;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: $font-weight-bold;
+    margin: 0 0 1rem 0;
+    color: #ff6b00;
+
+    @include respond-to("tablet") {
+      font-size: 2.5rem;
+    }
+
+    @include respond-to("mobile") {
+      font-size: 1.75rem;
+    }
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0;
+    line-height: 1.6;
+
+    @include respond-to("mobile") {
+      font-size: 1rem;
+    }
+  }
+}
+
+.stock-brand-info {
+  padding: 4rem 0;
+  background: $gray-100;
+
+  @include respond-to("mobile") {
+    padding: 3rem 0;
+  }
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    @include respond-to("tablet") {
+      padding: 0 1.5rem;
+    }
+
+    @include respond-to("mobile") {
+      padding: 0 1rem;
+    }
+  }
+
+  &__content {
+    h2 {
+      font-size: 2rem;
+      color: $primary-color;
+      margin: 0 0 1.5rem 0;
+
+      @include respond-to("mobile") {
+        font-size: 1.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: $text-secondary;
+      margin: 0;
+
+      @include respond-to("mobile") {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.stock-brand-products {
+  padding: 4rem 0;
+
+  @include respond-to("mobile") {
+    padding: 3rem 0;
+  }
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    @include respond-to("tablet") {
+      padding: 0 1.5rem;
+    }
+
+    @include respond-to("mobile") {
+      padding: 0 1rem;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    color: $primary-color;
+    margin: 0 0 2rem 0;
+
+    @include respond-to("mobile") {
+      font-size: 1.5rem;
+      margin: 0 0 1.5rem 0;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+
+    @include respond-to("mobile") {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: $gray-100;
+    border-radius: $border-radius-lg;
+
+    p {
+      color: $text-secondary;
+      font-size: 1.125rem;
+      margin: 0 0 1.5rem 0;
+    }
+  }
+
+  &__contact {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background: $accent-color;
+    color: $white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: $font-weight-semibold;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($accent-color, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($accent-color, 0.3);
+    }
+  }
+}
+
+.product-card {
+  background: $white;
+  border: 2px solid $gray-200;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $accent-color;
+    box-shadow: 0 8px 24px rgba($black, 0.1);
+    transform: translateY(-4px);
+  }
+
+  &__image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: $gray-100;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__content {
+    padding: 1.5rem;
+  }
+
+  &__name {
+    font-size: 1.125rem;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin: 0 0 0.5rem 0;
+  }
+
+  &__brand,
+  &__category {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    margin: 0 0 0.25rem 0;
+  }
+
+  &__link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: $accent-color;
+    text-decoration: none;
+    font-weight: $font-weight-semibold;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: darken($accent-color, 10%);
+    }
+  }
+}

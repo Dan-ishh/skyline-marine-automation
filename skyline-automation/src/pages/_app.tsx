@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Navbar, Footer } from "@/src/Components";
+import { Navbar, Footer, InquiryPopup } from "@/src/Components";
 import "../../public/Assets/scss/globals.scss";
 
 const geistSans = Geist({
@@ -19,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Navbar />
       <Component {...pageProps} />
       <Footer />
+      <InquiryPopup />
     </div>
   );
 }

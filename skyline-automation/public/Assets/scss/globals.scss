@@ -14,11 +14,14 @@
 @import "./components/navbar";
 @import "./components/hero-slider";
 @import "./components/footer";
+@import "./components/inquiry-popup";
 
 // ============================================
 // Page-specific Styles
 // ============================================
 @import "./pages/product-detail";
+@import "./pages/product-detail-page";
+@import "./pages/stock";
 
 // ============================================
 // CSS Reset & Base Styles

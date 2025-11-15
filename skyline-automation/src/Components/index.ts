@@ -9,6 +9,7 @@ export { default as HeroSlider } from "./HeroSlider";
 // Layout Components
 export { default as Navbar } from "./Navbar";
 export { default as Footer } from "./Footer";
+export { default as InquiryPopup } from "./InquiryPopup";
 
 // Utility Components
 // export { Error } from './Error';
