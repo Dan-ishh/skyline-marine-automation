@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
+import PhoneInput, { parsePhoneNumber } from "react-phone-number-input";
 import { useUIStore } from "@/src/store";
 
 interface InquiryPopupProps {
@@ -25,18 +25,41 @@ export default function InquiryPopup({
     subject: productName || "",
     message: "",
   });
-  const [file, setFile] = useState<File | null>(null);
+  const [phoneValue, setPhoneValue] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   // Reset form when popup opens
   useEffect(() => {
-    if (isInquiryModalOpen && (productName || prefilledData)) {
-      setFormData((prev) => ({
-        ...prev,
+    if (isInquiryModalOpen) {
+      // Generate pre-filled message based on product
+      const prefilledMessage =
+        productName || prefilledData?.productName
+          ? `I'd like to know more about ${
+              productName || prefilledData?.productName
+            }. Please contact me.`
+          : "I'd like to know more about.";
+
+      // Reset all form fields
+      setFormData({
+        name: "",
+        companyName: "",
+        email: "",
+        mobile: "",
         subject: productName || prefilledData?.productName || "",
-      }));
+        message: prefilledMessage,
+      });
+
+      // Reset phone value
+      setPhoneValue("");
+
+      // Reset errors
+      setErrors({});
+
+      // Reset submit states
+      setIsSubmitting(false);
+      setSubmitSuccess(false);
     }
   }, [isInquiryModalOpen, productName, prefilledData]);
 
@@ -63,33 +86,68 @@ export default function InquiryPopup({
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-    }
-  };
-
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
+    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
     }
 
+    // Email validation - enhanced
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+    } else {
+      // More strict email validation
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = "Please enter a valid email address";
+      } else {
+        // Check for common typos
+        const domain = formData.email.split("@")[1];
+        if (domain && domain.includes("..")) {
+          newErrors.email = "Email contains invalid characters";
+        }
+      }
     }
 
-    if (!formData.mobile.trim()) {
-      newErrors.mobile = "Mobile number is required";
-    } else if (!/^[0-9+\-\s()]{10,}$/.test(formData.mobile)) {
-      newErrors.mobile = "Please enter a valid mobile number";
+    // Phone validation - Country Code + exactly 10 digits
+    if (!phoneValue || phoneValue.trim() === "") {
+      newErrors.mobile = "Phone number is required";
+    } else {
+      try {
+        // Use the library's parse function to properly extract country code and national number
+        const parsedPhone = parsePhoneNumber(phoneValue);
+
+        if (!parsedPhone) {
+          newErrors.mobile = "Please enter a valid phone number";
+        } else {
+          // Get the national number (phone number without country code)
+          const nationalNumber = parsedPhone.nationalNumber;
+          console.log(
+            "National Number:",
+            nationalNumber,
+            "Length:",
+            nationalNumber.length
+          );
+
+          // Must be exactly 10 digits
+          if (nationalNumber.length !== 10) {
+            newErrors.mobile = "Phone number must be exactly 10 digits";
+          }
+        }
+      } catch (error) {
+        newErrors.mobile = "Please enter a valid phone number";
+      }
     }
 
+    // Message validation
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
     }
 
     setErrors(newErrors);
@@ -106,58 +164,79 @@ export default function InquiryPopup({
     setIsSubmitting(true);
 
     try {
-      // EmailJS Configuration
-      // IMPORTANT: Replace these values with your EmailJS credentials
-      // 1. Sign up at https://www.emailjs.com/
-      // 2. Add an email service (Gmail, Outlook, etc.)
-      // 3. Create an email template
-      // 4. Get your Public Key, Service ID, and Template ID
+      // Web3Forms Configuration
+      const WEB3FORMS_ACCESS_KEY = "f58fa71f-75a6-496f-9e10-24983fdc93a3";
 
-      const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // Replace with your EmailJS Service ID
-      const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // Replace with your EmailJS Template ID
-      const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // Replace with your EmailJS Public Key
+      // Prepare form data for Web3Forms
+      const web3FormsData = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: formData.name,
+        email: formData.email,
+        phone: phoneValue, // Use the international phone format
+        subject: `${formData.subject} - Skyline Marine Inquiry`,
+        message: `
+Company: ${formData.companyName || "Not provided"}
+Phone: ${phoneValue}
+Product: ${prefilledData?.productName || "General Inquiry"}
 
-      // Prepare template parameters
-      const templateParams = {
+Message:
+${formData.message}
+
+---
+Submitted via Skyline Marine website
+        `.trim(),
         from_name: formData.name,
-        from_email: formData.email,
-        company_name: formData.companyName || "N/A",
-        mobile: formData.mobile,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: "sales@skylinemarine.co", // Your company email
-        product_name: prefilledData?.productName || "General Inquiry",
+        replyto: formData.email,
+        // Disable redirect
+        redirect: "false",
+        // Add botcheck field (honeypot) - keep it empty
+        botcheck: "",
       };
 
-      // Send email via EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
+      // Send to Web3Forms API
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(web3FormsData),
+      });
 
-      // Show success message
-      setSubmitSuccess(true);
+      const result = await response.json();
 
-      // Reset form and close modal after 2 seconds
-      setTimeout(() => {
-        closeInquiryModal();
-        setSubmitSuccess(false);
-        setFormData({
-          name: "",
-          companyName: "",
-          email: "",
-          mobile: "",
-          subject: "",
-          message: "",
-        });
-        setFile(null);
-      }, 2000);
+      if (result.success) {
+        // Show success message
+        setSubmitSuccess(true);
+
+        // Reset form and close modal after 2 seconds
+        setTimeout(() => {
+          closeInquiryModal();
+          setSubmitSuccess(false);
+          setFormData({
+            name: "",
+            companyName: "",
+            email: "",
+            mobile: "",
+            subject: "",
+            message: "",
+          });
+          setPhoneValue("");
+        }, 2000);
+      } else {
+        // Handle specific error messages
+        const errorMessage = result.message || "Submission failed";
+        console.error("Web3Forms Error:", errorMessage);
+
+        // Show user-friendly error
+        alert(
+          `Unable to send inquiry: ${errorMessage}\n\nPlease try again or contact us directly at skylinemarine1993@gmail.com`
+        );
+      }
     } catch (error) {
-      console.error("Error sending inquiry via EmailJS:", error);
+      console.error("Error sending inquiry via Web3Forms:", error);
       alert(
-        "Failed to send inquiry. Please try again or contact us directly at sales@skylinemarine.co"
+        "Failed to send inquiry. Please try again or contact us directly at skylinemarine1993@gmail.com"
       );
     } finally {
       setIsSubmitting(false);
@@ -263,16 +342,46 @@ export default function InquiryPopup({
 
             <div className="inquiry-popup__field">
               <label htmlFor="mobile" className="inquiry-popup__label">
-                Mobile <span className="inquiry-popup__required">*</span>
+                Phone Number <span className="inquiry-popup__required">*</span>
               </label>
-              <input
-                type="tel"
-                id="mobile"
-                name="mobile"
-                value={formData.mobile}
-                onChange={handleInputChange}
-                placeholder="Mobile Number"
-                className={`inquiry-popup__input ${
+              <PhoneInput
+                international
+                defaultCountry="IN"
+                value={phoneValue}
+                onChange={(value: string | undefined) => {
+                  // Clear error when user starts typing
+                  if (errors.mobile) {
+                    setErrors((prev) => ({ ...prev, mobile: "" }));
+                  }
+
+                  if (!value) {
+                    setPhoneValue("");
+                    return;
+                  }
+
+                  // Extract all digits from the new value
+                  const allDigits = value.replace(/\D/g, "");
+
+                  // Get country code (e.g., "91" for India from "+91")
+                  const countryCodeMatch = value.match(/^\+(\d+)/);
+                  const countryCode = countryCodeMatch
+                    ? countryCodeMatch[1]
+                    : "";
+
+                  // Get the phone number digits (without country code)
+                  const phoneDigits = countryCode
+                    ? allDigits.slice(countryCode.length)
+                    : allDigits;
+
+                  // Only allow update if 10 digits or less for the phone number part
+                  // This prevents typing more than 10 digits
+                  if (phoneDigits.length <= 10) {
+                    setPhoneValue(value);
+                  }
+                  // If more than 10 digits, don't update (effectively blocking the input)
+                }}
+                placeholder="Enter phone number"
+                className={`inquiry-popup__phone-input ${
                   errors.mobile ? "inquiry-popup__input--error" : ""
                 }`}
               />
@@ -295,20 +404,6 @@ export default function InquiryPopup({
               onChange={handleInputChange}
               placeholder="Subject"
               className="inquiry-popup__input"
-            />
-          </div>
-
-          {/* File Upload */}
-          <div className="inquiry-popup__field">
-            <label htmlFor="file" className="inquiry-popup__label">
-              File Upload
-            </label>
-            <input
-              type="file"
-              id="file"
-              onChange={handleFileChange}
-              className="inquiry-popup__file"
-              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
             />
           </div>
 
@@ -340,6 +435,15 @@ export default function InquiryPopup({
               <label htmlFor="recaptcha">I'm not a robot</label>
             </div>
           </div>
+
+          {/* Honeypot field - hidden from users, helps prevent spam */}
+          <input
+            type="checkbox"
+            name="botcheck"
+            style={{ display: "none" }}
+            tabIndex={-1}
+            autoComplete="off"
+          />
 
           {/* Submit Button */}
           <button

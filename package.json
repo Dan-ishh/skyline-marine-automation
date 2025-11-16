@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@emailjs/browser": "^4.4.1"
+    "react-phone-number-input": "^3.4.13"
   }
 }

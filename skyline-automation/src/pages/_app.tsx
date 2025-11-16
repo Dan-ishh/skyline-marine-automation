@@ -2,6 +2,7 @@ import { AppProps } from "next/app";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar, Footer, InquiryPopup } from "@/src/Components";
 import "../../public/Assets/scss/globals.scss";
+import "react-phone-number-input/style.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
