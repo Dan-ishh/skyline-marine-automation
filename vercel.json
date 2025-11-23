@@ -1,6 +1,5 @@
 {
-  "buildCommand": "cd skyline-automation && npm install && npm run build",
-  "devCommand": "cd skyline-automation && npm run dev",
+  "buildCommand": "cd skyline-automation && npm run build",
   "installCommand": "cd skyline-automation && npm install",
   "outputDirectory": "skyline-automation/.next"
 }
