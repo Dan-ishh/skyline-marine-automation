@@ -4,16 +4,51 @@
  * Displays all products from all brands
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
-import { useProductStore } from "@/src/store";
+import Link from "next/link";
+import { products } from "@/src/data";
+import type { Product } from "@/src/types";
 
 export default function ProductsPage() {
-  const { products, fetchProducts } = useProductStore();
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Get unique categories
+  const categories = [
+    "all",
+    ...Array.from(new Set(products.map((p) => p.category))),
+  ];
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    setAllProducts(products);
+    setFilteredProducts(products);
+  }, []);
+
+  useEffect(() => {
+    let filtered = allProducts;
+
+    // Filter by category
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter((p) => p.category === selectedCategory);
+    }
+
+    // Filter by search query
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (p) =>
+          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (typeof p.brand === "string" ? p.brand : p.brand?.name || "")
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredProducts(filtered);
+  }, [selectedCategory, searchQuery, allProducts]);
 
   return (
     <>
@@ -26,25 +61,141 @@ export default function ProductsPage() {
       </Head>
 
       <div className="products-page">
-        <div className="container">
-          <div className="page-header">
-            <h1>All Products</h1>
-            <p>
-              Browse our complete collection of marine equipment and products
-            </p>
+        {/* Hero Section */}
+        <section className="products-page__hero">
+          <div className="container">
+            <div className="products-page__hero-content">
+              <h1 className="products-page__title">
+                Our <strong>Products</strong>
+              </h1>
+              <p className="products-page__subtitle">
+                Browse our complete collection of marine equipment and products
+              </p>
+            </div>
           </div>
+        </section>
 
-          <div className="products-grid">
-            {products.map((product) => (
-              <div key={product.id} className="product-card">
-                <h3>{product.name}</h3>
-                <p>{product.category}</p>
-                <p>{product.brand?.name}</p>
-                {/* ProductCard component will be added here */}
+        {/* Filters Section */}
+        <section className="products-page__filters">
+          <div className="container">
+            <div className="products-page__filters-wrapper">
+              {/* Search Bar */}
+              <div className="products-page__search">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="products-page__search-input"
+                />
               </div>
-            ))}
+
+              {/* Category Filter */}
+              <div className="products-page__category-filter">
+                <label htmlFor="category-select">Filter by Category:</label>
+                <select
+                  id="category-select"
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="products-page__category-select"
+                >
+                  {categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category === "all" ? "All Categories" : category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Results Count */}
+              <div className="products-page__results-count">
+                Showing <strong>{filteredProducts.length}</strong> of{" "}
+                <strong>{allProducts.length}</strong> products
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* Products Grid */}
+        <section className="products-page__content">
+          <div className="container">
+            {filteredProducts.length > 0 ? (
+              <div className="products-page__grid">
+                {filteredProducts.map((product) => (
+                  <Link
+                    key={product.id}
+                    href={`/products/${product.slug}`}
+                    className="products-page__card"
+                  >
+                    <div className="products-page__card-image">
+                      <img
+                        src={product.thumbnail || product.images[0]}
+                        alt={product.name}
+                        loading="lazy"
+                      />
+                      <div className="products-page__card-overlay">
+                        <span className="products-page__card-view">
+                          View Details →
+                        </span>
+                      </div>
+                    </div>
+                    <div className="products-page__card-content">
+                      <h3 className="products-page__card-title">
+                        {product.name}
+                      </h3>
+                      <p className="products-page__card-category">
+                        {product.category}
+                      </p>
+                      <div className="products-page__card-footer">
+                        <span className="products-page__card-brand">
+                          {typeof product.brand === "string"
+                            ? product.brand
+                            : product.brand?.name || "N/A"}
+                        </span>
+                        {product.enquiryCount > 0 && (
+                          <span className="products-page__card-enquiries">
+                            {product.enquiryCount} enquiries
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="products-page__empty">
+                <div className="products-page__empty-icon">🔍</div>
+                <h3 className="products-page__empty-title">
+                  No products found
+                </h3>
+                <p className="products-page__empty-text">
+                  Try adjusting your search or filter to find what you're
+                  looking for.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedCategory("all");
+                  }}
+                  className="products-page__empty-button"
+                >
+                  Clear Filters
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     </>
   );

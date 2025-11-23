@@ -112,7 +112,6 @@ export default function StockBrandPage() {
         <title>{brandInfo.name} Stock - Skyline Marine</title>
         <meta name="description" content={brandInfo.fullDescription} />
       </Head>
-
       <main className="stock-brand-page">
         {/* Hero Section */}
         <section className="stock-brand-hero">
@@ -166,7 +165,7 @@ export default function StockBrandPage() {
                         {product.category}
                       </p>
                       <Link
-                        href={`/products/${product.slug}`}
+                        href={`/stock/${stockSlug}/${product.slug}`}
                         className="product-card__link"
                       >
                         View Details →
