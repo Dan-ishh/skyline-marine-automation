@@ -9,7 +9,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useProductStore, useUIStore } from "@/src/store";
-import { HeroSlider } from "@/src/Components";
+import {
+  HeroSlider,
+  BrandCardSkeleton,
+  ProductCardSkeleton,
+} from "@/src/Components";
 import { products, brands } from "@/src/data";
 
 export default function Home() {
@@ -19,6 +23,10 @@ export default function Home() {
   // State for sliders
   const [stockSlide, setStockSlide] = useState(0);
   const [recentSlide, setRecentSlide] = useState(0);
+
+  // Loading states
+  const [isLoadingStock, setIsLoadingStock] = useState(true);
+  const [isLoadingRecent, setIsLoadingRecent] = useState(true);
 
   // Specific stock brands to showcase with custom slugs
   const stockBrands = [
@@ -93,6 +101,22 @@ export default function Home() {
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     )
     .slice(0, 10);
+
+  // Simulate loading for stock brands
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadingStock(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Simulate loading for recent products
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadingRecent(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Auto-rotate stock brands slider every 4 seconds
   useEffect(() => {
@@ -231,32 +255,36 @@ export default function Home() {
                   className="home-page__carousel-slides"
                   style={{ transform: `translateX(-${stockSlide * 100}%)` }}
                 >
-                  {stockBrandsWithInquiries.map((brand) => (
-                    <Link
-                      key={brand.id}
-                      href={`/stock/${brand.slug}`}
-                      className="home-page__stock-brand-card"
-                    >
-                      <div className="home-page__stock-brand-image">
-                        <img
-                          src={brand.logo}
-                          alt={brand.displayName || brand.name}
-                        />
-                        <div className="home-page__stock-brand-overlay">
-                          <span className="home-page__stock-brand-name">
-                            {brand.displayName || brand.name}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="home-page__stock-brand-info">
-                        <p className="home-page__stock-brand-count">
-                          {brand.stockCount}{" "}
-                          {brand.stockCount === 1 ? "product" : "products"} in
-                          stock
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
+                  {isLoadingStock
+                    ? Array.from({ length: 4 }).map((_, index) => (
+                        <BrandCardSkeleton key={index} />
+                      ))
+                    : stockBrandsWithInquiries.map((brand) => (
+                        <Link
+                          key={brand.id}
+                          href={`/stock/${brand.slug}`}
+                          className="home-page__stock-brand-card"
+                        >
+                          <div className="home-page__stock-brand-image">
+                            <img
+                              src={brand.logo}
+                              alt={brand.displayName || brand.name}
+                            />
+                            <div className="home-page__stock-brand-overlay">
+                              <span className="home-page__stock-brand-name">
+                                {brand.displayName || brand.name}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="home-page__stock-brand-info">
+                            <p className="home-page__stock-brand-count">
+                              {brand.stockCount}{" "}
+                              {brand.stockCount === 1 ? "product" : "products"}{" "}
+                              in stock
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
                 </div>
               </div>
 
@@ -297,35 +325,39 @@ export default function Home() {
                   className="home-page__carousel-slides"
                   style={{ transform: `translateX(-${recentSlide * 100}%)` }}
                 >
-                  {recentProducts.map((product) => (
-                    <Link
-                      key={product.id}
-                      href={`/products/${product.slug}`}
-                      className="home-page__product-card"
-                    >
-                      <div className="home-page__product-image">
-                        <img src={product.thumbnail} alt={product.name} />
-                        <div className="home-page__product-overlay">
-                          <span className="home-page__product-category">
-                            {product.category}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="home-page__product-info">
-                        <h3 className="home-page__product-name">
-                          {product.name}
-                        </h3>
-                        <p className="home-page__product-brand">
-                          {product?.category || "Unknown Brand"}
-                        </p>
-                        {product.enquiryCount > 0 && (
-                          <span className="home-page__enquiry-badge">
-                            {product.enquiryCount} enquiries
-                          </span>
-                        )}
-                      </div>
-                    </Link>
-                  ))}
+                  {isLoadingRecent
+                    ? Array.from({ length: 4 }).map((_, index) => (
+                        <ProductCardSkeleton key={index} />
+                      ))
+                    : recentProducts.map((product) => (
+                        <Link
+                          key={product.id}
+                          href={`/products/${product.slug}`}
+                          className="home-page__product-card"
+                        >
+                          <div className="home-page__product-image">
+                            <img src={product.thumbnail} alt={product.name} />
+                            <div className="home-page__product-overlay">
+                              <span className="home-page__product-category">
+                                {product.category}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="home-page__product-info">
+                            <h3 className="home-page__product-name">
+                              {product.name}
+                            </h3>
+                            <p className="home-page__product-brand">
+                              {product?.category || "Unknown Brand"}
+                            </p>
+                            {product.enquiryCount > 0 && (
+                              <span className="home-page__enquiry-badge">
+                                {product.enquiryCount} enquiries
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
                 </div>
               </div>
 

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { products } from "@/src/data";
+import { ProductGridSkeleton } from "@/src/Components";
 import type { Product } from "@/src/types";
 
 export default function ProductsPage() {
@@ -15,6 +16,7 @@ export default function ProductsPage() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
 
   // Get unique categories
   const categories = [
@@ -23,8 +25,13 @@ export default function ProductsPage() {
   ];
 
   useEffect(() => {
-    setAllProducts(products);
-    setFilteredProducts(products);
+    // Simulate loading
+    const timer = setTimeout(() => {
+      setAllProducts(products);
+      setFilteredProducts(products);
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -133,7 +140,9 @@ export default function ProductsPage() {
         {/* Products Grid */}
         <section className="products-page__content">
           <div className="container">
-            {filteredProducts.length > 0 ? (
+            {isLoading ? (
+              <ProductGridSkeleton count={8} />
+            ) : filteredProducts.length > 0 ? (
               <div className="products-page__grid">
                 {filteredProducts.map((product) => (
                   <Link

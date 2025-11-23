@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { products } from "@/src/data";
+import { StockBrandProductsGridSkeleton } from "@/src/Components";
 
 const stockBrandsInfo = {
   "stork-werkspoor": {
@@ -71,24 +72,30 @@ export default function StockBrandPage() {
   const router = useRouter();
   const { stockSlug } = router.query;
   const [filteredProducts, setFilteredProducts] = useState<typeof products>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const brandInfo =
     stockBrandsInfo[stockSlug as keyof typeof stockBrandsInfo] || null;
 
   useEffect(() => {
     if (stockSlug && brandInfo) {
-      // Filter products by brand name (case-insensitive match)
-      const filtered = products.filter((product) => {
-        const productBrand =
-          typeof product.brand === "string"
-            ? product.brand
-            : product.brand?.name || "";
-        const brandName = brandInfo.name.toLowerCase();
-        const prodBrand = productBrand.toLowerCase();
+      // Simulate loading
+      const timer = setTimeout(() => {
+        // Filter products by brand name (case-insensitive match)
+        const filtered = products.filter((product) => {
+          const productBrand =
+            typeof product.brand === "string"
+              ? product.brand
+              : product.brand?.name || "";
+          const brandName = brandInfo.name.toLowerCase();
+          const prodBrand = productBrand.toLowerCase();
 
-        return prodBrand.includes(brandName) || brandName.includes(prodBrand);
-      });
-      setFilteredProducts(filtered);
+          return prodBrand.includes(brandName) || brandName.includes(prodBrand);
+        });
+        setFilteredProducts(filtered);
+        setIsLoading(false);
+      }, 1000);
+      return () => clearTimeout(timer);
     }
   }, [stockSlug, brandInfo]);
 
@@ -140,10 +147,12 @@ export default function StockBrandPage() {
         <section className="stock-brand-products">
           <div className="stock-brand-products__container">
             <h2 className="stock-brand-products__title">
-              Available Products ({filteredProducts.length})
+              Available Products {!isLoading && `(${filteredProducts.length})`}
             </h2>
 
-            {filteredProducts.length > 0 ? (
+            {isLoading ? (
+              <StockBrandProductsGridSkeleton count={6} />
+            ) : filteredProducts.length > 0 ? (
               <div className="stock-brand-products__grid">
                 {filteredProducts.map((product) => (
                   <div key={product.id} className="product-card">

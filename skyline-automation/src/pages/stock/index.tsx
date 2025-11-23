@@ -3,9 +3,10 @@
  * Lists all available stock brands
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { StockGridSkeleton } from "@/src/Components";
 
 const stockBrands = [
   {
@@ -57,6 +58,15 @@ const stockBrands = [
 
 export default function StockPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredBrands = stockBrands.filter((brand) =>
     brand.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -100,7 +110,9 @@ export default function StockPage() {
         {/* Stock Grid */}
         <section className="stock-grid">
           <div className="stock-grid__container">
-            {filteredBrands.length > 0 ? (
+            {isLoading ? (
+              <StockGridSkeleton count={9} />
+            ) : filteredBrands.length > 0 ? (
               filteredBrands.map((brand) => (
                 <Link
                   key={brand.slug}
