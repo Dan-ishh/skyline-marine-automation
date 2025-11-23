@@ -74,14 +74,18 @@ export default function Navbar() {
     if (href === "/") {
       return router.pathname === "/";
     }
-    // Exact match for /stock and /products to avoid conflicts
+    // Match /stock and all its sub-routes
     if (href === "/stock") {
       return (
         router.pathname === "/stock" || router.pathname.startsWith("/stock/")
       );
     }
+    // Match /products and all its sub-routes (including product detail pages)
     if (href === "/products") {
-      return router.pathname === "/products";
+      return (
+        router.pathname === "/products" ||
+        router.pathname.startsWith("/products/")
+      );
     }
     return router.pathname.startsWith(href);
   };
@@ -96,12 +100,12 @@ export default function Navbar() {
             <div className="navbar__contact-group">
               <span className="navbar__contact-label">SEND US AN EMAIL</span>
               <div className="navbar__contact-links">
-                <a
+                {/* <a
                   href="mailto:sales@skylinemarine.co"
                   className="navbar__contact-link"
                 >
                   sales@skylinemarine.co
-                </a>
+                </a> */}
                 <a
                   href="mailto:info@skylinemarine.co"
                   className="navbar__contact-link"

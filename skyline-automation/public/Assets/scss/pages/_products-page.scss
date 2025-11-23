@@ -1,7 +1,7 @@
 // Products Page Styles
 
 .products-page {
-  padding-top: 80px; // Navbar height
+  //   padding-top: 80px; // Navbar height
   background-color: $bg-secondary;
   min-height: 100vh;
 
@@ -22,8 +22,14 @@
     font-size: 3rem;
     font-weight: 300;
     margin-bottom: 1rem;
+    color: $orange-color;
 
     strong {
+      font-weight: 700;
+    }
+
+    &--highlight {
+      color: $orange-color;
       font-weight: 700;
     }
 

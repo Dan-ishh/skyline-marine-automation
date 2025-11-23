@@ -1,0 +1,575 @@
+// Home Page Styles
+
+.home-page {
+  // Action Buttons Section
+  &__actions {
+    padding: 2rem 0;
+    background-color: $white;
+    border-bottom: 1px solid $gray-200;
+
+    @media (max-width: 768px) {
+      padding: 1.5rem 0;
+    }
+  }
+
+  &__actions-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  &__action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 200px;
+
+    @media (max-width: 768px) {
+      padding: 0.875rem 1.75rem;
+      font-size: 0.95rem;
+      min-width: 180px;
+    }
+
+    @media (max-width: 576px) {
+      width: 100%;
+      min-width: auto;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    &--inquiry {
+      background-color: $orange-color;
+      color: $white;
+      box-shadow: 0 4px 12px rgba($orange-color, 0.3);
+
+      &:hover {
+        background-color: darken($orange-color, 5%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba($orange-color, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    &--inventory {
+      background-color: $primary-color;
+      color: $white;
+      box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+
+      &:hover {
+        background-color: darken($primary-color, 5%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba($primary-color, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // Stock Section (Slider Layout)
+  &__stock-section {
+    padding: 4rem 0;
+    background-color: $white;
+
+    @media (max-width: 768px) {
+      padding: 3rem 0;
+    }
+  }
+
+  &__stock-brand-card {
+    min-width: 25%;
+    padding: 0 0.75rem;
+    text-decoration: none;
+    display: block;
+
+    @media (max-width: 1200px) {
+      min-width: 33.333%;
+    }
+
+    @media (max-width: 768px) {
+      min-width: 50%;
+    }
+
+    @media (max-width: 576px) {
+      min-width: 100%;
+    }
+  }
+
+  &__stock-brand-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background-color: $white;
+    border: 2px solid $gray-200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba($primary-color, 0.1);
+    transition: all 0.3s ease;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      box-shadow: 0 8px 20px rgba($primary-color, 0.15);
+
+      img {
+        transform: scale(1.05);
+      }
+
+      .home-page__stock-brand-overlay {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__stock-brand-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      rgba($primary-color, 0.95) 0%,
+      rgba($primary-color, 0.8) 50%,
+      transparent 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    opacity: 1;
+    transition: background 0.3s ease;
+
+    @media (max-width: 576px) {
+      padding: 1rem;
+    }
+  }
+
+  &__stock-brand-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6);
+
+    @media (max-width: 576px) {
+      font-size: 0.875rem;
+    }
+  }
+
+  &__stock-brand-info {
+    padding: 0 0.5rem;
+    text-align: center;
+  }
+
+  &__stock-brand-count {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $primary-color;
+    margin: 0;
+    transition: color 0.3s ease;
+
+    @media (max-width: 576px) {
+      font-size: 0.8rem;
+    }
+
+    .home-page__stock-brand-card:hover & {
+      color: $orange-color;
+    }
+  }
+
+  // Slider Sections
+  &__slider-section {
+    padding: 4rem 0;
+    background-color: $gray-50;
+
+    @media (max-width: 768px) {
+      padding: 3rem 0;
+    }
+
+    &--recent {
+      background-color: $gray-50;
+    }
+  }
+
+  &__slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+
+    @media (max-width: 768px) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__slider-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: $primary-color;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.75rem;
+    }
+
+    span {
+      font-weight: 700;
+    }
+  }
+
+  &__view-all {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $orange-color;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    @media (max-width: 576px) {
+      font-size: 0.875rem;
+    }
+
+    &:hover {
+      color: darken($orange-color, 10%);
+      transform: translateX(4px);
+    }
+  }
+
+  // Carousel
+  &__carousel {
+    position: relative;
+    padding: 0 4rem;
+
+    @media (max-width: 768px) {
+      padding: 0 3rem;
+    }
+
+    @media (max-width: 576px) {
+      padding: 0 2.5rem;
+    }
+  }
+
+  &__carousel-track {
+    overflow: hidden;
+  }
+
+  &__carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  &__carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: $primary-color;
+    color: $white;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba($primary-color, 0.2);
+
+    @media (max-width: 768px) {
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      background-color: $orange-color;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 16px rgba($orange-color, 0.3);
+    }
+
+    &--prev {
+      left: 0;
+    }
+
+    &--next {
+      right: 0;
+    }
+  }
+
+  // Brand Cards
+  &__brand-card {
+    min-width: 25%;
+    padding: 0 0.75rem;
+    text-decoration: none;
+    display: block;
+
+    @media (max-width: 1200px) {
+      min-width: 33.333%;
+    }
+
+    @media (max-width: 768px) {
+      min-width: 50%;
+    }
+
+    @media (max-width: 576px) {
+      min-width: 100%;
+    }
+  }
+
+  &__brand-logo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background-color: $white;
+    border: 2px solid $gray-200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba($primary-color, 0.1);
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      border-color: $orange-color;
+      box-shadow: 0 8px 20px rgba($orange-color, 0.2);
+      transform: translateY(-4px);
+
+      img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__brand-info {
+    padding: 0 0.5rem;
+    text-align: center;
+  }
+
+  &__brand-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+
+    @media (max-width: 576px) {
+      font-size: 1rem;
+    }
+
+    .home-page__brand-card:hover & {
+      color: $orange-color;
+    }
+  }
+
+  &__brand-count {
+    font-size: 0.875rem;
+    color: $gray-600;
+    margin: 0;
+
+    @media (max-width: 576px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  // Product Cards
+  &__product-card {
+    min-width: 25%;
+    padding: 0 0.75rem;
+    text-decoration: none;
+    display: block;
+
+    @media (max-width: 1200px) {
+      min-width: 33.333%;
+    }
+
+    @media (max-width: 768px) {
+      min-width: 50%;
+    }
+
+    @media (max-width: 576px) {
+      min-width: 100%;
+    }
+  }
+
+  &__product-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba($primary-color, 0.1);
+    transition: all 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      box-shadow: 0 8px 20px rgba($primary-color, 0.15);
+
+      img {
+        transform: scale(1.1);
+      }
+
+      .home-page__product-overlay {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      rgba($primary-color, 0.9) 0%,
+      rgba($primary-color, 0.7) 50%,
+      transparent 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    @media (max-width: 576px) {
+      padding: 1rem;
+    }
+  }
+
+  &__product-category {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    @media (max-width: 576px) {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__product-info {
+    padding: 0 0.5rem;
+  }
+
+  &__product-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $primary-color;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+    line-height: 1.3;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 0.95rem;
+    }
+
+    .home-page__product-card:hover & {
+      color: $orange-color;
+    }
+  }
+
+  &__product-brand {
+    font-size: 0.95rem;
+    color: $gray-600;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: 576px) {
+      font-size: 0.875rem;
+    }
+  }
+
+  &__stock-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #10b981;
+    color: $white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    @media (max-width: 576px) {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+    }
+  }
+
+  &__enquiry-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: $orange-color;
+    color: $white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    @media (max-width: 576px) {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+    }
+  }
+}

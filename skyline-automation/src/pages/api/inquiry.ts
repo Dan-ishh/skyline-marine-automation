@@ -131,7 +131,6 @@ export default async function handler(
     */
 
     // Log inquiry for now (replace with actual email sending)
-    console.log("New inquiry received:", inquiryData);
 
     return res.status(200).json({
       message: "Inquiry sent successfully",

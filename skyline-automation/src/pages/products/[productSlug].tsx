@@ -272,7 +272,7 @@ export default function ProductDetailPage() {
                 {/* Features List */}
                 <div className="product-detail__features-section">
                   <h3 className="product-detail__section-title">
-                    Product Features
+                    Products We Offer
                   </h3>
 
                   {/* Row Layout: Images + Features */}

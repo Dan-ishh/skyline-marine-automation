@@ -38,8 +38,6 @@ export const useBrandStore = create<BrandState>((set, get) => ({
 
       const brands = getAllBrands();
       set({ brands, loading: false });
-
-      console.log("Brands fetched successfully:", brands.length);
     } catch (error) {
       set({
         error:

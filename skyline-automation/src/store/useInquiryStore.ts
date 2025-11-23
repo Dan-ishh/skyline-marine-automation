@@ -115,8 +115,6 @@ export const useInquiryStore = create<InquiryState>((set, get) => ({
         submitSuccess: true,
       }));
 
-      console.log("Inquiry submitted successfully:", inquiry);
-
       // Auto-reset success message after 3 seconds
       setTimeout(() => {
         set({ submitSuccess: false });

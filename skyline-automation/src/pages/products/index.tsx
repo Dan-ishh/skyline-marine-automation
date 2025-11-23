@@ -66,7 +66,10 @@ export default function ProductsPage() {
           <div className="container">
             <div className="products-page__hero-content">
               <h1 className="products-page__title">
-                Our <strong>Products</strong>
+                Our{" "}
+                <span className="products-page__title--highlight">
+                  Products
+                </span>
               </h1>
               <p className="products-page__subtitle">
                 Browse our complete collection of marine equipment and products

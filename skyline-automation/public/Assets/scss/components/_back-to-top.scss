@@ -1,0 +1,85 @@
+// Back to Top Button Component
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
+  color: $white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+  z-index: 999;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    width: 40px;
+    height: 40px;
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2.5px;
+
+    @media (max-width: 576px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      $orange-color 0%,
+      darken($orange-color, 10%) 100%
+    );
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba($orange-color, 0.4);
+  }
+
+  &:active {
+    transform: translateY(-2px);
+  }
+
+  // Visible state
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  // Animation for initial appearance
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &--visible {
+    animation: slideUp 0.3s ease-out;
+  }
+}

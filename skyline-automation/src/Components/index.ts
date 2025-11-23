@@ -12,4 +12,5 @@ export { default as Footer } from "./Footer";
 export { default as InquiryPopup } from "./InquiryPopup";
 
 // Utility Components
+export { default as BackToTop } from "./BackToTop";
 // export { Error } from './Error';

@@ -15,14 +15,17 @@
 @import "./components/hero-slider";
 @import "./components/footer";
 @import "./components/inquiry-popup";
+@import "./components/back-to-top";
 
 // ============================================
 // Page-specific Styles
 // ============================================
+@import "./pages/home";
 @import "./pages/products-page";
 @import "./pages/product-detail";
 @import "./pages/product-detail-page";
 @import "./pages/stock";
+@import "./pages/contact";
 
 // ============================================
 // CSS Reset & Base Styles

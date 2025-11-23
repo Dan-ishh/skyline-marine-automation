@@ -126,12 +126,6 @@ export default function InquiryPopup({
         } else {
           // Get the national number (phone number without country code)
           const nationalNumber = parsedPhone.nationalNumber;
-          console.log(
-            "National Number:",
-            nationalNumber,
-            "Length:",
-            nationalNumber.length
-          );
 
           // Must be exactly 10 digits
           if (nationalNumber.length !== 10) {
@@ -426,14 +420,6 @@ Submitted via Skyline Marine website
             {errors.message && (
               <span className="inquiry-popup__error">{errors.message}</span>
             )}
-          </div>
-
-          {/* reCAPTCHA Placeholder */}
-          <div className="inquiry-popup__recaptcha">
-            <div className="inquiry-popup__recaptcha-box">
-              <input type="checkbox" id="recaptcha" required />
-              <label htmlFor="recaptcha">I'm not a robot</label>
-            </div>
           </div>
 
           {/* Honeypot field - hidden from users, helps prevent spam */}

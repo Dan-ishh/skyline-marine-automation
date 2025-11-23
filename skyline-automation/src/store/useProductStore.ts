@@ -54,7 +54,6 @@ export const useProductStore = create<ProductState>((set, get) => ({
 
       const products = getAllProducts();
       set({ products, loading: false });
-      console.log("Products fetched successfully:", products.length);
     } catch (error) {
       set({
         error:
