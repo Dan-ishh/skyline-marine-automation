@@ -92,7 +92,7 @@ Please respond to: {{from_email}}
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=service_abc123
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=template_xyz789
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=abcXYZ123-defABC
-NEXT_PUBLIC_COMPANY_EMAIL=sales@skylinemarine.co
+NEXT_PUBLIC_COMPANY_EMAIL=info@skylinemarine.co
 ```
 
 2. Update `InquiryPopup.tsx` to use environment variables:
@@ -143,7 +143,7 @@ The form sends these variables to your email template:
 | `{{mobile}}`       | Customer mobile        | "+1234567890"                      |
 | `{{subject}}`      | Inquiry subject        | "Inquiry: Wärtsilä 31 Main Engine" |
 | `{{message}}`      | Customer message       | "I need a quote..."                |
-| `{{to_email}}`     | Your company email     | "sales@skylinemarine.co"           |
+| `{{to_email}}`     | Your company email     | "info@skylinemarine.co"            |
 | `{{product_name}}` | Product being inquired | "Wärtsilä 31 Main Engine"          |
 
 ---

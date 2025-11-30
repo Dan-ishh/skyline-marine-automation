@@ -74,7 +74,7 @@ SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-password
 SMTP_FROM=noreply@skylinemarine.co
-INQUIRY_EMAIL=sales@skylinemarine.co
+INQUIRY_EMAIL=info@skylinemarine.co
 ```
 
 3. For Gmail, create an App Password:
@@ -106,7 +106,7 @@ Update inquiry recipient email:
 
 ```env
 # .env.local
-INQUIRY_EMAIL=sales@skylinemarine.co
+INQUIRY_EMAIL=info@skylinemarine.co
 ```
 
 ### Email Template

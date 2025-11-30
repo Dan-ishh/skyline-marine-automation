@@ -100,12 +100,6 @@ export default function Navbar() {
             <div className="navbar__contact-group">
               <span className="navbar__contact-label">SEND US AN EMAIL</span>
               <div className="navbar__contact-links">
-                {/* <a
-                  href="mailto:sales@skylinemarine.co"
-                  className="navbar__contact-link"
-                >
-                  sales@skylinemarine.co
-                </a> */}
                 <a
                   href="mailto:info@skylinemarine.co"
                   className="navbar__contact-link"
@@ -364,7 +358,7 @@ export default function Navbar() {
           <div className="navbar__mobile-contact">
             <div className="navbar__mobile-contact-group">
               <h4>Email</h4>
-              <a href="mailto:sales@skylinemarine.co">sales@skylinemarine.co</a>
+              {/* <a href="mailto:info@skylinemarine.co">info@skylinemarine.co</a> */}
               <a href="mailto:info@skylinemarine.co">info@skylinemarine.co</a>
             </div>
             <div className="navbar__mobile-contact-group">

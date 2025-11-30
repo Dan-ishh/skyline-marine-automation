@@ -13,7 +13,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
  * SMTP_USER=your-email@gmail.com
  * SMTP_PASS=your-app-password
  * SMTP_FROM=noreply@skylinemarine.co
- * INQUIRY_EMAIL=sales@skylinemarine.co
+ * INQUIRY_EMAIL=info@skylinemarine.co
  */
 
 interface InquiryData {
@@ -123,7 +123,7 @@ export default async function handler(
 
     await transporter.sendMail({
       from: process.env.SMTP_FROM || "noreply@skylinemarine.co",
-      to: process.env.INQUIRY_EMAIL || "sales@skylinemarine.co",
+      to: process.env.INQUIRY_EMAIL || "info@skylinemarine.co",
       subject: `New Inquiry: ${inquiryData.subject}`,
       html: emailHtml,
       replyTo: inquiryData.email,

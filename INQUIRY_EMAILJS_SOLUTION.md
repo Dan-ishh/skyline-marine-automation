@@ -49,7 +49,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       mobile: formData.mobile,
       subject: formData.subject,
       message: formData.message,
-      to_email: "sales@skylinemarine.co", // Your email
+      to_email: "info@skylinemarine.co", // Your email
     };
 
     await emailjs.send(
@@ -295,7 +295,7 @@ Please provide the following information:
 - Your Message:
     `);
 
-    window.location.href = `mailto:sales@skylinemarine.co?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@skylinemarine.co?subject=${subject}&body=${body}`;
   }
 };
 ```
