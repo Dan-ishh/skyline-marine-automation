@@ -691,8 +691,8 @@
   &__mega-menu--hierarchical {
     // Fixed width to prevent shifting
     width: 680px;
-    left: 0;
-    transform: none;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 0;
     padding-top: 1rem;
     // Prevent layout shift on initial render
