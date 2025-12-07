@@ -23,5 +23,7 @@ export {
   StockBrandCardSkeleton,
   StockGridSkeleton,
   StockBrandProductsGridSkeleton,
+  CategoryCardSkeleton,
+  CategoriesGridSkeleton,
 } from "./Skeleton";
 // export { Error } from './Error';

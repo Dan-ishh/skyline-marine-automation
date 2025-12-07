@@ -1,9 +1,11 @@
 /**
  * Product Type Definitions
  * Represents products in the marine equipment portal
+ * Structure: Brand → Category → Product
  */
 
 import { Brand } from "./brand.types";
+import { Category } from "./category.types";
 
 export interface Product {
   /** Unique identifier for the product */
@@ -21,6 +23,12 @@ export interface Product {
   /** Brand object reference (optional, populated when needed) */
   brand?: Brand;
 
+  /** Category ID (foreign key) - Optional for backward compatibility */
+  categoryId?: string;
+
+  /** Category object reference (optional) */
+  category?: Category | string;
+
   /** Array of product image URLs */
   images: string[];
 
@@ -32,9 +40,6 @@ export interface Product {
 
   /** Product specifications as key-value pairs */
   specifications: Record<string, string>;
-
-  /** Product category (e.g., "Main Engines", "Automation", "Hydraulic Pump") */
-  category: string;
 
   /** Product price (optional, 0 means price on request) */
   price?: number;
@@ -64,8 +69,9 @@ export interface ProductCard {
   slug: string;
   brandName: string;
   brandSlug: string;
+  categoryName: string;
+  categorySlug: string;
   thumbnail: string;
-  category?: string;
   price?: number;
   enquiryCount: number;
 }
@@ -75,7 +81,7 @@ export interface ProductCard {
  */
 export interface ProductFilter {
   brandId?: string;
-  category?: string;
+  categoryId?: string;
   searchQuery?: string;
   sortBy?: "name" | "date" | "popularity";
   sortOrder?: "asc" | "desc";

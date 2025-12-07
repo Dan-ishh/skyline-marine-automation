@@ -7,54 +7,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { StockGridSkeleton } from "@/src/Components";
-
-const stockBrands = [
-  {
-    name: "STORK WERKSPOOR",
-    slug: "stork-werkspoor",
-    description: "Marine diesel engines and spare parts",
-  },
-  {
-    name: "MAN B&W MAIN ENGINE",
-    slug: "man-bandw-main-engine",
-    description: "Main propulsion engines for vessels",
-  },
-  {
-    name: "SCHALLER",
-    slug: "schaller",
-    description: "Automation systems and control equipment",
-  },
-  {
-    name: "INGERSOLL RAND",
-    slug: "ingersoll-rand",
-    description: "Air compressors and pneumatic tools",
-  },
-  {
-    name: "DAIHATSU",
-    slug: "daihatsu",
-    description: "Diesel engines and generators",
-  },
-  {
-    name: "ALLEN DIESEL",
-    slug: "allen-diesel",
-    description: "Diesel engine parts and components",
-  },
-  {
-    name: "YANMAR",
-    slug: "yanmar",
-    description: "Marine engines and power solutions",
-  },
-  {
-    name: "BREATHING COMPRESSOR",
-    slug: "breathing-compressor",
-    description: "Marine breathing air compressors",
-  },
-  {
-    name: "WARTSILA",
-    slug: "wartsila",
-    description: "Power solutions and marine equipment",
-  },
-];
+import { brands } from "@/src/data";
 
 export default function StockPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -68,7 +21,7 @@ export default function StockPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const filteredBrands = stockBrands.filter((brand) =>
+  const filteredBrands = brands.filter((brand) =>
     brand.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -111,12 +64,12 @@ export default function StockPage() {
         <section className="stock-grid">
           <div className="stock-grid__container">
             {isLoading ? (
-              <StockGridSkeleton count={9} />
+              <StockGridSkeleton count={18} />
             ) : filteredBrands.length > 0 ? (
               filteredBrands.map((brand) => (
                 <Link
                   key={brand.slug}
-                  href={`/stock/${brand.slug}`}
+                  href={`/brands/${brand.slug}`}
                   className="stock-card"
                 >
                   <div className="stock-card__content">

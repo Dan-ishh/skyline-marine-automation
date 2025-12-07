@@ -152,4 +152,34 @@ export function StockBrandProductsGridSkeleton({
   );
 }
 
+// Category Card Skeleton (for brand categories page)
+export function CategoryCardSkeleton() {
+  return (
+    <div className="category-card skeleton-card">
+      <div className="category-card-image">
+        <Skeleton variant="rectangular" height="250px" />
+      </div>
+      <div className="category-card-content">
+        <Skeleton variant="text" height="24px" width="60%" />
+        <Skeleton variant="text" height="16px" width="90%" />
+        <Skeleton variant="text" height="16px" width="80%" />
+        <div className="category-footer" style={{ marginTop: "12px" }}>
+          <Skeleton variant="text" height="16px" width="40%" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Categories Grid Skeleton (for brand categories page)
+export function CategoriesGridSkeleton({ count = 9 }: { count?: number }) {
+  return (
+    <div className="categories-grid">
+      {Array.from({ length: count }).map((_, index) => (
+        <CategoryCardSkeleton key={index} />
+      ))}
+    </div>
+  );
+}
+
 export default Skeleton;

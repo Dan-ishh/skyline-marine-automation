@@ -6,6 +6,9 @@
 // Brand types
 export type { Brand, BrandOption } from "./brand.types";
 
+// Category types
+export type { Category, BrandWithCategories } from "./category.types";
+
 // Product types
 export type {
   Product,

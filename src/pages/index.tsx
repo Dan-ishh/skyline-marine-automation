@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { getProductCategoryName } from "@/src/utils/productUtils";
 import { useProductStore, useUIStore } from "@/src/store";
 import {
   HeroSlider,
@@ -339,7 +340,7 @@ export default function Home() {
                             <img src={product.thumbnail} alt={product.name} />
                             <div className="home-page__product-overlay">
                               <span className="home-page__product-category">
-                                {product.category}
+                                {getProductCategoryName(product)}
                               </span>
                             </div>
                           </div>
@@ -348,7 +349,8 @@ export default function Home() {
                               {product.name}
                             </h3>
                             <p className="home-page__product-brand">
-                              {product?.category || "Unknown Brand"}
+                              {getProductCategoryName(product) ||
+                                "Unknown Category"}
                             </p>
                             {product.enquiryCount > 0 && (
                               <span className="home-page__enquiry-badge">

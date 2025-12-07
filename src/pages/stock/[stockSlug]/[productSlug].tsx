@@ -5,6 +5,7 @@ import Link from "next/link";
 import { products } from "@/src/data";
 import { useUIStore } from "@/src/store";
 import type { Product } from "@/src/types";
+import { getProductCategoryName } from "@/src/utils/productUtils";
 
 export default function StockProductDetailPage() {
   const router = useRouter();
@@ -126,7 +127,7 @@ export default function StockProductDetailPage() {
                         Category:
                       </span>
                       <span className="product-detail__meta-value">
-                        {product.category}
+                        {getProductCategoryName(product)}
                       </span>
                     </div>
                   )}

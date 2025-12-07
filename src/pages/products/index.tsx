@@ -10,6 +10,7 @@ import Link from "next/link";
 import { products } from "@/src/data";
 import { ProductGridSkeleton } from "@/src/Components";
 import type { Product } from "@/src/types";
+import { getProductCategoryName } from "@/src/utils/productUtils";
 
 export default function ProductsPage() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
@@ -21,7 +22,9 @@ export default function ProductsPage() {
   // Get unique categories
   const categories = [
     "all",
-    ...Array.from(new Set(products.map((p) => p.category))),
+    ...Array.from(
+      new Set(products.map((p) => getProductCategoryName(p)).filter(Boolean))
+    ),
   ];
 
   useEffect(() => {
@@ -47,7 +50,9 @@ export default function ProductsPage() {
       filtered = filtered.filter(
         (p) =>
           p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          getProductCategoryName(p)
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
           (typeof p.brand === "string" ? p.brand : p.brand?.name || "")
             .toLowerCase()
             .includes(searchQuery.toLowerCase())
@@ -167,7 +172,7 @@ export default function ProductsPage() {
                         {product.name}
                       </h3>
                       <p className="products-page__card-category">
-                        {product.category}
+                        {getProductCategoryName(product)}
                       </p>
                       <div className="products-page__card-footer">
                         <span className="products-page__card-brand">

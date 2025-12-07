@@ -1,0 +1,254 @@
+/**
+ * Categories Mock Data
+ * Product categories for marine equipment brands
+ */
+
+import { Category, SubCategory } from "../types";
+
+/**
+ * CATEGORIES DATA
+ * First level under brands (e.g., WARTSILA → 32, 36, 38A)
+ */
+export const categories: Category[] = [
+  // WARTSILA Categories
+  {
+    id: "wartsila-32",
+    name: "32",
+    slug: "32",
+    brandId: "wartsila-16",
+    description: "WARTSILA 32 series marine diesel engines",
+    order: 1,
+    subCategoryCount: 8,
+    productCount: 15,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-36",
+    name: "36",
+    slug: "36",
+    brandId: "wartsila-16",
+    description: "WARTSILA 36 series marine diesel engines",
+    order: 2,
+    subCategoryCount: 7,
+    productCount: 12,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-38a",
+    name: "38A",
+    slug: "38a",
+    brandId: "wartsila-16",
+    description: "WARTSILA 38A series marine diesel engines",
+    order: 3,
+    subCategoryCount: 6,
+    productCount: 10,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-46",
+    name: "46",
+    slug: "46",
+    brandId: "wartsila-16",
+    description: "WARTSILA 46 series marine diesel engines",
+    order: 4,
+    subCategoryCount: 5,
+    productCount: 8,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+];
+
+/**
+ * SUB-CATEGORIES DATA
+ * Second level under categories (e.g., WARTSILA → 32 → Air Starting Valve)
+ */
+export const subCategories: SubCategory[] = [
+  // WARTSILA 32 Sub-Categories
+  {
+    id: "wartsila-32-air-starting-valve",
+    name: "Air Starting Valve",
+    slug: "air-starting-valve",
+    categoryId: "wartsila-32",
+    brandId: "wartsila-16",
+    description: "Air starting valve components for WARTSILA 32",
+    order: 1,
+    productCount: 3,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-32-anti-polishing-ring",
+    name: "Anti Polishing Ring",
+    slug: "anti-polishing-ring",
+    categoryId: "wartsila-32",
+    brandId: "wartsila-16",
+    description: "Anti polishing ring for WARTSILA 32 cylinder liners",
+    order: 2,
+    productCount: 2,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-32-camshaft",
+    name: "Camshaft",
+    slug: "camshaft",
+    categoryId: "wartsila-32",
+    brandId: "wartsila-16",
+    description: "Camshaft components for WARTSILA 32",
+    order: 3,
+    productCount: 2,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-32-connecting-rod",
+    name: "Connecting Rod",
+    slug: "connecting-rod",
+    categoryId: "wartsila-32",
+    brandId: "wartsila-16",
+    description: "Connecting rod components for WARTSILA 32",
+    order: 4,
+    productCount: 2,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-32-connecting-rod-bush",
+    name: "Connecting Rod Bush",
+    slug: "connecting-rod-bush",
+    categoryId: "wartsila-32",
+    brandId: "wartsila-16",
+    description: "Connecting rod bush for WARTSILA 32",
+    order: 5,
+    productCount: 2,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-32-cylinder-head",
+    name: "Cylinder Head",
+    slug: "cylinder-head",
+    categoryId: "wartsila-32",
+    brandId: "wartsila-16",
+    description: "Cylinder head for WARTSILA 32",
+    order: 6,
+    productCount: 2,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-32-cylinder-liner",
+    name: "Cylinder Liner",
+    slug: "cylinder-liner",
+    categoryId: "wartsila-32",
+    brandId: "wartsila-16",
+    description: "Cylinder liner for WARTSILA 32",
+    order: 7,
+    productCount: 1,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-32-fuel-injection-pipe",
+    name: "Fuel Injection Pipe",
+    slug: "fuel-injection-pipe",
+    categoryId: "wartsila-32",
+    brandId: "wartsila-16",
+    description: "Fuel injection pipe for WARTSILA 32",
+    order: 8,
+    productCount: 1,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  // WARTSILA 36 Sub-Categories
+  {
+    id: "wartsila-36-camshaft",
+    name: "Camshaft",
+    slug: "camshaft",
+    categoryId: "wartsila-36",
+    brandId: "wartsila-16",
+    description: "Camshaft components for WARTSILA 36",
+    order: 1,
+    productCount: 2,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "wartsila-36-connecting-rod",
+    name: "Connecting Rod",
+    slug: "connecting-rod",
+    categoryId: "wartsila-36",
+    brandId: "wartsila-16",
+    description: "Connecting rod components for WARTSILA 36",
+    order: 2,
+    productCount: 2,
+    createdAt: new Date("2024-01-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+];
+
+/**
+ * Helper Functions
+ */
+
+/** Get all categories */
+export const getAllCategories = (): Category[] => {
+  return categories;
+};
+
+/** Get categories by brand ID */
+export const getCategoriesByBrand = (brandId: string): Category[] => {
+  return categories.filter((cat) => cat.brandId === brandId);
+};
+
+/** Get category by slug and brand ID */
+export const getCategoryBySlug = (
+  brandId: string,
+  slug: string
+): Category | undefined => {
+  return categories.find(
+    (cat) => cat.brandId === brandId && cat.slug === slug
+  );
+};
+
+/** Get category by ID */
+export const getCategoryById = (id: string): Category | undefined => {
+  return categories.find((cat) => cat.id === id);
+};
+
+/** Get all sub-categories */
+export const getAllSubCategories = (): SubCategory[] => {
+  return subCategories;
+};
+
+/** Get sub-categories by category ID */
+export const getSubCategoriesByCategory = (
+  categoryId: string
+): SubCategory[] => {
+  return subCategories.filter((sub) => sub.categoryId === categoryId);
+};
+
+/** Get sub-category by slug and category ID */
+export const getSubCategoryBySlug = (
+  categoryId: string,
+  slug: string
+): SubCategory | undefined => {
+  return subCategories.find(
+    (sub) => sub.categoryId === categoryId && sub.slug === slug
+  );
+};
+
+/** Get sub-category by ID */
+export const getSubCategoryById = (id: string): SubCategory | undefined => {
+  return subCategories.find((sub) => sub.id === id);
+};
+
+/** Get sub-categories by brand ID */
+export const getSubCategoriesByBrand = (brandId: string): SubCategory[] => {
+  return subCategories.filter((sub) => sub.brandId === brandId);
+};
+
+export default categories;

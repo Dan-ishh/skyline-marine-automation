@@ -12,6 +12,7 @@ export const products: Product[] = [
     name: "Wärtsilä 31 Main Engine",
     slug: "wartsila-31-main-engine",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Main Engines",
     description:
       "The Wärtsilä 31 is the most fuel-efficient four-stroke engine currently available on the market. Designed for marine propulsion and power generation.",
@@ -36,6 +37,7 @@ export const products: Product[] = [
     name: "MAN B&W 6S50ME-C Main Engine",
     slug: "man-bw-6s50me-c",
     brandId: "man-bw-6",
+    categoryId: "man-l32-40",
     category: "Main Engines",
     description:
       "Two-stroke low-speed diesel engine for large container vessels and bulk carriers.",
@@ -60,6 +62,7 @@ export const products: Product[] = [
     name: "Caterpillar 3516C Marine Engine",
     slug: "cat-3516c-marine",
     brandId: "cat-1",
+    categoryId: "caterpillar-3516",
     category: "Main Engines",
     description:
       "High-performance V16 diesel engine for commercial marine applications.",
@@ -86,6 +89,7 @@ export const products: Product[] = [
     name: "Yanmar 6EY26W Auxiliary Engine",
     slug: "yanmar-6ey26w-auxiliary",
     brandId: "yanmar-17",
+    categoryId: "yanmar-6eal",
     category: "Auxiliary Engines",
     description:
       "Medium-speed diesel generator for auxiliary power generation onboard vessels.",
@@ -110,6 +114,7 @@ export const products: Product[] = [
     name: "Cummins QSK60-M Auxiliary Generator",
     slug: "cummins-qsk60-m-gen",
     brandId: "cummins-2",
+    categoryId: "cummins-kt50",
     category: "Auxiliary Engines",
     description: "Reliable auxiliary power generation for marine vessels.",
     price: 0,
@@ -135,6 +140,7 @@ export const products: Product[] = [
     name: "Wärtsilä NACOS Platinum",
     slug: "wartsila-nacos-platinum",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Automation",
     description:
       "Advanced integrated ship automation system for propulsion, power generation, and auxiliary systems.",
@@ -159,6 +165,7 @@ export const products: Product[] = [
     name: "Rolls-Royce SAM Electronics",
     slug: "rolls-royce-sam-electronics",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Automation",
     description: "Comprehensive ship automation and control system.",
     price: 0,
@@ -184,6 +191,7 @@ export const products: Product[] = [
     name: "MAN TCR22 Turbocharger",
     slug: "man-tcr22-turbocharger",
     brandId: "man-7",
+    categoryId: "man-l32-40",
     category: "Turbo Chargers",
     description:
       "High-efficiency radial turbocharger for medium-speed marine engines.",
@@ -208,6 +216,7 @@ export const products: Product[] = [
     name: "Mitsubishi MET83SE Turbocharger",
     slug: "mitsubishi-met83se",
     brandId: "mitsubishi-8",
+    categoryId: "mitsubishi-parts",
     category: "Turbo Chargers",
     description: "Compact and efficient turbocharger for auxiliary engines.",
     price: 0,
@@ -233,6 +242,7 @@ export const products: Product[] = [
     name: "Alfa Laval MAPX 309 Oil Purifier",
     slug: "alfa-laval-mapx-309",
     brandId: "man-7",
+    categoryId: "man-l32-40",
     category: "Oil Purifier",
     description: "High-speed separator for fuel oil and lube oil purification.",
     price: 0,
@@ -256,6 +266,7 @@ export const products: Product[] = [
     name: "Westfalia OSE 20 Separator",
     slug: "westfalia-ose-20",
     brandId: "man-bw-6",
+    categoryId: "man-l32-40",
     category: "Oil Purifier",
     description: "Self-cleaning oil separator for marine diesel engines.",
     price: 0,
@@ -281,6 +292,7 @@ export const products: Product[] = [
     name: "Bosch Rexroth A10VSO Hydraulic Pump",
     slug: "bosch-rexroth-a10vso",
     brandId: "man-7",
+    categoryId: "man-l32-40",
     category: "Hydraulic Pump",
     description:
       "Variable displacement axial piston pump for marine hydraulic systems.",
@@ -307,6 +319,7 @@ export const products: Product[] = [
     name: "Alfa Laval M15-BFM Plate Heat Exchanger",
     slug: "alfa-laval-m15-bfm",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Heat Exchanger",
     description:
       "Compact brazed plate heat exchanger for marine cooling systems.",
@@ -331,6 +344,7 @@ export const products: Product[] = [
     name: "Bowman Shell & Tube Heat Exchanger",
     slug: "bowman-shell-tube",
     brandId: "cat-1",
+    categoryId: "caterpillar-3516",
     category: "Heat Exchanger",
     description:
       "Robust shell and tube heat exchanger for heavy-duty marine applications.",
@@ -357,6 +371,7 @@ export const products: Product[] = [
     name: "ABB M3BP 315 Electric Motor",
     slug: "abb-m3bp-315",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Electric Motor",
     description:
       "Marine-duty three-phase induction motor for pumps and compressors.",
@@ -381,6 +396,7 @@ export const products: Product[] = [
     name: "Siemens 1LA8 Marine Motor",
     slug: "siemens-1la8-marine",
     brandId: "man-7",
+    categoryId: "man-l32-40",
     category: "Electric Motor",
     description: "Rugged AC motor designed for harsh marine environments.",
     price: 0,
@@ -406,6 +422,7 @@ export const products: Product[] = [
     name: "Schneider Electric TeSys GV3 Motor Starter",
     slug: "schneider-tesys-gv3",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Switch & Controller",
     description:
       "Thermal-magnetic motor circuit breaker for marine applications.",
@@ -430,6 +447,7 @@ export const products: Product[] = [
     name: "ABB ACS880 Marine Drive",
     slug: "abb-acs880-marine",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Switch & Controller",
     description: "Variable frequency drive for marine pump and fan control.",
     price: 0,
@@ -455,6 +473,7 @@ export const products: Product[] = [
     name: "Norsafe Magnum 70 Lifeboat",
     slug: "norsafe-magnum-70",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Life Boat",
     description: "Freefall lifeboat for offshore and merchant vessels.",
     price: 0,
@@ -478,6 +497,7 @@ export const products: Product[] = [
     name: "Viking SOLAS B Life Raft",
     slug: "viking-solas-b-life-raft",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Life Boat",
     description: "Inflatable life raft meeting SOLAS requirements.",
     price: 0,
@@ -503,6 +523,7 @@ export const products: Product[] = [
     name: "Furuno FAR-2228 Marine Radar",
     slug: "furuno-far-2228",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Navigation & Radar",
     description:
       "S-band radar with solid-state technology for commercial vessels.",
@@ -527,6 +548,7 @@ export const products: Product[] = [
     name: "JRC JAN-9201 ECDIS",
     slug: "jrc-jan-9201-ecdis",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Navigation & Radar",
     description:
       "Type approved Electronic Chart Display and Information System.",
@@ -553,6 +575,7 @@ export const products: Product[] = [
     name: "Rivertrace RI-3500 ODME",
     slug: "rivertrace-ri-3500-odme",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "OMD & ODME",
     description:
       "Oil Discharge Monitoring Equipment for compliance with MARPOL Annex I.",
@@ -579,6 +602,7 @@ export const products: Product[] = [
     name: "MacGregor VW Windlass 50T",
     slug: "macgregor-vw-windlass-50t",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Anchor & Chain",
     description: "Heavy-duty vertical windlass for large vessels.",
     price: 0,
@@ -602,6 +626,7 @@ export const products: Product[] = [
     name: "Hall Anchor 8,000 kg",
     slug: "hall-anchor-8000kg",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Anchor & Chain",
     description: "Stockless marine anchor for commercial vessels.",
     price: 0,
@@ -627,6 +652,7 @@ export const products: Product[] = [
     name: "Alfa Laval JWP-26 Fresh Water Generator",
     slug: "alfa-laval-jwp-26",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Fresh Water Generator",
     description: "Plate-type evaporator for potable water production onboard.",
     price: 0,
@@ -650,6 +676,7 @@ export const products: Product[] = [
     name: "Wartsila AquaMarin 80 FWG",
     slug: "wartsila-aquamarin-80",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Fresh Water Generator",
     description:
       "Energy-efficient fresh water generator with reverse osmosis option.",
@@ -676,6 +703,7 @@ export const products: Product[] = [
     name: "TTS Deck Crane 30T/25M",
     slug: "tts-deck-crane-30t-25m",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Deck Machinery",
     description: "Hydraulic deck crane for cargo handling operations.",
     price: 0,
@@ -699,6 +727,7 @@ export const products: Product[] = [
     name: "MacGregor RoRo Ramp System",
     slug: "macgregor-roro-ramp",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Deck Machinery",
     description: "Heavy-duty stern ramp for RoRo vessels.",
     price: 0,
@@ -724,6 +753,7 @@ export const products: Product[] = [
     name: "Grundfos CRN 64 Centrifugal Pump",
     slug: "grundfos-crn-64",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Pump",
     description: "Multi-stage centrifugal pump for marine water systems.",
     price: 0,
@@ -747,6 +777,7 @@ export const products: Product[] = [
     name: "Sulzer XRW Screw Pump",
     slug: "sulzer-xrw-screw-pump",
     brandId: "sulzer-13",
+    categoryId: "wartsila-32",
     category: "Pump",
     description: "Twin-screw pump for heavy fuel oil transfer.",
     price: 0,
@@ -772,6 +803,7 @@ export const products: Product[] = [
     name: "Atlas Copco GA 90 Air Compressor",
     slug: "atlas-copco-ga-90",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Air/Gas/Chilling Compressor",
     description:
       "Oil-injected rotary screw compressor for marine compressed air systems.",
@@ -796,6 +828,7 @@ export const products: Product[] = [
     name: "Carrier 30RB Marine Chiller",
     slug: "carrier-30rb-chiller",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Air/Gas/Chilling Compressor",
     description: "Screw compressor water chiller for HVAC systems.",
     price: 0,
@@ -821,6 +854,7 @@ export const products: Product[] = [
     name: "NOV 7500 HP Mud Pump",
     slug: "nov-7500-hp-mud-pump",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Offshore Rigs",
     description:
       "High-pressure triplex mud pump for offshore drilling operations.",
@@ -845,6 +879,7 @@ export const products: Product[] = [
     name: "Cameron BOP Stack",
     slug: "cameron-bop-stack",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Offshore Rigs",
     description: "Blowout preventer stack for deepwater drilling.",
     price: 0,
@@ -870,6 +905,7 @@ export const products: Product[] = [
     name: "Schneider PowerPact Circuit Breaker",
     slug: "schneider-powerpact-breaker",
     brandId: "wartsila-16",
+    categoryId: "wartsila-32",
     category: "Electric Item",
     description: "Marine-grade molded case circuit breaker.",
     price: 0,
@@ -893,6 +929,7 @@ export const products: Product[] = [
     name: "ABB MNS Switchgear",
     slug: "abb-mns-switchgear",
     brandId: "rolls-royce-11",
+    categoryId: "rolls-royce-bergen-b32-40",
     category: "Electric Item",
     description: "Low voltage marine switchboard system.",
     price: 0,
@@ -918,6 +955,7 @@ export const products: Product[] = [
     name: "Volvo Penta D13 Marine Engine",
     slug: "volvo-penta-d13",
     brandId: "volvo-15",
+    categoryId: "wartsila-32",
     category: "Main Engines",
     description:
       "In-line 6-cylinder marine diesel engine with excellent fuel economy.",
@@ -942,6 +980,7 @@ export const products: Product[] = [
     name: "Daihatsu 6DK-28 Main Engine",
     slug: "daihatsu-6dk-28",
     brandId: "daihatsu-14",
+    categoryId: "daihatsu-parts",
     category: "Main Engines",
     description: "Medium-speed four-stroke marine diesel engine.",
     price: 0,
@@ -965,6 +1004,7 @@ export const products: Product[] = [
     name: "Niigata 28AHX Marine Engine",
     slug: "niigata-28ahx",
     brandId: "niigata-9",
+    categoryId: "wartsila-32",
     category: "Auxiliary Engines",
     description: "High-speed diesel generator for auxiliary power.",
     price: 0,
@@ -982,6 +1022,225 @@ export const products: Product[] = [
     enquiryCount: 54,
     createdAt: new Date("2024-08-10"),
     updatedAt: new Date("2025-10-20"),
+  },
+
+  // ===== WÄRTSILÄ 46 SERIES PRODUCTS =====
+  {
+    id: "prod-w46-001",
+    name: "Wärtsilä 46 Cylinder Head Assembly",
+    slug: "wartsila-46-cylinder-head-assembly",
+    brandId: "wartsila-16",
+    categoryId: "wartsila-46",
+    category: "Engine Parts",
+    description:
+      "Complete cylinder head assembly for Wärtsilä 46 series marine diesel engines. Includes valves, seats, and cooling passages. Designed for high-pressure combustion and optimal heat dissipation.",
+    price: 0,
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      "Part Number": "W46-CH-2025",
+      Material: "Cast iron alloy",
+      Weight: "850 kg",
+      "Compatible Models": "Wärtsilä 46, 46F",
+      "Valve Configuration": "2 intake, 2 exhaust",
+      "Cooling Type": "Water-cooled",
+      Warranty: "12 months",
+    },
+    inStock: true,
+    featured: false,
+    enquiryCount: 34,
+    createdAt: new Date("2024-09-01"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "prod-w46-002",
+    name: "Wärtsilä 46 Fuel Injection Pump",
+    slug: "wartsila-46-fuel-injection-pump",
+    brandId: "wartsila-16",
+    categoryId: "wartsila-46",
+    category: "Engine Parts",
+    description:
+      "High-precision fuel injection pump for Wärtsilä 46 engines. Ensures optimal fuel atomization and combustion efficiency. Electronically controlled with advanced timing features.",
+    price: 0,
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      "Part Number": "W46-FIP-3087",
+      Type: "Common rail, high-pressure",
+      "Max Pressure": "2,400 bar",
+      "Flow Rate": "180 L/h",
+      "Compatible Models": "Wärtsilä 46, 46F, 46DF",
+      "Control System": "Electronic",
+      Certification: "IMO Tier III compliant",
+    },
+    inStock: true,
+    featured: true,
+    enquiryCount: 67,
+    createdAt: new Date("2024-09-05"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "prod-w46-003",
+    name: "Wärtsilä 46 Turbocharger Unit",
+    slug: "wartsila-46-turbocharger-unit",
+    brandId: "wartsila-16",
+    categoryId: "wartsila-46",
+    category: "Engine Parts",
+    description:
+      "High-efficiency turbocharger for Wärtsilä 46 series engines. Provides enhanced air supply for improved combustion and power output. Features advanced bearing system for extended service life.",
+    price: 0,
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      "Part Number": "W46-TC-5512",
+      Type: "VTR564 Radial flow",
+      "Air Flow": "14.5 kg/s",
+      "Pressure Ratio": "4.2:1",
+      "Rotor Speed": "18,500 rpm",
+      Weight: "420 kg",
+      "Service Interval": "8,000 hours",
+    },
+    inStock: true,
+    featured: false,
+    enquiryCount: 52,
+    createdAt: new Date("2024-09-10"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "prod-w46-004",
+    name: "Wärtsilä 46 Connecting Rod Assembly",
+    slug: "wartsila-46-connecting-rod-assembly",
+    brandId: "wartsila-16",
+    categoryId: "wartsila-46",
+    category: "Engine Parts",
+    description:
+      "Forged steel connecting rod assembly for Wärtsilä 46 engines. Precision-machined with optimized weight distribution for reduced vibration and extended bearing life.",
+    price: 0,
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      "Part Number": "W46-CR-7823",
+      Material: "Forged steel alloy",
+      Length: "1,850 mm",
+      Weight: "165 kg",
+      "Big End Bearing": "Tri-metal",
+      "Small End Bearing": "Bronze bushing",
+      "Load Capacity": "High-strength design",
+    },
+    inStock: true,
+    featured: false,
+    enquiryCount: 28,
+    createdAt: new Date("2024-09-15"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "prod-w46-005",
+    name: "Wärtsilä 46 Piston & Ring Set",
+    slug: "wartsila-46-piston-ring-set",
+    brandId: "wartsila-16",
+    categoryId: "wartsila-46",
+    category: "Engine Parts",
+    description:
+      "Complete piston and ring set for Wärtsilä 46 series. Features aluminum alloy piston with steel crown insert and chrome-plated rings for superior wear resistance and compression sealing.",
+    price: 0,
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      "Part Number": "W46-PS-4591",
+      "Piston Material": "Aluminum alloy with steel crown",
+      Diameter: "460 mm",
+      "Crown Type": "Omega combustion chamber",
+      "Ring Count": "5 rings (3 compression, 2 oil)",
+      "Ring Material": "Chrome-plated steel",
+      Weight: "45 kg per set",
+    },
+    inStock: true,
+    featured: false,
+    enquiryCount: 41,
+    createdAt: new Date("2024-09-20"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "prod-w46-006",
+    name: "Wärtsilä 46 Camshaft Complete",
+    slug: "wartsila-46-camshaft-complete",
+    brandId: "wartsila-16",
+    categoryId: "wartsila-46",
+    category: "Engine Parts",
+    description:
+      "Complete camshaft assembly for Wärtsilä 46 engines. Precision-ground cams with hardened surfaces for extended service life. Controls valve timing and fuel injection timing.",
+    price: 0,
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      "Part Number": "W46-CS-6234",
+      Material: "Forged and hardened steel",
+      Length: "3,200 mm",
+      Weight: "380 kg",
+      "Bearing Type": "Plain bearings",
+      "Cam Profile": "Optimized for fuel efficiency",
+      "Surface Hardness": "HRC 58-62",
+    },
+    inStock: false,
+    featured: false,
+    enquiryCount: 19,
+    createdAt: new Date("2024-09-25"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "prod-w46-007",
+    name: "Wärtsilä 46 Exhaust Valve Set",
+    slug: "wartsila-46-exhaust-valve-set",
+    brandId: "wartsila-16",
+    categoryId: "wartsila-46",
+    category: "Engine Parts",
+    description:
+      "High-temperature exhaust valve set for Wärtsilä 46 series. Manufactured from heat-resistant alloy steel with stellite-faced seats. Essential for maintaining engine efficiency and preventing blow-by.",
+    price: 0,
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      "Part Number": "W46-EV-8845",
+      Material: "Nimonic 80A alloy",
+      "Valve Diameter": "185 mm",
+      "Stem Diameter": "45 mm",
+      "Seat Material": "Stellite 6",
+      "Operating Temperature": "Up to 850°C",
+      "Set Contents": "2 exhaust valves per cylinder",
+    },
+    inStock: true,
+    featured: false,
+    enquiryCount: 38,
+    createdAt: new Date("2024-10-01"),
+    updatedAt: new Date("2025-12-07"),
+  },
+  {
+    id: "prod-w46-008",
+    name: "Wärtsilä 46 Oil Cooler Assembly",
+    slug: "wartsila-46-oil-cooler-assembly",
+    brandId: "wartsila-16",
+    categoryId: "wartsila-46",
+    category: "Engine Parts",
+    description:
+      "Complete oil cooler assembly for Wärtsilä 46 engines. Plate-type heat exchanger design ensures efficient oil temperature control for optimal lubrication and engine longevity.",
+    price: 0,
+    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      "Part Number": "W46-OC-9267",
+      Type: "Plate heat exchanger",
+      "Heat Transfer Capacity": "850 kW",
+      "Oil Flow Rate": "320 L/min",
+      "Water Flow Rate": "280 L/min",
+      "Operating Pressure": "10 bar",
+      Material: "Stainless steel plates",
+      Weight: "285 kg",
+    },
+    inStock: true,
+    featured: false,
+    enquiryCount: 45,
+    createdAt: new Date("2024-10-05"),
+    updatedAt: new Date("2025-12-07"),
   },
 ];
 
@@ -1020,7 +1279,9 @@ export const getProductsByBrand = (brandId: string): Product[] => {
     .map(enrichProductWithBrand);
 };
 
-export const getProductsByCategory = (category: string): Product[] => {
+export const getProductsByCategory = (
+  category: string | undefined
+): Product[] => {
   return products
     .filter((product) => product.category === category)
     .map(enrichProductWithBrand);
@@ -1047,7 +1308,11 @@ export const getMostEnquiredProducts = (limit: number = 8): Product[] => {
 };
 
 export const getProductCategories = (): string[] => {
-  const categories = new Set(products.map((product) => product.category));
+  const categories = new Set(
+    products
+      .map((product) => product.category)
+      .filter((cat): cat is string => typeof cat === "string")
+  );
   return Array.from(categories).sort();
 };
 
@@ -1058,7 +1323,32 @@ export const searchProducts = (query: string): Product[] => {
       (product) =>
         product.name.toLowerCase().includes(lowercaseQuery) ||
         product.description.toLowerCase().includes(lowercaseQuery) ||
-        product.category.toLowerCase().includes(lowercaseQuery)
+        (typeof product.category === "string" &&
+          product.category.toLowerCase().includes(lowercaseQuery))
+    )
+    .map(enrichProductWithBrand);
+};
+
+/**
+ * Get products by category ID
+ */
+export const getProductsByCategoryId = (categoryId: string): Product[] => {
+  return products
+    .filter((product) => product.categoryId === categoryId)
+    .map(enrichProductWithBrand);
+};
+
+/**
+ * Get products by brand and category ID
+ */
+export const getProductsByCategoryAndBrand = (
+  brandId: string,
+  categoryId: string
+): Product[] => {
+  return products
+    .filter(
+      (product) =>
+        product.brandId === brandId && product.categoryId === categoryId
     )
     .map(enrichProductWithBrand);
 };

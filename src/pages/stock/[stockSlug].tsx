@@ -9,6 +9,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { products } from "@/src/data";
 import { StockBrandProductsGridSkeleton } from "@/src/Components";
+import { getProductCategoryName } from "@/src/utils/productUtils";
 
 const stockBrandsInfo = {
   "stork-werkspoor": {
@@ -171,7 +172,7 @@ export default function StockBrandPage() {
                           : product.brand?.name || "N/A"}
                       </p>
                       <p className="product-card__category">
-                        {product.category}
+                        {getProductCategoryName(product)}
                       </p>
                       <Link
                         href={`/stock/${stockSlug}/${product.slug}`}

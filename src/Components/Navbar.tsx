@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { categories } from "@/src/data";
+import { brands, getCategoriesByBrand } from "@/src/data";
 
 interface NavLink {
   label: string;
@@ -29,18 +29,22 @@ const stockBrands = [
 ];
 
 const navLinks: NavLink[] = [
-  { label: "HOME", href: "/" },
-  { label: "STOCK", href: "/stock", hasMegaMenu: true },
-  { label: "PRODUCTS", href: "/products", hasMegaMenu: true },
-  { label: "CONTACT US", href: "/contact" },
+  { label: "Home", href: "/" },
+  { label: "Stock", href: "/stock", hasMegaMenu: true },
+  // PRODUCTS menu hidden as per requirements
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showBrandsMegaMenu, setShowBrandsMegaMenu] = useState(false);
-  const [showProductsMegaMenu, setShowProductsMegaMenu] = useState(false);
+  const [showStockMegaMenu, setShowStockMegaMenu] = useState(false);
+  const [hoveredBrandId, setHoveredBrandId] = useState<string | null>(null);
+  
+  // Mobile menu state
+  const [mobileStockExpanded, setMobileStockExpanded] = useState(false);
+  const [mobileSelectedBrandId, setMobileSelectedBrandId] = useState<string | null>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -98,7 +102,7 @@ export default function Navbar() {
           <div className="navbar__container">
             {/* Email Section */}
             <div className="navbar__contact-group">
-              <span className="navbar__contact-label">SEND US AN EMAIL</span>
+              <span className="navbar__contact-label">Send Us an Email</span>
               <div className="navbar__contact-links">
                 <a
                   href="mailto:info@skylinemarine.co"
@@ -111,7 +115,7 @@ export default function Navbar() {
 
             {/* Phone Numbers */}
             <div className="navbar__contact-group">
-              <span className="navbar__contact-label">CONTACT</span>
+              <span className="navbar__contact-label">Contact</span>
               <div className="navbar__contact-links">
                 <a href="tel:+917016439122" className="navbar__contact-link">
                   +91 70164 39122
@@ -124,7 +128,7 @@ export default function Navbar() {
 
             {/* Social Media */}
             <div className="navbar__social">
-              <span className="navbar__contact-label">FOLLOW US</span>
+              <span className="navbar__contact-label">Follow Us</span>
               <div className="navbar__social-links">
                 <a
                   href="https://www.facebook.com/people/Skyline-Marine/61564057198879/"
@@ -200,21 +204,14 @@ export default function Navbar() {
                   key={link.href}
                   className="navbar__nav-item"
                   onMouseEnter={() => {
-                    if (link.hasMegaMenu) {
-                      if (link.label === "STOCK") {
-                        setShowBrandsMegaMenu(true);
-                      } else if (link.label === "PRODUCTS") {
-                        setShowProductsMegaMenu(true);
-                      }
+                    if (link.hasMegaMenu && link.label === "Stock") {
+                      setShowStockMegaMenu(true);
                     }
                   }}
                   onMouseLeave={() => {
-                    if (link.hasMegaMenu) {
-                      if (link.label === "STOCK") {
-                        setShowBrandsMegaMenu(false);
-                      } else if (link.label === "PRODUCTS") {
-                        setShowProductsMegaMenu(false);
-                      }
+                    if (link.hasMegaMenu && link.label === "Stock") {
+                      setShowStockMegaMenu(false);
+                      setHoveredBrandId(null);
                     }
                   }}
                   style={{ position: "relative" }}
@@ -239,48 +236,105 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {/* Stock Mega Menu - Available Stock Brands */}
-                  {link.label === "STOCK" && showBrandsMegaMenu && (
-                    <div className="navbar__mega-menu">
+                  {/* Stock Mega Menu - All Brands with Category Popover */}
+                  {link.label === "Stock" && showStockMegaMenu && (
+                    <div className="navbar__mega-menu navbar__mega-menu--hierarchical">
                       <div className="navbar__mega-menu-container">
-                        {/* <h3 className="navbar__mega-menu-title">
-                          Available Stock
-                        </h3> */}
-                        <div className="navbar__mega-menu-grid">
-                          {stockBrands.map((brandName) => (
-                            <Link
-                              key={brandName}
-                              href={`/stock/${brandName
-                                .toLowerCase()
-                                .replace(/\s+/g, "-")
-                                .replace(/&/g, "and")}`}
-                              className="navbar__mega-menu-item"
-                            >
-                              {brandName}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                        <div className="navbar__mega-menu-layout">
+                          {/* Brands Column - Shows ALL brands from images */}
+                          <div className="navbar__mega-menu-brands">
+                            <h4 className="navbar__mega-menu-subtitle">
+                              Available Brands
+                            </h4>
+                            <div className="navbar__brands-list">
+                              {brands.map((brand) => (
+                                <div
+                                  key={brand.id}
+                                  className={`navbar__brand-item ${
+                                    hoveredBrandId === brand.id
+                                      ? "navbar__brand-item--active"
+                                      : ""
+                                  }`}
+                                  onMouseEnter={() =>
+                                    setHoveredBrandId(brand.id)
+                                  }
+                                >
+                                  <Link
+                                    href={`/brands/${brand.slug}`}
+                                    className="navbar__brand-link"
+                                  >
+                                    {brand.name}
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="currentColor"
+                                      style={{ marginLeft: "auto" }}
+                                    >
+                                      <path
+                                        d="M6 4L10 8L6 12"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        fill="none"
+                                      />
+                                    </svg>
+                                  </Link>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
 
-                  {/* Products Mega Menu - Product Categories */}
-                  {link.label === "PRODUCTS" && showProductsMegaMenu && (
-                    <div className="navbar__mega-menu">
-                      <div className="navbar__mega-menu-container">
-                        {/* <h3 className="navbar__mega-menu-title">
-                          Product Categories
-                        </h3> */}
-                        <div className="navbar__mega-menu-grid">
-                          {categories.map((category) => (
-                            <Link
-                              key={category.id}
-                              href={`/products?category=${category.slug}`}
-                              className="navbar__mega-menu-item"
-                            >
-                              {category.name}
-                            </Link>
-                          ))}
+                          {/* Categories Popover (shows when brand is hovered) */}
+                          {hoveredBrandId && (
+                            <div className="navbar__mega-menu-categories">
+                              <h4 className="navbar__mega-menu-subtitle">
+                                {
+                                  brands.find((b) => b.id === hoveredBrandId)
+                                    ?.name
+                                }{" "}
+                                Categories
+                              </h4>
+                              <div className="navbar__categories-grid">
+                                {getCategoriesByBrand(hoveredBrandId).length >
+                                0 ? (
+                                  getCategoriesByBrand(hoveredBrandId).map(
+                                    (category) => (
+                                      <Link
+                                        key={category.id}
+                                        href={`/brands/${
+                                          brands.find(
+                                            (b) => b.id === hoveredBrandId
+                                          )?.slug
+                                        }/${category.slug}`}
+                                        className="navbar__category-link"
+                                      >
+                                        <span className="navbar__category-name">
+                                          {category.name}
+                                        </span>
+                                        <span className="navbar__category-count">
+                                          {category.productCount} products
+                                        </span>
+                                      </Link>
+                                    )
+                                  )
+                                ) : (
+                                  <div className="navbar__no-categories">
+                                    <p>No categories available</p>
+                                    <Link
+                                      href={`/brands/${
+                                        brands.find(
+                                          (b) => b.id === hoveredBrandId
+                                        )?.slug
+                                      }`}
+                                      className="navbar__view-brand"
+                                    >
+                                      View Brand Page →
+                                    </Link>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -291,7 +345,7 @@ export default function Navbar() {
 
             {/* CTA Button */}
             <Link href="/contact" className="navbar__cta">
-              REQUEST A FREE QUOTE
+              Request a Free Quote
             </Link>
 
             {/* Mobile Menu Toggle */}
@@ -340,16 +394,115 @@ export default function Navbar() {
           <ul className="navbar__mobile-nav">
             {navLinks.map((link) => (
               <li key={link.href} className="navbar__mobile-nav-item">
-                <Link
-                  href={link.href}
-                  className={`navbar__mobile-nav-link ${
-                    isActiveLink(link.href)
-                      ? "navbar__mobile-nav-link--active"
-                      : ""
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                {link.hasMegaMenu && link.label === "Stock" ? (
+                  <>
+                    {/* Stock Menu with Hierarchical Navigation */}
+                    <button
+                      className={`navbar__mobile-nav-link navbar__mobile-nav-link--expandable ${
+                        mobileStockExpanded ? "expanded" : ""
+                      }`}
+                      onClick={() => setMobileStockExpanded(!mobileStockExpanded)}
+                    >
+                      {link.label}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        style={{
+                          marginLeft: "auto",
+                          transform: mobileStockExpanded ? "rotate(180deg)" : "rotate(0)",
+                          transition: "transform 0.3s ease",
+                        }}
+                      >
+                        <path d="M8 11L3 6h10z" />
+                      </svg>
+                    </button>
+                    
+                    {/* Mobile Hierarchical Menu */}
+                    {mobileStockExpanded && (
+                      <div className="navbar__mobile-stock-menu">
+                        {/* Link to main Stock page */}
+                        <Link
+                          href="/stock"
+                          className="navbar__mobile-stock-link navbar__mobile-stock-link--main"
+                        >
+                          View All Stock
+                        </Link>
+                        
+                        {/* Brands List */}
+                        <div className="navbar__mobile-brands-list">
+                          {brands.map((brand) => (
+                            <div key={brand.id} className="navbar__mobile-brand-item">
+                              <button
+                                className={`navbar__mobile-brand-button ${
+                                  mobileSelectedBrandId === brand.id ? "active" : ""
+                                }`}
+                                onClick={() =>
+                                  setMobileSelectedBrandId(
+                                    mobileSelectedBrandId === brand.id ? null : brand.id
+                                  )
+                                }
+                              >
+                                <span>{brand.name}</span>
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
+                                  fill="currentColor"
+                                  style={{
+                                    transform:
+                                      mobileSelectedBrandId === brand.id
+                                        ? "rotate(180deg)"
+                                        : "rotate(0)",
+                                    transition: "transform 0.3s ease",
+                                  }}
+                                >
+                                  <path d="M8 11L3 6h10z" />
+                                </svg>
+                              </button>
+
+                              {/* Categories for selected brand */}
+                              {mobileSelectedBrandId === brand.id && (
+                                <div className="navbar__mobile-categories-list">
+                                  <Link
+                                    href={`/brands/${brand.slug}`}
+                                    className="navbar__mobile-category-link navbar__mobile-category-link--all"
+                                  >
+                                    View All Categories
+                                  </Link>
+                                  {getCategoriesByBrand(brand.id).map((category) => (
+                                    <Link
+                                      key={category.id}
+                                      href={`/brands/${brand.slug}/${category.slug}`}
+                                      className="navbar__mobile-category-link"
+                                    >
+                                      <span>{category.name}</span>
+                                      <span className="navbar__mobile-category-count">
+                                        {category.productCount}
+                                      </span>
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className={`navbar__mobile-nav-link ${
+                      isActiveLink(link.href)
+                        ? "navbar__mobile-nav-link--active"
+                        : ""
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
