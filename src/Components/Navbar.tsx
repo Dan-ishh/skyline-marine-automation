@@ -80,10 +80,12 @@ export default function Navbar() {
     if (href === "/") {
       return router.pathname === "/";
     }
-    // Match /stock and all its sub-routes
+    // Match /stock and all its sub-routes, AND /brands routes (since brands are part of stock)
     if (href === "/stock") {
       return (
-        router.pathname === "/stock" || router.pathname.startsWith("/stock/")
+        router.pathname === "/stock" ||
+        router.pathname.startsWith("/stock/") ||
+        router.pathname.startsWith("/brands/")
       );
     }
     // Match /products and all its sub-routes (including product detail pages)
