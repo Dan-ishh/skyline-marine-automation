@@ -41,10 +41,12 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showStockMegaMenu, setShowStockMegaMenu] = useState(false);
   const [hoveredBrandId, setHoveredBrandId] = useState<string | null>(null);
-  
+
   // Mobile menu state
   const [mobileStockExpanded, setMobileStockExpanded] = useState(false);
-  const [mobileSelectedBrandId, setMobileSelectedBrandId] = useState<string | null>(null);
+  const [mobileSelectedBrandId, setMobileSelectedBrandId] = useState<
+    string | null
+  >(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -401,7 +403,9 @@ export default function Navbar() {
                       className={`navbar__mobile-nav-link navbar__mobile-nav-link--expandable ${
                         mobileStockExpanded ? "expanded" : ""
                       }`}
-                      onClick={() => setMobileStockExpanded(!mobileStockExpanded)}
+                      onClick={() =>
+                        setMobileStockExpanded(!mobileStockExpanded)
+                      }
                     >
                       {link.label}
                       <svg
@@ -411,14 +415,16 @@ export default function Navbar() {
                         fill="currentColor"
                         style={{
                           marginLeft: "auto",
-                          transform: mobileStockExpanded ? "rotate(180deg)" : "rotate(0)",
+                          transform: mobileStockExpanded
+                            ? "rotate(180deg)"
+                            : "rotate(0)",
                           transition: "transform 0.3s ease",
                         }}
                       >
                         <path d="M8 11L3 6h10z" />
                       </svg>
                     </button>
-                    
+
                     {/* Mobile Hierarchical Menu */}
                     {mobileStockExpanded && (
                       <div className="navbar__mobile-stock-menu">
@@ -429,18 +435,25 @@ export default function Navbar() {
                         >
                           View All Stock
                         </Link>
-                        
+
                         {/* Brands List */}
                         <div className="navbar__mobile-brands-list">
                           {brands.map((brand) => (
-                            <div key={brand.id} className="navbar__mobile-brand-item">
+                            <div
+                              key={brand.id}
+                              className="navbar__mobile-brand-item"
+                            >
                               <button
                                 className={`navbar__mobile-brand-button ${
-                                  mobileSelectedBrandId === brand.id ? "active" : ""
+                                  mobileSelectedBrandId === brand.id
+                                    ? "active"
+                                    : ""
                                 }`}
                                 onClick={() =>
                                   setMobileSelectedBrandId(
-                                    mobileSelectedBrandId === brand.id ? null : brand.id
+                                    mobileSelectedBrandId === brand.id
+                                      ? null
+                                      : brand.id
                                   )
                                 }
                               >
@@ -471,18 +484,20 @@ export default function Navbar() {
                                   >
                                     View All Categories
                                   </Link>
-                                  {getCategoriesByBrand(brand.id).map((category) => (
-                                    <Link
-                                      key={category.id}
-                                      href={`/brands/${brand.slug}/${category.slug}`}
-                                      className="navbar__mobile-category-link"
-                                    >
-                                      <span>{category.name}</span>
-                                      <span className="navbar__mobile-category-count">
-                                        {category.productCount}
-                                      </span>
-                                    </Link>
-                                  ))}
+                                  {getCategoriesByBrand(brand.id).map(
+                                    (category) => (
+                                      <Link
+                                        key={category.id}
+                                        href={`/brands/${brand.slug}/${category.slug}`}
+                                        className="navbar__mobile-category-link"
+                                      >
+                                        <span>{category.name}</span>
+                                        <span className="navbar__mobile-category-count">
+                                          {category.productCount}
+                                        </span>
+                                      </Link>
+                                    )
+                                  )}
                                 </div>
                               )}
                             </div>
