@@ -39,10 +39,10 @@ const slides: Slide[] = [
   },
   {
     id: 3,
-    title: "Power Generation Excellence",
+    title: "Marine Engines & Generators",
     subtitle: "Diesel Engines & Generators",
     description: "Reliable power solutions from world-leading manufacturers",
-    image: "/Assets/images/Banner/power.jpg",
+    image: "/Assets/images/Banner/shipport.jpg",
     cta: "Discover More",
     ctaLink: "/products",
   },

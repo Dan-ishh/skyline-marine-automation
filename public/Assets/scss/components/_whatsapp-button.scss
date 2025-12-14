@@ -1,0 +1,72 @@
+// WhatsApp Floating Button Component
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366 0%, #1fa050 100%);
+  color: $white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  z-index: 999;
+  transition: all 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+    bottom: 4.5rem;
+    right: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    width: 40px;
+    height: 40px;
+    bottom: 4rem;
+    right: 1rem;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+
+    @media (max-width: 576px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, #1fa050 0%, #0f8f3b 100%);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+
+  // Animation for initial appearance
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  animation: popIn 0.4s ease-out;
+}

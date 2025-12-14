@@ -1,6 +1,12 @@
 import { AppProps } from "next/app";
 import { Inter } from "next/font/google";
-import { Navbar, Footer, InquiryPopup, BackToTop } from "@/src/Components";
+import {
+  Navbar,
+  Footer,
+  InquiryPopup,
+  BackToTop,
+  WhatsAppButton,
+} from "@/src/Components";
 import "../../public/Assets/scss/globals.scss";
 import "react-phone-number-input/style.css";
 
@@ -16,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
       <Footer />
       <InquiryPopup />
+      <WhatsAppButton />
       <BackToTop />
     </div>
   );

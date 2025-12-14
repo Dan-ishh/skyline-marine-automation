@@ -170,7 +170,7 @@ export default function Home() {
   };
 
   const handleInventoryClick = () => {
-    router.push("/products");
+    router.push("/marine-spare-parts");
   };
 
   return (
@@ -226,6 +226,43 @@ export default function Home() {
                 </svg>
                 Inventory
               </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Info Section */}
+        <section className="info-section">
+          <div className="container">
+            <h2>Why Choose Our Spare Parts?</h2>
+            <div className="info-grid">
+              <div className="info-card">
+                <h3>Genuine Parts</h3>
+                <p>
+                  We supply genuine, authentic marine spare parts from
+                  established manufacturers.
+                </p>
+              </div>
+              <div className="info-card">
+                <h3>Quality Assurance</h3>
+                <p>
+                  All parts undergo strict quality checks before shipment to
+                  ensure reliability.
+                </p>
+              </div>
+              <div className="info-card">
+                <h3>Expert Support</h3>
+                <p>
+                  Our team of marine engineers provides technical support and
+                  guidance.
+                </p>
+              </div>
+              <div className="info-card">
+                <h3>Competitive Pricing</h3>
+                <p>
+                  We offer the best prices without compromising on quality and
+                  service.
+                </p>
+              </div>
             </div>
           </div>
         </section>

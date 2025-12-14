@@ -262,7 +262,7 @@ export default function ProductDetailPage() {
 
               {/* Stock & Inquiry Stats */}
               <div className="product-badges">
-                <div
+                {/* <div
                   className={`stock-status ${
                     product.inStock ? "in-stock" : "out-of-stock"
                   }`}
@@ -282,8 +282,8 @@ export default function ProductDetailPage() {
                       <circle cx="12" cy="12" r="10" />
                     )}
                   </svg>
-                  {/* <span>{product.inStock ? "In Stock" : "Out of Stock"}</span> */}
-                </div>
+                  <span>{product.inStock ? "In Stock" : "Out of Stock"}</span>
+                </div> */}
                 {product.enquiryCount > 0 && (
                   <div className="enquiry-badge">
                     <svg
