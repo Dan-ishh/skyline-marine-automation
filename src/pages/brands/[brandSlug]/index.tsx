@@ -1,7 +1,7 @@
 /**
- * Brand Categories Page
+ * Brand Products Page
  * Route: /brands/[brandSlug]
- * Displays all categories for a specific brand
+ * Displays all products for a specific brand
  */
 
 import { useEffect, useState } from "react";
@@ -9,18 +9,26 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { useBrandStore } from "@/src/store";
-import { getCategoriesByBrand } from "@/src/data/categories";
-import { CategoriesGridSkeleton } from "@/src/Components";
-import type { Category } from "@/src/types";
+import { useBrandStore, useProductStore } from "@/src/store";
+import { ProductGridSkeleton } from "@/src/Components";
+import type { Product } from "@/src/types";
 
-export default function BrandCategoriesPage() {
+export default function BrandProductsPage() {
   const router = useRouter();
   const { brandSlug } = router.query;
 
-  const { selectedBrand, loading, fetchBrandBySlug } = useBrandStore();
+  const {
+    selectedBrand,
+    loading: brandLoading,
+    fetchBrandBySlug,
+  } = useBrandStore();
+  const {
+    products,
+    loading: productsLoading,
+    fetchProducts,
+  } = useProductStore();
 
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [brandProducts, setBrandProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (brandSlug && typeof brandSlug === "string") {
@@ -29,11 +37,21 @@ export default function BrandCategoriesPage() {
   }, [brandSlug, fetchBrandBySlug]);
 
   useEffect(() => {
-    if (selectedBrand) {
-      const brandCategories = getCategoriesByBrand(selectedBrand.id);
-      setCategories(brandCategories);
+    // Load all products on page mount
+    fetchProducts();
+  }, [fetchProducts]);
+
+  useEffect(() => {
+    if (selectedBrand && products.length > 0) {
+      // Filter products by brand ID
+      const filteredProducts = products.filter(
+        (product) => product.brandId === selectedBrand.id
+      );
+      setBrandProducts(filteredProducts);
     }
-  }, [selectedBrand]);
+  }, [selectedBrand, products]);
+
+  const loading = brandLoading || productsLoading;
 
   if (loading) {
     return (
@@ -41,7 +59,7 @@ export default function BrandCategoriesPage() {
         <Head>
           <title>Loading Brand... - Skyline Marine Automation</title>
         </Head>
-        <main className="brand-categories-page">
+        <main className="brand-products-page">
           {/* Brand Header Skeleton */}
           <section className="brand-header">
             <div className="brand-header-content">
@@ -96,8 +114,8 @@ export default function BrandCategoriesPage() {
             </div>
           </section>
 
-          {/* Categories Grid Skeleton */}
-          <section className="categories-section">
+          {/* Products Grid Skeleton */}
+          <section className="products-section">
             <div className="section-header">
               <div
                 className="skeleton-text"
@@ -108,7 +126,7 @@ export default function BrandCategoriesPage() {
                 style={{ height: "18px", width: "400px" }}
               />
             </div>
-            <CategoriesGridSkeleton count={9} />
+            <ProductGridSkeleton count={8} />
           </section>
         </main>
       </>
@@ -128,21 +146,19 @@ export default function BrandCategoriesPage() {
   return (
     <>
       <Head>
-        <title>
-          {selectedBrand.name} Categories - Skyline Marine Automation
-        </title>
+        <title>{selectedBrand.name} Products - Skyline Marine Automation</title>
         <meta
           name="description"
-          content={`Browse ${selectedBrand.name} product categories on Skyline Marine Automation`}
+          content={`Browse ${selectedBrand.name} marine engine and component products on Skyline Marine Automation`}
         />
       </Head>
 
-      <main className="brand-categories-page">
+      <main className="brand-products-page">
         {/* Breadcrumb */}
         <nav className="breadcrumb">
           <Link href="/">Home</Link>
-          <span className="separator">/</span>
-          <Link href="/stock">stock</Link>
+          {/* <span className="separator">/</span> */}
+          {/* <Link href="/stock">stock</Link> */}
           <span className="separator">/</span>
           <span className="current">{selectedBrand.name}</span>
         </nav>
@@ -168,84 +184,79 @@ export default function BrandCategoriesPage() {
               )}
               <div className="brand-stats">
                 <div className="stat-item">
-                  <span className="stat-value">{categories.length}</span>
-                  <span className="stat-label">Categories</span>
+                  <span className="stat-value">{brandProducts.length}</span>
+                  <span className="stat-label">Products</span>
                 </div>
                 <div className="stat-item">
                   <span className="stat-value">
                     {selectedBrand.productCount || 0}
                   </span>
-                  <span className="stat-label">Products</span>
+                  <span className="stat-label">Available</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Categories Grid */}
-        <section className="categories-section">
+        {/* Products Grid */}
+        <section className="products-section">
           <div className="section-header">
-            <h2 className="section-title">Product Categories</h2>
+            <h2 className="section-title">Products</h2>
             <p className="section-subtitle">
-              Select a category to view available products
+              Select a product to view detailed information
             </p>
           </div>
 
-          {categories.length > 0 ? (
-            <div className="categories-grid">
-              {categories.map((category) => (
+          {brandProducts.length > 0 ? (
+            <div className="products-grid">
+              {brandProducts.map((product) => (
                 <Link
-                  href={`/brands/${brandSlug}/${category.slug}`}
-                  key={category.id}
-                  className="category-card"
+                  href={`/brands/${brandSlug}/${product.slug}${
+                    router.query.from ? `?from=${router.query.from}` : ""
+                  }`}
+                  key={product.id}
+                  className="product-card"
                 >
-                  <div className="category-card-image">
+                  <div className="product-card-image">
                     <Image
-                      src={
-                        category.thumbnail ||
-                        "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"
-                      }
-                      alt={category.name}
+                      src={product.thumbnail || product.images[0]}
+                      alt={product.name}
                       width={400}
-                      height={250}
+                      height={300}
                       objectFit="cover"
                       loading="lazy"
                     />
-                    <div className="category-card-overlay">
-                      <span className="view-text">View Products →</span>
+                    <div className="product-card-overlay">
+                      <span className="view-text">View Details →</span>
                     </div>
+                    {/* {product.inStock && (
+                      <span className="stock-badge">In Stock</span>
+                    )} */}
                   </div>
-
-                  <div className="category-card-content">
-                    <h3 className="category-name">{category.name}</h3>
-                    {category.description && (
-                      <p className="category-description">
-                        {category.description}
-                      </p>
-                    )}
-                    <div className="category-footer">
-                      <div className="product-count">
-                        <svg
-                          className="icon"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                          <circle cx="12" cy="7" r="4" />
-                        </svg>
-                        <span>
-                          {category.productCount}{" "}
-                          {category.productCount === 1 ? "Product" : "Products"}
-                        </span>
-                      </div>
+                  <div className="product-card-content">
+                    <h3 className="product-title">{product.name}</h3>
+                    <p className="product-brand">{selectedBrand.name}</p>
+                    <div className="product-footer">
+                      {product.enquiryCount > 0 && (
+                        <div className="enquiry-count">
+                          <svg
+                            className="icon"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                          </svg>
+                          <span>{product.enquiryCount} enquiries</span>
+                        </div>
+                      )}
                       <svg
                         className="arrow-icon"
-                        width="20"
-                        height="20"
+                        width="18"
+                        height="18"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -261,11 +272,8 @@ export default function BrandCategoriesPage() {
           ) : (
             <div className="no-results">
               <div className="no-results-icon">📦</div>
-              <h3>No Categories Available</h3>
-              <p>There are currently no categories for this brand.</p>
-              <Link href="/brands" className="back-button">
-                Browse Other Brands
-              </Link>
+              <h3>No Products Available</h3>
+              <p>There are currently no products for this brand.</p>
             </div>
           )}
         </section>

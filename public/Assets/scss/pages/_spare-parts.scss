@@ -1,0 +1,234 @@
+/**
+ * Spare Parts Category Page Styles
+ * Displays spare parts categories and details
+ */
+
+.spare-parts-grid-section {
+  max-width: 1400px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin: 0 0 2rem;
+    font-family: $font-family-heading;
+  }
+}
+
+// ============================================
+// Spare Parts Grid
+// ============================================
+.spare-parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 360px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================
+// Spare Part Card
+// ============================================
+.spare-part-card {
+  display: block;
+  background: $white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid $border-light;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  min-height: 140px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.15);
+    border-color: $primary-light;
+
+    h3 {
+      color: $primary-color;
+    }
+
+    .spare-part-card-footer {
+      .arrow {
+        color: $primary-color;
+        transform: translateX(3px);
+      }
+    }
+  }
+}
+
+// ============================================
+// Spare Part Card Content
+// ============================================
+.spare-part-card-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+
+  h3 {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin: 0;
+    font-family: $font-family-heading;
+    transition: color 0.2s ease;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .spare-part-slug {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    margin: 0;
+    line-height: $line-height-normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ============================================
+// Spare Part Card Footer
+// ============================================
+.spare-part-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 0.75rem;
+
+  .arrow {
+    color: $gray-400;
+    transition: all 0.2s ease;
+    font-weight: $font-weight-bold;
+    flex-shrink: 0;
+  }
+}
+
+// ============================================
+// Info Section (Why Choose Our Spare Parts)
+// ============================================
+.info-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin: 0 0 2rem;
+    text-align: center;
+    font-family: $font-family-heading;
+  }
+}
+
+// ============================================
+// Info Grid
+// ============================================
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+// ============================================
+// Info Card
+// ============================================
+.info-card {
+  background: $white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid $border-light;
+  transition: all 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.12);
+  }
+
+  h3 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin: 0 0 1rem;
+    font-family: $font-family-heading;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    margin: 0;
+    line-height: $line-height-relaxed;
+  }
+}
+
+// ============================================
+// Back Button Styles
+// ============================================
+.btn-back {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background: $primary-color;
+  color: $white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: $font-weight-semibold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: $font-size-base;
+  font-family: $font-family-primary;
+
+  &:hover {
+    background: $primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: 2px solid $primary-light;
+    outline-offset: 2px;
+  }
+}

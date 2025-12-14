@@ -187,58 +187,168 @@
     }
   }
 
-  // Mega Menu (Brands Dropdown)
+  // Mega Menu (Brands Dropdown & Spare Parts)
   &__mega-menu {
     position: absolute;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 900px;
-    max-width: 90vw;
+    left: 0;
+    right: auto;
     background: $white;
-    box-shadow: 0 8px 32px rgba($black, 0.15);
-    border-radius: $border-radius-lg;
-    padding: 2rem;
-    margin-top: 0;
-    padding-top: 2.5rem; // Extra padding to create seamless hover area
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba($black, 0.12);
+    margin-top: 8px;
     z-index: 1000;
-    animation: slideDown 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
 
-    // Create invisible bridge between nav link and dropdown
-    &::before {
-      content: "";
-      position: absolute;
-      top: -0.5rem;
-      left: 0;
-      right: 0;
-      height: 0.5rem;
+    @include respond-to("tablet") {
+      display: none !important;
+    }
+
+    &--spare-parts {
+      padding: 12px;
+      min-width: 250px;
+      max-width: 400px;
+      max-height: 75vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      pointer-events: auto;
+
+      @include respond-to("desktop") {
+        min-width: 280px;
+        padding: 16px;
+        max-height: 70vh;
+      }
+
+      @include respond-to("large-desktop") {
+        min-width: 320px;
+        max-width: 500px;
+        padding: 16px;
+        max-height: 75vh;
+      }
+    }
+  }
+
+  &__spare-parts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  // Custom scrollbar styling for spare parts mega menu
+  &__mega-menu--spare-parts {
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
       background: transparent;
     }
 
-    @include respond-to("desktop") {
-      width: 800px;
-      padding: 1.5rem;
-      padding-top: 2rem;
+    &::-webkit-scrollbar-thumb {
+      background: #d0d0d0;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #999;
+      }
     }
   }
 
-  &__mega-menu-container {
+  &__spare-part-link {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    .navbar__spare-part-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+
+      @include respond-to("desktop") {
+        font-size: 13px;
+      }
+    }
+
+    svg {
+      margin-left: 8px;
+      color: #003d82;
+      opacity: 0;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background-color: #f0f5fa;
+      color: #003d82;
+
+      .navbar__spare-part-name {
+        color: #003d82;
+        font-weight: 600;
+      }
+
+      svg {
+        opacity: 1;
+        transform: translateX(4px);
+      }
+    }
+
+    &--active {
+      background-color: #e8f1fa;
+      color: #003d82;
+      border-left: 4px solid #003d82;
+      padding-left: 12px;
+
+      .navbar__spare-part-name {
+        color: #003d82;
+        font-weight: 600;
+      }
+
+      svg {
+        opacity: 1;
+        color: #003d82;
+      }
+    }
   }
 
-  &__mega-menu-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: $primary-color;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 0;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid rgba($primary-color, 0.1);
+  // Create invisible bridge between nav link and dropdown for hover persistence
+  &__nav-item {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: transparent;
+      z-index: 999;
+    }
   }
 
+  // Show mega menu on hover and keep it visible when moving to it
+  &__nav-item:hover > .navbar__mega-menu,
+  &__mega-menu:hover {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &__nav-item:hover .navbar__mega-menu {
+    pointer-events: auto;
+  }
+
+  // Old mega menu grid styles (for backward compatibility)
   &__mega-menu-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -250,24 +360,6 @@
 
     @include respond-to("tablet") {
       grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  &__mega-menu-item {
-    padding: 0.75rem 1rem;
-    color: $text-primary;
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-radius: $border-radius-sm;
-    transition: all 0.2s ease;
-    border: 1px solid transparent;
-
-    &:hover {
-      background-color: rgba($secondary-color, 0.08);
-      color: $secondary-color;
-      border-color: rgba($secondary-color, 0.2);
-      transform: translateX(4px);
     }
   }
 
@@ -420,7 +512,14 @@
     list-style: none;
     padding: 0;
     margin: 0 0 2rem 0;
-    font-weight: 800;
+
+    .navbar__mobile-nav-item {
+      border-bottom: 1px solid #e5e5e5;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
   }
 
   &__mobile-nav-item {
@@ -431,50 +530,111 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 1rem;
+    padding: 16px;
     color: $text-primary;
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
     transition: all 0.3s ease;
-    border-radius: 50px;
-    margin: 0.25rem 0;
-    background-color: $bg-secondary;
+    border-radius: 0;
+    margin: 0;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     text-align: left;
+    position: relative;
 
     &:hover {
-      color: $primary-color;
+      background-color: #f9f9f9;
+      color: #003d82;
     }
 
     &--active {
-      color: $white;
+      color: #003d82;
       font-weight: 600;
-      background-color: $primary-color;
+      background-color: #e8f1fa;
+      border-left: 4px solid #003d82;
+      padding-left: 12px;
 
-      &:hover {
-        background-color: color.adjust($primary-color, $lightness: -5%);
-        color: $white;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: #003d82;
       }
     }
 
     &--expandable {
       justify-content: space-between;
+      padding: 16px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        color: #003d82;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+      }
 
       &.expanded {
-        background-color: $primary-color;
-        color: $white;
+        background-color: transparent;
+        color: $text-primary;
       }
     }
   }
 
-  // Mobile Stock Hierarchical Menu
-  &__mobile-stock-menu {
-    padding: 1rem 0 0 1rem;
-    margin-top: 0.5rem;
+  // Mobile Spare Parts Accordion Menu
+  &__mobile-spare-parts-menu {
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5e5e5;
+    padding: 8px 0;
     animation: slideDown 0.3s ease;
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        max-height: 0;
+      }
+      to {
+        opacity: 1;
+        max-height: 500px;
+      }
+    }
   }
+
+  &__mobile-spare-part-link {
+    display: block;
+    padding: 12px 32px;
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    border-left: 4px solid transparent;
+    transition: all 0.2s ease;
+
+    &:active {
+      background-color: #e8f0f9;
+      color: #003d82;
+      border-left-color: #003d82;
+    }
+
+    &:hover {
+      background-color: #e8f0f9;
+      color: #003d82;
+    }
+
+    &--active {
+      background-color: #e8f1fa;
+      color: #003d82;
+      border-left-color: #003d82;
+      font-weight: 600;
+    }
+  }
+
+  // Old mobile menu styles (for backward compatibility with stock menu)
 
   &__mobile-stock-link--main {
     display: block;
@@ -933,5 +1093,105 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+// ============================================
+// RESPONSIVE DESIGN BREAKPOINTS
+// ============================================
+
+@media (max-width: 1440px) {
+  .navbar__mega-menu--spare-parts {
+    min-width: 900px;
+    padding: 28px;
+
+    .navbar__spare-parts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .navbar__mega-menu--spare-parts {
+    min-width: 800px;
+    padding: 24px;
+
+    .navbar__spare-parts-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px 16px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar__mega-menu {
+    left: auto;
+    right: 0;
+
+    &--spare-parts {
+      min-width: 700px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  // Hide all desktop mega menus on tablet and below
+  .navbar__mega-menu {
+    display: none !important;
+  }
+
+  .navbar__mobile-spare-parts-menu {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .navbar__mobile-spare-part-link {
+    padding: 12px 24px;
+    padding-left: 32px;
+    font-size: 14px;
+  }
+
+  .navbar__mobile-nav-link {
+    padding: 14px 16px;
+    font-size: 15px;
+
+    &--expandable {
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__mega-menu--spare-parts {
+    padding: 20px;
+
+    .navbar__mega-menu-layout {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .navbar__mega-menu-title {
+      min-width: auto;
+      text-align: center;
+    }
+
+    .navbar__spare-parts-grid {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+
+  .navbar__mobile-spare-part-link {
+    padding: 10px 20px;
+    padding-left: 28px;
+    font-size: 13px;
+  }
+
+  .navbar__mobile-nav-link {
+    padding: 12px 14px;
+    font-size: 14px;
   }
 }

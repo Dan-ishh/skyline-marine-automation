@@ -167,9 +167,9 @@ export default function CategoryPage() {
                     <div className="product-card-overlay">
                       <span className="view-text">View Details →</span>
                     </div>
-                    {product.inStock && (
+                    {/* {product.inStock && (
                       <span className="stock-badge">In Stock</span>
-                    )}
+                    )} */}
                   </div>
                   <div className="product-card-content">
                     <h3 className="product-title">{product.name}</h3>
@@ -212,9 +212,9 @@ export default function CategoryPage() {
               <div className="no-results-icon">📦</div>
               <h3>No Products Available</h3>
               <p>There are currently no products in this category.</p>
-              <Link href={`/brands/${brandSlug}`} className="back-button">
+              {/* <Link href={`/brands/${brandSlug}`} className="back-button">
                 Browse Other Categories
-              </Link>
+              </Link> */}
             </div>
           )}
         </section>

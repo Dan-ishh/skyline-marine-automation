@@ -1,7 +1,7 @@
 /**
- * Product Detail Page (New Route)
- * Route: /brands/[brandSlug]/[categorySlug]/[productSlug]
- * Displays individual product details with full context
+ * Product Detail Page
+ * Route: /brands/[brandSlug]/[productSlug]
+ * Displays individual product details
  */
 
 import { useEffect, useState } from "react";
@@ -10,23 +10,26 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useBrandStore, useProductStore, useUIStore } from "@/src/store";
-import { getCategoryBySlug } from "@/src/data/categories";
-import type { Product, Category } from "@/src/types";
+import { Skeleton } from "@/src/Components";
+import type { Product } from "@/src/types";
 
 export default function ProductDetailPage() {
   const router = useRouter();
-  const { brandSlug, categorySlug, productSlug } = router.query;
+  const { brandSlug, productSlug } = router.query;
 
   const {
     selectedBrand,
     loading: brandLoading,
     fetchBrandBySlug,
   } = useBrandStore();
-  const { products, loading: productsLoading } = useProductStore();
+  const {
+    products,
+    loading: productsLoading,
+    fetchProducts,
+  } = useProductStore();
   const { openInquiryModal } = useUIStore();
 
   const [product, setProduct] = useState<Product | null>(null);
-  const [category, setCategory] = useState<Category | null>(null);
   const [mainImage, setMainImage] = useState<string>("");
 
   useEffect(() => {
@@ -34,6 +37,11 @@ export default function ProductDetailPage() {
       fetchBrandBySlug(brandSlug);
     }
   }, [brandSlug, fetchBrandBySlug]);
+
+  useEffect(() => {
+    // Load all products on page mount
+    fetchProducts();
+  }, [fetchProducts]);
 
   useEffect(() => {
     if (productSlug && typeof productSlug === "string" && products.length > 0) {
@@ -46,24 +54,92 @@ export default function ProductDetailPage() {
     }
   }, [productSlug, products]);
 
-  useEffect(() => {
-    if (selectedBrand && categorySlug && typeof categorySlug === "string") {
-      const foundCategory = getCategoryBySlug(selectedBrand.id, categorySlug);
-      setCategory(foundCategory || null);
-    }
-  }, [selectedBrand, categorySlug]);
-
   const loading = brandLoading || productsLoading;
 
   if (loading) {
     return (
-      <div className="loading-container">
-        <div className="loader">Loading product details...</div>
-      </div>
+      <>
+        <Head>
+          <title>Loading Product... - Skyline Marine Automation</title>
+        </Head>
+        <main className="product-detail-page">
+          {/* Breadcrumb Skeleton */}
+          <nav className="breadcrumb">
+            <Skeleton variant="text" width="150px" height="16px" />
+            <span className="separator">/</span>
+            <Skeleton variant="text" width="150px" height="16px" />
+            <span className="separator">/</span>
+            <Skeleton variant="text" width="150px" height="16px" />
+          </nav>
+
+          {/* Product Content Skeleton */}
+          <div className="product-detail-container">
+            <div className="product-detail-content">
+              {/* Image Gallery Skeleton */}
+              <div className="product-gallery">
+                <div className="product-main-image">
+                  <Skeleton
+                    variant="rectangular"
+                    width="600px"
+                    height="600px"
+                  />
+                </div>
+                <div className="product-thumbnails">
+                  <Skeleton
+                    variant="rectangular"
+                    width="100px"
+                    height="100px"
+                    count={3}
+                  />
+                </div>
+              </div>
+
+              {/* Product Info Skeleton */}
+              <div className="product-info">
+                <div className="product-meta">
+                  <Skeleton variant="text" width="150px" height="16px" />
+                </div>
+
+                <h1 className="product-title">
+                  <Skeleton variant="text" width="400px" height="32px" />
+                </h1>
+
+                <div className="product-description">
+                  <Skeleton variant="text" width="100%" height="60px" />
+                </div>
+
+                {/* Stock & Inquiry Stats Skeleton */}
+                <div className="product-badges">
+                  <Skeleton variant="text" width="200px" height="32px" />
+                  <Skeleton variant="text" width="250px" height="32px" />
+                </div>
+
+                {/* Inquiry Button Skeleton */}
+                <div className="product-actions">
+                  <Skeleton variant="text" width="200px" height="48px" />
+                </div>
+
+                {/* Specifications Skeleton */}
+                <div className="product-specifications">
+                  <Skeleton variant="text" width="250px" height="24px" />
+                  <div style={{ marginTop: "1rem" }}>
+                    <Skeleton
+                      variant="text"
+                      width="100%"
+                      height="24px"
+                      count={4}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </>
     );
   }
 
-  if (!product || !selectedBrand || !category) {
+  if (!product || !selectedBrand) {
     return (
       <div className="error-container">
         <div className="error-content">
@@ -86,12 +162,16 @@ export default function ProductDetailPage() {
     });
   };
 
+  // Find related products from same brand
+  const relatedProducts = products.filter(
+    (p) => p.brandId === selectedBrand.id && p.id !== product.id
+  );
+
   return (
     <>
       <Head>
         <title>
-          {product.name} - {selectedBrand.name} {category.name} - Skyline Marine
-          Automation
+          {product.name} - {selectedBrand.name} - Skyline Marine Automation
         </title>
         <meta name="description" content={product.description} />
       </Head>
@@ -101,13 +181,28 @@ export default function ProductDetailPage() {
         <nav className="breadcrumb">
           <Link href="/">Home</Link>
           <span className="separator">/</span>
-          <Link href="/brands">Brands</Link>
-          <span className="separator">/</span>
+          {router.query.from === "marine-spare-parts" ? (
+            <>
+              <Link href="/marine-spare-parts">Marine Spare Parts</Link>
+              <span className="separator">/</span>
+            </>
+          ) : router.query.from === "generators" ? (
+            <>
+              <Link href="/generators">Generators</Link>
+              <span className="separator">/</span>
+            </>
+          ) : router.query.from === "turbochargers" ? (
+            <>
+              <Link href="/turbochargers">Turbochargers</Link>
+              <span className="separator">/</span>
+            </>
+          ) : router.query.from === "complete-engine" ? (
+            <>
+              <Link href="/complete-engine">Complete Engine</Link>
+              <span className="separator">/</span>
+            </>
+          ) : null}
           <Link href={`/brands/${brandSlug}`}>{selectedBrand.name}</Link>
-          <span className="separator">/</span>
-          <Link href={`/brands/${brandSlug}/${categorySlug}`}>
-            {category.name}
-          </Link>
           <span className="separator">/</span>
           <span className="current">{product.name}</span>
         </nav>
@@ -126,9 +221,9 @@ export default function ProductDetailPage() {
                   objectFit="contain"
                   priority
                 />
-                {product.inStock && (
+                {/* {product.inStock && (
                   <span className="stock-badge-large">In Stock</span>
-                )}
+                )} */}
               </div>
               {product.images.length > 1 && (
                 <div className="product-thumbnails">
@@ -157,8 +252,6 @@ export default function ProductDetailPage() {
             <div className="product-info">
               <div className="product-meta">
                 <span className="meta-brand">{selectedBrand.name}</span>
-                <span className="meta-separator">›</span>
-                <span className="meta-category">{category.name}</span>
               </div>
 
               <h1 className="product-title">{product.name}</h1>
@@ -189,7 +282,7 @@ export default function ProductDetailPage() {
                       <circle cx="12" cy="12" r="10" />
                     )}
                   </svg>
-                  <span>{product.inStock ? "In Stock" : "Out of Stock"}</span>
+                  {/* <span>{product.inStock ? "In Stock" : "Out of Stock"}</span> */}
                 </div>
                 {product.enquiryCount > 0 && (
                   <div className="enquiry-badge">
@@ -248,16 +341,16 @@ export default function ProductDetailPage() {
         </div>
 
         {/* Related Products */}
-        {products.filter(
-          (p) => p.categoryId === category.id && p.id !== product.id
-        ).length > 0 && (
+        {relatedProducts.length > 0 && (
           <section className="related-products">
             <div className="related-products-header">
               <h2 className="section-title">
-                More from {category.name} Series
+                More {selectedBrand.name} Products
               </h2>
               <Link
-                href={`/brands/${brandSlug}/${categorySlug}`}
+                href={`/brands/${brandSlug}${
+                  router.query.from ? `?from=${router.query.from}` : ""
+                }`}
                 className="view-all-link"
               >
                 View All
@@ -274,42 +367,37 @@ export default function ProductDetailPage() {
               </Link>
             </div>
             <div className="related-products-grid">
-              {products
-                .filter(
-                  (p) => p.categoryId === category.id && p.id !== product.id
-                )
-                .slice(0, 4)
-                .map((relatedProduct) => (
-                  <Link
-                    href={`/brands/${brandSlug}/${categorySlug}/${relatedProduct.slug}`}
-                    key={relatedProduct.id}
-                    className="related-product-card"
-                  >
-                    <div className="related-product-image">
-                      <Image
-                        src={
-                          relatedProduct.thumbnail || relatedProduct.images[0]
-                        }
-                        alt={relatedProduct.name}
-                        width={300}
-                        height={250}
-                        objectFit="cover"
-                        loading="lazy"
-                      />
-                      <div className="related-product-overlay">
-                        <span>View Details</span>
-                      </div>
+              {relatedProducts.slice(0, 4).map((relatedProduct) => (
+                <Link
+                  href={`/brands/${brandSlug}/${relatedProduct.slug}${
+                    router.query.from ? `?from=${router.query.from}` : ""
+                  }`}
+                  key={relatedProduct.id}
+                  className="related-product-card"
+                >
+                  <div className="related-product-image">
+                    <Image
+                      src={relatedProduct.thumbnail || relatedProduct.images[0]}
+                      alt={relatedProduct.name}
+                      width={300}
+                      height={250}
+                      objectFit="cover"
+                      loading="lazy"
+                    />
+                    <div className="related-product-overlay">
+                      <span>View Details</span>
                     </div>
-                    <div className="related-product-info">
-                      <h3 className="related-product-title">
-                        {relatedProduct.name}
-                      </h3>
-                      <p className="related-product-brand">
-                        {selectedBrand.name}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
+                  </div>
+                  <div className="related-product-info">
+                    <h3 className="related-product-title">
+                      {relatedProduct.name}
+                    </h3>
+                    <p className="related-product-brand">
+                      {selectedBrand.name}
+                    </p>
+                  </div>
+                </Link>
+              ))}
             </div>
           </section>
         )}

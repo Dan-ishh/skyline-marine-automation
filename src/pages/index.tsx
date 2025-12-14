@@ -281,7 +281,7 @@ export default function Home() {
                             <p className="home-page__stock-brand-count">
                               {brand.stockCount}{" "}
                               {brand.stockCount === 1 ? "product" : "products"}{" "}
-                              in stock
+                              {/* in stock */}
                             </p>
                           </div>
                         </Link>

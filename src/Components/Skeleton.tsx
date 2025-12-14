@@ -9,6 +9,7 @@ interface SkeletonProps {
   height?: string | number;
   count?: number;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export function Skeleton({
@@ -17,6 +18,7 @@ export function Skeleton({
   height = "100%",
   count = 1,
   className = "",
+  style = {},
 }: SkeletonProps) {
   const getSkeletonClass = () => {
     const baseClass = "skeleton";
@@ -24,22 +26,27 @@ export function Skeleton({
     return `${baseClass} ${variantClass} ${className}`.trim();
   };
 
-  const style = {
+  const defaultStyle = {
     width: typeof width === "number" ? `${width}px` : width,
     height: typeof height === "number" ? `${height}px` : height,
+    ...style,
   };
 
   if (count > 1) {
     return (
       <>
         {Array.from({ length: count }).map((_, index) => (
-          <div key={index} className={getSkeletonClass()} style={style} />
+          <div
+            key={index}
+            className={getSkeletonClass()}
+            style={defaultStyle}
+          />
         ))}
       </>
     );
   }
 
-  return <div className={getSkeletonClass()} style={style} />;
+  return <div className={getSkeletonClass()} style={defaultStyle} />;
 }
 
 // Product Card Skeleton (for home page recent products slider)
@@ -179,6 +186,107 @@ export function CategoriesGridSkeleton({ count = 9 }: { count?: number }) {
         <CategoryCardSkeleton key={index} />
       ))}
     </div>
+  );
+}
+
+// Category Header Skeleton (for category pages header section)
+export function CategoryHeaderSkeleton() {
+  return (
+    <section className="category-header skeleton-section">
+      <div className="category-header-content">
+        <div className="category-info">
+          <Skeleton variant="text" height="48px" width="70%" />
+          <Skeleton variant="text" height="20px" width="90%" />
+          <Skeleton variant="text" height="20px" width="80%" />
+          <div className="category-stats" style={{ marginTop: "16px" }}>
+            <Skeleton variant="text" height="18px" width="25%" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Brand Card Grid Skeleton (for category brand listing pages)
+export function BrandCardGridSkeleton({ count = 12 }: { count?: number }) {
+  return (
+    <div className="brands-grid">
+      {Array.from({ length: count }).map((_, index) => (
+        <div key={index} className="brand-card skeleton-card">
+          <div className="brand-card-image">
+            <Skeleton variant="rectangular" height="200px" />
+          </div>
+          <div className="brand-card-content">
+            <Skeleton variant="text" height="24px" width="70%" />
+            <Skeleton variant="text" height="16px" width="90%" />
+            <Skeleton variant="text" height="16px" width="85%" />
+            <div className="brand-card-footer" style={{ marginTop: "12px" }}>
+              <Skeleton variant="text" height="14px" width="45%" />
+              <Skeleton variant="text" height="14px" width="25%" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Spare Part Card Skeleton (for marine spare parts grid)
+export function SparePartCardSkeleton() {
+  return (
+    <div className="spare-part-card skeleton-card">
+      <div className="spare-part-card-content">
+        <Skeleton variant="text" height="24px" width="70%" />
+        <Skeleton variant="text" height="16px" width="50%" />
+        <div className="spare-part-card-footer" style={{ marginTop: "12px" }}>
+          <Skeleton variant="text" height="16px" width="20%" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Spare Parts Grid Skeleton (multiple cards)
+export function SparePartsGridSkeleton({ count = 16 }: { count?: number }) {
+  return (
+    <div className="spare-parts-grid">
+      {Array.from({ length: count }).map((_, index) => (
+        <SparePartCardSkeleton key={index} />
+      ))}
+    </div>
+  );
+}
+
+// Category Page Full Skeleton (header + grid)
+export function CategoryPageSkeleton({
+  gridCount = 12,
+  sparePartsCount = 0,
+}: {
+  gridCount?: number;
+  sparePartsCount?: number;
+}) {
+  return (
+    <main className="category-page">
+      <nav className="breadcrumb skeleton-section">
+        <Skeleton variant="text" height="16px" width="30%" />
+      </nav>
+      <CategoryHeaderSkeleton />
+      <section className="brands-grid-section" style={{ padding: "40px 20px" }}>
+        <div className="container">
+          <Skeleton
+            variant="text"
+            height="32px"
+            width="40%"
+            style={{ marginBottom: "32px" }}
+          />
+          {sparePartsCount > 0 ? (
+            <SparePartsGridSkeleton count={sparePartsCount} />
+          ) : (
+            <BrandCardGridSkeleton count={gridCount} />
+          )}
+        </div>
+      </section>
+    </main>
   );
 }
 

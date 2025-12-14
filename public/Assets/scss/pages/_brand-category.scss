@@ -1,0 +1,765 @@
+/**
+ * Brand Category Page Styles
+ * Displays brands for categories like Complete Engine, Generators, Turbochargers
+ */
+
+// ============================================
+// Brand Products Page (direct from brand)
+// ============================================
+.brand-products-page {
+  min-height: 100vh;
+  padding: 2rem 0 4rem;
+  background: linear-gradient(to bottom, $gray-50 0%, $white 300px);
+
+  // ============================================
+  // Breadcrumb Navigation
+  // ============================================
+  .breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto 2rem;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: $font-size-sm;
+    color: $text-secondary;
+
+    a {
+      color: $text-secondary;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    .separator {
+      color: $gray-400;
+      user-select: none;
+    }
+
+    .current {
+      color: $primary-color;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  // ============================================
+  // Brand Header Section
+  // ============================================
+  .brand-header {
+    max-width: 1400px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+
+    .brand-header-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2.5rem;
+      background: $white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid $border-light;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+    }
+
+    .brand-logo {
+      flex-shrink: 0;
+      width: 140px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $gray-50;
+      border-radius: 8px;
+      padding: 0.5rem;
+
+      @media (max-width: 768px) {
+        width: 120px;
+        height: 60px;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    .brand-info {
+      flex: 1;
+
+      h1 {
+        font-size: $font-size-3xl;
+        font-weight: $font-weight-bold;
+        color: $primary-color;
+        margin: 0 0 0.75rem;
+        font-family: $font-family-heading;
+        line-height: 1.2;
+
+        @media (max-width: 768px) {
+          font-size: $font-size-2xl;
+        }
+      }
+    }
+
+    .brand-description {
+      font-size: $font-size-base;
+      color: $text-secondary;
+      line-height: $line-height-relaxed;
+      margin: 0 0 1.25rem;
+      max-width: 800px;
+    }
+
+    .brand-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        .stat-value {
+          font-size: $font-size-2xl;
+          font-weight: $font-weight-bold;
+          color: $primary-color;
+        }
+
+        .stat-label {
+          font-size: $font-size-sm;
+          color: $text-secondary;
+          font-weight: $font-weight-medium;
+        }
+      }
+    }
+  }
+
+  // ============================================
+  // Products Section
+  // ============================================
+  .products-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+
+    .section-header {
+      margin-bottom: 2.5rem;
+
+      .section-title {
+        font-size: $font-size-2xl;
+        font-weight: $font-weight-bold;
+        color: $primary-color;
+        margin: 0 0 0.75rem;
+        font-family: $font-family-heading;
+      }
+
+      .section-subtitle {
+        font-size: $font-size-base;
+        color: $text-secondary;
+        margin: 0;
+        line-height: $line-height-normal;
+      }
+    }
+  }
+
+  // ============================================
+  // Products Grid
+  // ============================================
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  // ============================================
+  // Product Card
+  // ============================================
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    background: $white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid $border-light;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0, 51, 102, 0.18);
+      border-color: $primary-light;
+
+      .product-card-image {
+        background: $gray-50;
+
+        .product-card-overlay {
+          opacity: 1;
+        }
+      }
+
+      .product-card-content {
+        .product-title {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  // ============================================
+  // Product Card Image
+  // ============================================
+  .product-card-image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background: $gray-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 51, 102, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+
+      .view-text {
+        color: $white;
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-base;
+      }
+    }
+
+    .stock-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: $white;
+      padding: 0.5rem 0.875rem;
+      border-radius: 6px;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  // ============================================
+  // Product Card Content
+  // ============================================
+  .product-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+
+    .product-title {
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      margin: 0;
+      font-family: $font-family-heading;
+      transition: color 0.2s ease;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-brand {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      margin: 0;
+      font-weight: $font-weight-medium;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid $border-light;
+
+      .enquiry-count {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: $font-size-xs;
+        color: $text-secondary;
+
+        .icon {
+          flex-shrink: 0;
+          color: $primary-color;
+        }
+      }
+
+      .arrow-icon {
+        color: $gray-400;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+
+      &:hover .arrow-icon {
+        color: $primary-color;
+        transform: translateX(2px);
+      }
+    }
+  }
+
+  // ============================================
+  // No Results State
+  // ============================================
+  .no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: $white;
+    border-radius: 12px;
+    border: 2px dashed $border-color;
+    grid-column: 1 / -1;
+
+    .no-results-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    h3 {
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      margin: 0 0 0.5rem;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $text-secondary;
+      margin: 0;
+    }
+  }
+}
+
+// ============================================
+// Category Page (for complete engine, etc.)
+// ============================================
+.category-page {
+  min-height: 100vh;
+  padding: 2rem 0 4rem;
+  background: linear-gradient(to bottom, $gray-50 0%, $white 300px);
+
+  // ============================================
+  // Breadcrumb Navigation
+  // ============================================
+  .breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto 2rem;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: $font-size-sm;
+    color: $text-secondary;
+
+    a {
+      color: $text-secondary;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    .separator {
+      color: $gray-400;
+      user-select: none;
+    }
+
+    .current {
+      color: $primary-color;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  // ============================================
+  // Category Header Section
+  // ============================================
+  .category-header {
+    max-width: 1400px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+
+    .category-header-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2.5rem;
+      background: $white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid $border-light;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+    }
+
+    .category-info {
+      flex: 1;
+
+      h1 {
+        font-size: $font-size-3xl;
+        font-weight: $font-weight-bold;
+        color: $primary-color;
+        margin: 0 0 0.75rem;
+        font-family: $font-family-heading;
+        line-height: 1.2;
+
+        @media (max-width: 768px) {
+          font-size: $font-size-2xl;
+        }
+      }
+    }
+
+    .category-description {
+      font-size: $font-size-base;
+      color: $text-secondary;
+      line-height: $line-height-relaxed;
+      margin: 0 0 1.25rem;
+      max-width: 800px;
+    }
+
+    .category-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1.25rem;
+        background: linear-gradient(135deg, $primary-color, $primary-light);
+        border-radius: 8px;
+        color: $white;
+        font-weight: $font-weight-semibold;
+
+        strong {
+          font-weight: $font-weight-bold;
+          font-size: $font-size-lg;
+        }
+      }
+    }
+  }
+
+  // ============================================
+  // Brands Grid Section
+  // ============================================
+  .brands-grid-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+
+    h2 {
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      color: $primary-color;
+      margin: 0 0 2rem;
+      font-family: $font-family-heading;
+    }
+  }
+
+  // ============================================
+  // Container
+  // ============================================
+  .container {
+    width: 100%;
+  }
+
+  // ============================================
+  // Brands Grid
+  // ============================================
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  // ============================================
+  // Brand Card
+  // ============================================
+  .brand-card {
+    display: block;
+    background: $white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid $border-light;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0, 51, 102, 0.18);
+      border-color: $primary-light;
+
+      .brand-card-image {
+        background: $gray-50;
+      }
+
+      h3 {
+        color: $primary-color;
+      }
+
+      .brand-card-footer {
+        .arrow {
+          color: $primary-color;
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+
+  // ============================================
+  // Brand Card Image
+  // ============================================
+  .brand-card-image {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: $gray-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  // ============================================
+  // Brand Card Placeholder
+  // ============================================
+  .brand-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, $gray-100, $gray-200);
+    color: $text-secondary;
+    font-weight: $font-weight-semibold;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  // ============================================
+  // Brand Card Content
+  // ============================================
+  .brand-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+
+    h3 {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      margin: 0;
+      font-family: $font-family-heading;
+      transition: color 0.2s ease;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    p {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      margin: 0;
+      line-height: $line-height-normal;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  // ============================================
+  // Brand Card Footer
+  // ============================================
+  .brand-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid $border-light;
+
+    .product-count {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      font-weight: $font-weight-medium;
+    }
+
+    .arrow {
+      color: $gray-400;
+      transition: all 0.2s ease;
+      font-weight: $font-weight-bold;
+      flex-shrink: 0;
+    }
+  }
+
+  // ============================================
+  // No Results State
+  // ============================================
+  .no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: $white;
+    border-radius: 12px;
+    border: 2px dashed $border-color;
+    grid-column: 1 / -1;
+
+    .no-results-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    h3 {
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      margin: 0 0 0.5rem;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $text-secondary;
+      margin: 0 0 2rem;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      background: $primary-color;
+      color: $white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: $font-weight-semibold;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: $primary-dark;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // ============================================
+  // Loading State
+  // ============================================
+  .loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+  }
+}

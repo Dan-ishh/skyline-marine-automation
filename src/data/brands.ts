@@ -7,7 +7,7 @@ import { Brand } from "../types";
 
 export const brands: Brand[] = [
   {
-    id: "cat-1",
+    id: "caterpillar-8",
     name: "Caterpillar Marine",
     slug: "caterpillar",
     logo: "/images/brands/caterpillar.png",
@@ -19,7 +19,7 @@ export const brands: Brand[] = [
     updatedAt: new Date("2025-10-20"),
   },
   {
-    id: "cummins-2",
+    id: "cummins-18",
     name: "Cummins Marine",
     slug: "cummins",
     logo: "/images/brands/cummins.png",

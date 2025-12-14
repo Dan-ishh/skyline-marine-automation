@@ -4,15 +4,23 @@
  * Displays all available brands on the portal
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useBrandStore } from "@/src/store";
+import { BrandCardGridSkeleton } from "@/src/Components";
 
 export default function BrandsPage() {
   const { brands, loading, error, fetchBrands } = useBrandStore();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchBrands();
+    // Simulate 1-second data fetching delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [fetchBrands]);
 
   return (
@@ -29,15 +37,15 @@ export default function BrandsPage() {
         <div className="container">
           <h1>Our Brands</h1>
 
-          {loading && <p>Loading brands...</p>}
+          {isLoading && <BrandCardGridSkeleton count={12} />}
 
-          {error && <p className="error">{error}</p>}
+          {!isLoading && error && <p className="error">{error}</p>}
 
-          {!loading && !error && brands.length === 0 && (
+          {!isLoading && !error && brands.length === 0 && (
             <p>No brands available at the moment.</p>
           )}
 
-          {!loading && brands.length > 0 && (
+          {!isLoading && brands.length > 0 && (
             <div className="brands-grid">
               {brands.map((brand) => (
                 <div key={brand.id} className="brand-card">
