@@ -23,6 +23,32 @@ export interface Product {
   /** Brand object reference (optional, populated when needed) */
   brand?: Brand;
 
+  /** Main category: marine-spare-parts | complete-engine | generators | turbochargers */
+  mainCategory:
+    | "marine-spare-parts"
+    | "complete-engine"
+    | "generators"
+    | "turbochargers";
+
+  /** Sub-category (only for marine-spare-parts, null for others) */
+  subCategory?:
+    | "air-valve"
+    | "cylinder-head"
+    | "cylinder-liner"
+    | "connecting-rod"
+    | "indicator-valve"
+    | "piston-head"
+    | "piston-rod"
+    | "piston-skirt"
+    | "cylinder-head-water-jacket"
+    | "cylinder-water-jacket"
+    | "camshaft"
+    | "crankshaft"
+    | "fuel-injector"
+    | "safety-valve"
+    | "valve-box"
+    | "valve-seat";
+
   /** Category ID (foreign key) - Optional for backward compatibility */
   categoryId?: string;
 

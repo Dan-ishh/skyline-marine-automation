@@ -74,7 +74,7 @@ export default function CompleteEnginePage() {
             <div className="brands-grid">
               {brands.map((brand) => (
                 <div key={brand.id} className="brand-card">
-                  <Link href={`/brands/${brand.slug}?from=complete-engine`}>
+                  <Link href={`/complete-engine/${brand.slug}`}>
                     <div className="brand-card-image">
                       {brand.logo ? (
                         <Image
