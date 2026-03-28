@@ -3,14 +3,19 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import { brands } from "@/src/data";
+import { getBrandsByCategory } from "@/src/utils/dataUtils";
 import { CategoryPageSkeleton } from "@/src/Components";
 
 export default function GeneratorsPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const [categoryBrands, setCategoryBrands] = useState<any[]>([]);
 
   useEffect(() => {
+    // Get only brands that have generator products
+    const brandsWithProducts = getBrandsByCategory("generators");
+    setCategoryBrands(brandsWithProducts);
+
     // Simulate 1-second data fetching delay
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -29,7 +34,7 @@ export default function GeneratorsPage() {
         <Head>
           <title>{categoryName} - Brands & Products - Skyline Marine</title>
         </Head>
-        <CategoryPageSkeleton gridCount={brands.length} />
+        <CategoryPageSkeleton gridCount={12} />
       </>
     );
   }
@@ -60,7 +65,7 @@ export default function GeneratorsPage() {
               <p className="category-description">{categoryDescription}</p>
               <div className="category-stats">
                 <span className="stat-item">
-                  <strong>{brands.length}</strong> Brands Available
+                  <strong>{categoryBrands.length}</strong> Brands Available
                 </span>
               </div>
             </div>
@@ -71,37 +76,41 @@ export default function GeneratorsPage() {
         <section className="brands-grid-section">
           <div className="container">
             <h2>Available Brands</h2>
-            <div className="brands-grid">
-              {brands.map((brand) => (
-                <div key={brand.id} className="brand-card">
-                  <Link href={`/brands/${brand.slug}?from=generators`}>
-                    <div className="brand-card-image">
-                      {brand.logo ? (
-                        <Image
-                          src={brand.logo}
-                          alt={brand.name}
-                          width={120}
-                          height={60}
-                          objectFit="contain"
-                        />
-                      ) : (
-                        <div className="brand-placeholder">{brand.name}</div>
-                      )}
-                    </div>
-                    <div className="brand-card-content">
-                      <h3>{brand.name}</h3>
-                      <p>{brand.description}</p>
-                      <div className="brand-card-footer">
-                        <span className="product-count">
-                          {brand.productCount} Products
-                        </span>
-                        <span className="arrow">→</span>
+            {categoryBrands.length === 0 ? (
+              <div className="no-brands-available">
+                <p>No brands available in this category at the moment.</p>
+              </div>
+            ) : (
+              <div className="brands-grid">
+                {categoryBrands.map((brand) => (
+                  <div key={brand.id} className="brand-card">
+                    <Link href={`/generators/${brand.slug}`}>
+                      <div className="brand-card-image">
+                        {brand.logo ? (
+                          <Image
+                            src={brand.logo}
+                            alt={brand.name}
+                            width={120}
+                            height={60}
+                            objectFit="contain"
+                          />
+                        ) : (
+                          <div className="brand-placeholder">{brand.name}</div>
+                        )}
                       </div>
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </div>
+                      <div className="brand-card-content">
+                        <h3>{brand.name}</h3>
+                        <p>{brand.description}</p>
+                        <div className="brand-card-footer">
+                          <span className="product-count">View Products</span>
+                          <span className="arrow">→</span>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>

@@ -1,11 +1,10 @@
 /**
- * Complete Engine Brand Products Page
- * Route: /compl      <main className="brand-products-page">
-        <CategoryPageSkeleton gridCount={12} />e-engine/[brandSlug]
- * Displays all complete engine products from a specific brand
- * 
- * Example: /complete-engine/caterpillar
- * Shows: All Caterpillar complete engine products
+ * Generators Brand Products Page
+ * Route: /generators/[brandSlug]
+ * Displays all generator products from a specific brand
+ *
+ * Example: /generators/caterpillar
+ * Shows: All Caterpillar generator products
  */
 
 import { useEffect, useState } from "react";
@@ -22,9 +21,9 @@ import {
 import type { Product } from "@/src/types";
 import styles from "./BrandProducts.module.scss";
 
-const CATEGORY = "complete-engine";
+const CATEGORY = "generators";
 
-export default function CompleteEngineBrandPage() {
+export default function GeneratorsBrandPage() {
   const router = useRouter();
   const { brandSlug } = router.query;
 
@@ -45,7 +44,7 @@ export default function CompleteEngineBrandPage() {
 
   useEffect(() => {
     if (selectedBrand) {
-      // Filter products: Complete Engine category + this brand
+      // Filter products: Generators category + this brand
       const filtered = getProductsByBrandAndCategory(
         selectedBrand.id,
         CATEGORY
@@ -59,9 +58,7 @@ export default function CompleteEngineBrandPage() {
     return (
       <>
         <Head>
-          <title>
-            Loading Complete Engine Brand... - Skyline Marine Automation
-          </title>
+          <title>Loading Generator Brand... - Skyline Marine Automation</title>
         </Head>
         <main className="brand-products-page">
           <CategoryPageSkeleton gridCount={12} />
@@ -80,7 +77,7 @@ export default function CompleteEngineBrandPage() {
           <section className="error-section">
             <h1>Brand Not Found</h1>
             <p>The brand you're looking for doesn't exist.</p>
-            <Link href="/complete-engine">← Back to Complete Engine</Link>
+            <Link href="/generators">← Back to Generators</Link>
           </section>
         </main>
       </>
@@ -93,12 +90,11 @@ export default function CompleteEngineBrandPage() {
     <>
       <Head>
         <title>
-          {selectedBrand.name} - Complete Engine Products - Skyline Marine
-          Automation
+          {selectedBrand.name} - Generator Products - Skyline Marine Automation
         </title>
         <meta
           name="description"
-          content={`Browse all ${selectedBrand.name} complete engine products. Marine engines and propulsion systems.`}
+          content={`Browse all ${selectedBrand.name} generator products. Marine and industrial diesel generators.`}
         />
       </Head>
 
@@ -137,8 +133,7 @@ export default function CompleteEngineBrandPage() {
               )}
               <div className={styles.brandStats}>
                 <span className={styles.statItem}>
-                  <strong>{brandProducts.length}</strong> Complete Engine
-                  Products
+                  <strong>{brandProducts.length}</strong> Generator Products
                 </span>
                 {/* {selectedBrand.website && (
                   <a
@@ -155,58 +150,55 @@ export default function CompleteEngineBrandPage() {
           </div>
         </section>
 
-        {/* Products Section */}
+        {/* Products Grid */}
         <section className={styles.productsSection}>
-          <div className="container">
+          <div className={styles.container}>
             {brandProducts.length === 0 ? (
               <div className={styles.noProducts}>
-                <h2>No Products Found</h2>
                 <p>
-                  {selectedBrand.name} doesn't have any complete engine products
-                  yet.
+                  No generator products available for {selectedBrand.name} at
+                  the moment.
                 </p>
-                <Link href="/complete-engine">← Back to Complete Engine</Link>
+                <Link href="/generators">← Back to Generators</Link>
               </div>
             ) : (
               <>
-                <h2>Complete Engine Products</h2>
+                <h2>Products ({brandProducts.length})</h2>
                 <div className={styles.productsGrid}>
                   {brandProducts.map((product) => (
-                    <div key={product.id} className={styles.productCard}>
-                      <Link
-                        href={`/complete-engine/${selectedBrand.slug}/${product.slug}`}
-                      >
+                    <Link
+                      key={product.id}
+                      href={`/generators/${selectedBrand.slug}/${product.slug}`}
+                    >
+                      <article className={styles.productCard}>
                         <div className={styles.productImage}>
-                          {product.images && product.images.length > 0 ? (
+                          {product.thumbnail && (
                             <Image
-                              src={product.images[0]}
+                              src={product.thumbnail}
                               alt={product.name}
                               width={300}
                               height={200}
                               objectFit="cover"
                             />
-                          ) : (
-                            <div className={styles.imagePlaceholder}>
-                              {product.name}
-                            </div>
                           )}
                         </div>
-                        <div className={styles.productContent}>
+                        <div className={styles.productInfo}>
                           <h3>{product.name}</h3>
-                          <p className={styles.description}>
-                            {product.description.substring(0, 100)}...
+                          <p className={styles.productDescription}>
+                            {product.description}
                           </p>
-                          <div className={styles.productFooter}>
-                            <span className={styles.category}>
-                              {product.mainCategory === "complete-engine"
-                                ? "Complete Engine"
-                                : product.mainCategory}
-                            </span>
-                            <span className={styles.arrow}>→</span>
+                          <div className={styles.productMeta}>
+                            {product.specifications && (
+                              <span className={styles.specs}>
+                                {Object.keys(product.specifications).length}{" "}
+                                Specs
+                              </span>
+                            )}
+                            <span className={styles.cta}>View Details →</span>
                           </div>
                         </div>
-                      </Link>
-                    </div>
+                      </article>
+                    </Link>
                   ))}
                 </div>
               </>

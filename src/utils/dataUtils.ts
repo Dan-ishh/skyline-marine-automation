@@ -99,13 +99,17 @@ export const getProductsByBrand = (brandId: string): Product[] => {
 /**
  * Get unique brands that have products in a specific main category
  * Used to display brand listings on category pages
+ * This is the PRIMARY function to use for category-specific brand filtering
  *
  * @example
- * // Get all brands with air valve products
- * getBrandsInMainCategory("marine-spare-parts", "air-valve")
+ * // Get all brands with generator products
+ * getBrandsInMainCategory("generators")
  *
  * // Get all brands with complete engine products
  * getBrandsInMainCategory("complete-engine")
+ *
+ * // Get all brands with air valve products in marine-spare-parts
+ * getBrandsInMainCategory("marine-spare-parts", "air-valve")
  */
 export const getBrandsInMainCategory = (
   mainCategory: string,
@@ -116,6 +120,21 @@ export const getBrandsInMainCategory = (
   return brandIds
     .map((brandId) => brands.find((b) => b.id === brandId))
     .filter((brand): brand is Brand => Boolean(brand));
+};
+
+/**
+ * Alias for getBrandsInMainCategory - Get brands with products in a category
+ * Used on category pages to display only relevant brands
+ *
+ * @example
+ * // Get all brands that have generator products
+ * getBrandsByCategory("generators")
+ */
+export const getBrandsByCategory = (
+  mainCategory: string,
+  subCategory?: string
+): Brand[] => {
+  return getBrandsInMainCategory(mainCategory, subCategory);
 };
 
 /**

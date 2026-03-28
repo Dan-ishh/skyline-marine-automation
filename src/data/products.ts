@@ -58,464 +58,8 @@ export const products: Product[] = [
   // ============================================================
   // MARINE SPARE PARTS SECTION
   // ============================================================
-  // Each product here has:
-  // - mainCategory: "marine-spare-parts"
-  // - subCategory: one of the 16 sub-categories (air-valve, cylinder-head, etc.)
-  // - brandId: the brand that makes this part
-  //
-  // DEMO PRODUCT (Wärtsilä Air Valve)
-  {
-    id: "prod-msp-001",
-    name: "Wärtsilä Air Valve Assembly Type-A",
-    slug: "wartsila-air-valve-assembly-a",
-    brandId: "wartsila-16",
-    mainCategory: "marine-spare-parts",
-    subCategory: "air-valve",
-    categoryId: "wartsila-air-valve",
-    description:
-      "High-precision air valve assembly for Wärtsilä marine diesel engines. Ensures optimal air-fuel mixture and combustion efficiency. Features corrosion-resistant design with extended service life.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
-    specifications: {
-      "Valve Type": "Air Intake Valve",
-      Material: "Ductile Cast Iron",
-      "Valve Diameter": "85 mm",
-      "Compatible Models": "Wärtsilä 16, 20, 26 series",
-      "Operating Temperature": "Up to 250°C",
-      "Pressure Rating": "10 bar",
-      Weight: "2.5 kg",
-      Certification: "DNV GL, Class approved",
-    },
-    price: 0,
-    inStock: true,
-    featured: true,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Cylinder Head
-  {
-    id: "prod-msp-002",
-    name: "Caterpillar Cylinder Head Assembly",
-    slug: "caterpillar-cylinder-head-assembly",
-    brandId: "caterpillar-8",
-    mainCategory: "marine-spare-parts",
-    subCategory: "cylinder-head",
-    categoryId: "caterpillar-cylinder-head",
-    description:
-      "Complete cylinder head assembly for Caterpillar marine engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Cylinder Head",
-      Material: "Cast Iron",
-      Weight: "450 kg",
-      "Compatible Models": "Caterpillar 3408, 3412",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Cylinder Liner
-  {
-    id: "prod-msp-003",
-    name: "MAN Diesel Cylinder Liner",
-    slug: "man-diesel-cylinder-liner",
-    brandId: "man-7",
-    mainCategory: "marine-spare-parts",
-    subCategory: "cylinder-liner",
-    categoryId: "man-cylinder-liner",
-    description: "High-precision cylinder liner for MAN diesel marine engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Cylinder Liner",
-      Material: "Cast Iron",
-      Bore: "320 mm",
-      "Wall Thickness": "12 mm",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Connecting Rod
-  {
-    id: "prod-msp-004",
-    name: "Mitsubishi Connecting Rod",
-    slug: "mitsubishi-connecting-rod",
-    brandId: "mitsubishi-8",
-    mainCategory: "marine-spare-parts",
-    subCategory: "connecting-rod",
-    categoryId: "mitsubishi-connecting-rod",
-    description: "Forged steel connecting rod for Mitsubishi marine engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Connecting Rod",
-      Material: "Forged Steel",
-      Length: "950 mm",
-      Weight: "180 kg",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Indicator Valve
-  {
-    id: "prod-msp-005",
-    name: "Cummins Indicator Valve",
-    slug: "cummins-indicator-valve",
-    brandId: "cummins-18",
-    mainCategory: "marine-spare-parts",
-    subCategory: "indicator-valve",
-    categoryId: "cummins-indicator-valve",
-    description:
-      "Precision indicator valve for Cummins marine engine monitoring.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Indicator Valve",
-      Material: "Stainless Steel",
-      "Pressure Range": "0-25 bar",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Piston Head
-  {
-    id: "prod-msp-006",
-    name: "Yanmar Piston Head",
-    slug: "yanmar-piston-head",
-    brandId: "yanmar-17",
-    mainCategory: "marine-spare-parts",
-    subCategory: "piston-head",
-    categoryId: "yanmar-piston-head",
-    description: "Aluminum alloy piston head for Yanmar marine diesel engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Piston Head",
-      Material: "Aluminum Alloy",
-      Diameter: "380 mm",
-      Weight: "42 kg",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Piston Rod
-  {
-    id: "prod-msp-007",
-    name: "Rolls-Royce Piston Rod",
-    slug: "rolls-royce-piston-rod",
-    brandId: "rolls-royce-11",
-    mainCategory: "marine-spare-parts",
-    subCategory: "piston-rod",
-    categoryId: "rolls-royce-piston-rod",
-    description: "Chrome-plated piston rod for Rolls-Royce marine engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Piston Rod",
-      Material: "Chrome-Plated Steel",
-      Length: "1200 mm",
-      Diameter: "85 mm",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Piston Skirt
-  {
-    id: "prod-msp-008",
-    name: "Sulzer Piston Skirt",
-    slug: "sulzer-piston-skirt",
-    brandId: "sulzer-13",
-    mainCategory: "marine-spare-parts",
-    subCategory: "piston-skirt",
-    categoryId: "sulzer-piston-skirt",
-    description: "Precision-engineered piston skirt for Sulzer engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Piston Skirt",
-      Material: "Ductile Iron",
-      Diameter: "400 mm",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Cylinder Head Water Jacket
-  {
-    id: "prod-msp-009",
-    name: "Daihatsu Cylinder Head Water Jacket",
-    slug: "daihatsu-cylinder-head-water-jacket",
-    brandId: "daihatsu-14",
-    mainCategory: "marine-spare-parts",
-    subCategory: "cylinder-head-water-jacket",
-    categoryId: "daihatsu-water-jacket",
-    description: "Water cooling jacket assembly for Daihatsu cylinder heads.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Cooling Jacket",
-      Material: "Cast Iron",
-      "Water Flow": "180 L/min",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Cylinder Water Jacket
-  {
-    id: "prod-msp-010",
-    name: "Volvo Penta Cylinder Water Jacket",
-    slug: "volvo-penta-cylinder-water-jacket",
-    brandId: "volvo-15",
-    mainCategory: "marine-spare-parts",
-    subCategory: "cylinder-water-jacket",
-    categoryId: "volvo-water-jacket",
-    description: "Integrated cooling jacket for Volvo Penta engine cylinders.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Cooling Jacket",
-      Material: "Ductile Iron",
-      "Operating Pressure": "5 bar",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Camshaft
-  {
-    id: "prod-msp-011",
-    name: "Deutz Camshaft Assembly",
-    slug: "deutz-camshaft-assembly",
-    brandId: "deutz-3",
-    mainCategory: "marine-spare-parts",
-    subCategory: "camshaft",
-    categoryId: "deutz-camshaft",
-    description: "Precision camshaft for Deutz marine diesel engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Camshaft",
-      Material: "Hardened Steel",
-      Length: "2800 mm",
-      Weight: "320 kg",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Crankshaft
-  {
-    id: "prod-msp-012",
-    name: "Hanshin Crankshaft",
-    slug: "hanshin-crankshaft",
-    brandId: "hanshin-4",
-    mainCategory: "marine-spare-parts",
-    subCategory: "crankshaft",
-    categoryId: "hanshin-crankshaft",
-    description: "Heavy-duty forged crankshaft for Hanshin engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Crankshaft",
-      Material: "Forged Steel",
-      Length: "3200 mm",
-      Weight: "850 kg",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Fuel Injector
-  {
-    id: "prod-msp-013",
-    name: "MaK Fuel Injector",
-    slug: "mak-fuel-injector",
-    brandId: "mak-5",
-    mainCategory: "marine-spare-parts",
-    subCategory: "fuel-injector",
-    categoryId: "mak-fuel-injector",
-    description: "High-precision fuel injector for MaK marine engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Fuel Injector",
-      "Injection Pressure": "2000 bar",
-      "Flow Rate": "850 cc/min",
-      Material: "Stainless Steel",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Safety Valve
-  {
-    id: "prod-msp-014",
-    name: "MAN B&W Safety Valve",
-    slug: "man-bw-safety-valve",
-    brandId: "man-bw-6",
-    mainCategory: "marine-spare-parts",
-    subCategory: "safety-valve",
-    categoryId: "man-bw-safety-valve",
-    description: "High-pressure safety relief valve for MAN B&W engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Safety Valve",
-      "Relief Pressure": "250 bar",
-      Material: "Cast Steel",
-      "Flow Capacity": "180 L/min",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Valve Box
-  {
-    id: "prod-msp-015",
-    name: "Niigata Valve Box Assembly",
-    slug: "niigata-valve-box-assembly",
-    brandId: "niigata-9",
-    mainCategory: "marine-spare-parts",
-    subCategory: "valve-box",
-    categoryId: "niigata-valve-box",
-    description: "Complete valve box assembly for Niigata engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Valve Box",
-      Material: "Ductile Cast Iron",
-      "Valve Count": "4",
-      Weight: "280 kg",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Valve Seat
-  {
-    id: "prod-msp-016",
-    name: "Pielstick Valve Seat",
-    slug: "pielstick-valve-seat",
-    brandId: "pielstick-10",
-    mainCategory: "marine-spare-parts",
-    subCategory: "valve-seat",
-    categoryId: "pielstick-valve-seat",
-    description: "Stellite-faced valve seat for Pielstick engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Valve Seat",
-      Material: "Stellite 6",
-      Diameter: "165 mm",
-      "Heat Resistance": "Up to 900°C",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // SKL - one more brand for spare parts
-  {
-    id: "prod-msp-017",
-    name: "SKL Engine Components Kit",
-    slug: "skl-engine-components-kit",
-    brandId: "skl-12",
-    mainCategory: "marine-spare-parts",
-    subCategory: "cylinder-head",
-    categoryId: "skl-components-kit",
-    description: "Specialized marine engine component kit from SKL.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Component Kit",
-      Material: "Various",
-      Includes: "Valves, Seats, Springs",
-      Certification: "DNV GL",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Zexel - one more brand for spare parts
-  {
-    id: "prod-msp-018",
-    name: "Zexel Fuel Injection System",
-    slug: "zexel-fuel-injection-system",
-    brandId: "zexel-18",
-    mainCategory: "marine-spare-parts",
-    subCategory: "fuel-injector",
-    categoryId: "zexel-fuel-injection",
-    description: "Complete fuel injection system components from Zexel.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      "Component Type": "Fuel System",
-      "Injection Type": "High-pressure Common Rail",
-      Pressure: "2100 bar",
-      Material: "Precision Steel",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
+  // No products in this category at the moment
+  // Display "No Brand Available" UI on marine-spare-parts pages
 
   // ============================================================
   // COMPLETE ENGINE SECTION
@@ -530,7 +74,7 @@ export const products: Product[] = [
     categoryId: "cat-g3516b",
     description:
       "2011 Model CAT G3516B gas generator set with 1325 kVA capacity. Excellent condition with 7,500 running hours.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "G3516B",
       "Power Output": "1325 kVA",
@@ -557,7 +101,7 @@ export const products: Product[] = [
     categoryId: "cat-3516-1387",
     description:
       "CAT 3516 diesel generator set with 1387 kVA capacity. Low running hours with excellent condition. Available in 3 units.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "3516",
       "Power Output": "1387 kVA",
@@ -583,7 +127,7 @@ export const products: Product[] = [
     categoryId: "mitsubishi-s16n",
     description:
       "Mitsubishi S16N PTA generator engine only. Robust marine generator engine with proven reliability.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
     specifications: {
       Model: "S16N PTA",
       Type: "Generator Engine",
@@ -607,7 +151,7 @@ export const products: Product[] = [
     categoryId: "cat-c32-800kw",
     description:
       "Industrial diesel generator with 800 kW / 1000 kVA output. Containerized unit from 2008. 50 Hz frequency, 1500 RPM, 3-phase diesel generator.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "C32",
       "Power Output": "800 kW / 1000 kVA",
@@ -638,7 +182,7 @@ export const products: Product[] = [
     categoryId: "detroit-16v149",
     description:
       "Detroit Diesel 16V149 marine and industrial generator set with 1750 kW output. Reliable workhorse for marine and industrial applications.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Detroit-Diesel-Logo.png"],
     specifications: {
       Model: "16V149",
       "Power Output": "1750 kW",
@@ -663,7 +207,7 @@ export const products: Product[] = [
     categoryId: "mitsubishi-s16r-pta2",
     description:
       "Mitsubishi S16R-PTA2 diesel generator with 1317 kW output. Unused condition with zero working hours. Available in 2 units.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
     specifications: {
       Model: "S16R-PTA2",
       "Power Output": "1317 kW",
@@ -689,7 +233,7 @@ export const products: Product[] = [
     categoryId: "mtu-16v4000",
     description:
       "MTU 16V4000 industrial diesel generator set with 2000 kVA output. 50 Hz frequency. Used but in very good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "16V4000",
       "Power Output": "2000 kVA",
@@ -714,7 +258,7 @@ export const products: Product[] = [
     categoryId: "mtu-16v2000-g85",
     description:
       "MTU 16V2000 G85 containerized diesel generator set with 1115 kW output at 60 Hz. Used but in very good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "16V2000 G85",
       "Power Output": "1115 kW",
@@ -740,7 +284,7 @@ export const products: Product[] = [
     categoryId: "cat-c32-806kw",
     description:
       "Powerful Caterpillar C32 diesel generator from 2019 with 806 kW / 1010 kVA output. 50 Hz, 1500 RPM. Used but in excellent condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "C32",
       "Power Output": "806 kW / 1010 kVA",
@@ -767,7 +311,7 @@ export const products: Product[] = [
     categoryId: "cat-3512c",
     description:
       "Premium Caterpillar 3512C industrial generator set for sale with low running hours. Excellent condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "3512C",
       Type: "Industrial Genset",
@@ -791,7 +335,7 @@ export const products: Product[] = [
     categoryId: "cat-c15-500kva",
     description:
       "Containerized Caterpillar C15 diesel generator with 400 kW / 500 kVA / 591 HP output. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "C15",
       "Power Output": "400 kW / 500 kVA / 591 HP",
@@ -815,7 +359,7 @@ export const products: Product[] = [
     categoryId: "man-d2842le",
     description:
       "MAN B&W D2842LE industrial diesel engine with 420 kW output at 1800 RPM. Slightly used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MAN.jpg"],
     specifications: {
       Model: "D2842LE",
       "Power Output": "420 kW",
@@ -840,7 +384,7 @@ export const products: Product[] = [
     categoryId: "detroit-16v92",
     description:
       "Detroit 16V92 diesel engine with comprehensive spares package. Used in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Detroit-Diesel-Logo.png"],
     specifications: {
       Model: "16V92",
       Equipment: "Diesel Engine and Spares",
@@ -863,7 +407,7 @@ export const products: Product[] = [
     categoryId: "mitsubishi-s16r-pta",
     description:
       "Mitsubishi S16R-PTA marine diesel engine. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
     specifications: {
       Model: "S16R-PTA",
       Equipment: "Engine",
@@ -886,7 +430,7 @@ export const products: Product[] = [
     categoryId: "deutz-tbd-616",
     description:
       "DEUTZ MWM TBD 616 V16 complete marine diesel engine. Used but reliable condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Deutz_Logo.svg.png"],
     specifications: {
       Brand: "DEUTZ MWM",
       Model: "TBD 616 V16",
@@ -910,7 +454,7 @@ export const products: Product[] = [
     categoryId: "cat-3412-marine",
     description:
       "Caterpillar 3412 marine diesel engine. High-performance marine propulsion. Used in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "3412",
       "Engine Type": "Marine",
@@ -933,7 +477,7 @@ export const products: Product[] = [
     categoryId: "wartsila-6l-20",
     description:
       "Wärtsilä 6L 20 complete marine diesel engine. Reliable and fuel-efficient. Used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
     specifications: {
       Model: "6L 20",
       "Engine Type": "Marine",
@@ -956,7 +500,7 @@ export const products: Product[] = [
     categoryId: "wichmann-6-ax",
     description:
       "Wichmann 6 AX complete marine diesel engine. Specialized marine propulsion system. Used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/wichmann_Logo.webp"],
     specifications: {
       Model: "6 AX",
       "Engine Type": "Marine",
@@ -979,7 +523,7 @@ export const products: Product[] = [
     categoryId: "cat-3616-powerplant",
     description:
       "1994 Industrial Caterpillar 3616 powerplant genset engine. 5793 hours of operation. Powerful industrial generator engine.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Brand: "Caterpillar",
       Model: "3616",
@@ -1005,7 +549,7 @@ export const products: Product[] = [
     categoryId: "cat-c9",
     description:
       "Caterpillar C9 diesel engine with 296 kW output at 1800 RPM. Excellent condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "C9",
       "Power Output": "296 kW",
@@ -1029,7 +573,7 @@ export const products: Product[] = [
     categoryId: "mtu-12v2000-m70",
     description:
       "MTU 12V2000 M70 marine engine with gearbox. Used & Reliable marine propulsion.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "12V2000 M70",
       Equipment: "Marine Engine With Gearbox",
@@ -1052,7 +596,7 @@ export const products: Product[] = [
     categoryId: "mtu-16v2000-m96l",
     description:
       "MTU 16V2000 M96L marine diesel engine. Used but in very good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "16V2000 M96L",
       Equipment: "Marine Engine",
@@ -1075,7 +619,7 @@ export const products: Product[] = [
     categoryId: "mtu-16v4000-m71",
     description:
       "MTU 16V4000 M71 marine diesel engine with gearbox. 2465 kW output. Used but in very good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "16V4000m71",
       "Power Output": "2465 kW",
@@ -1099,7 +643,7 @@ export const products: Product[] = [
     categoryId: "mtu-12v4000m71",
     description:
       "MTU 12V4000M71 used marine engine with 1850 kW output. Used but in very good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "12V4000m71",
       "Power Output": "1850 kW",
@@ -1123,7 +667,7 @@ export const products: Product[] = [
     categoryId: "ruston-8rk270m",
     description:
       "Used Ruston 8RK270M marine engine with gearbox. 2418 kW output. Unused condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/images/brands/ruston.png"],
     specifications: {
       Model: "8RK270M",
       "Power Output": "2418 kW",
@@ -1147,7 +691,7 @@ export const products: Product[] = [
     categoryId: "detroit-16vf1531",
     description:
       "Detroit Diesel 16VF1531 marine engine. Reliable and robust marine propulsion.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Detroit-Diesel-Logo.png"],
     specifications: {
       Model: "16VF1531",
       Equipment: "Marine Engine",
@@ -1170,7 +714,7 @@ export const products: Product[] = [
     categoryId: "detroit-16vf92",
     description:
       "Detroit Diesel 16VF92 2-stroke engine with turbocharger. Used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Detroit-Diesel-Logo.png"],
     specifications: {
       Model: "16VF92",
       Equipment: "Marine Engine",
@@ -1194,7 +738,7 @@ export const products: Product[] = [
     categoryId: "mtu-10v2000m84",
     description:
       "MTU 10V2000M84 marine engine. Unused condition with zero operating hours.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "10V2000m84",
       Equipment: "Marine Engine",
@@ -1217,7 +761,7 @@ export const products: Product[] = [
     categoryId: "mtu-20v4000-p83",
     description:
       "MTU 20V4000 P83 diesel marine engine. Used condition. Single unit available.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "20V4000P83",
       Equipment: "Marine Engine",
@@ -1241,7 +785,7 @@ export const products: Product[] = [
     categoryId: "emd-12-645e3",
     description:
       "Premium EMD 12-645E3 high-performance & reliable engine. Used in excellent condition. 3 units available.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/EMD-logo.png"],
     specifications: {
       Model: "12-645 E3",
       Condition: "Used / Excellent condition",
@@ -1264,7 +808,7 @@ export const products: Product[] = [
     categoryId: "emd-12-645-e6",
     description:
       "EMD 12-645-E6 engine - 1500 BHP complete locomotive engine. Serial: 71-K1-1019. Single unit available.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/EMD-logo.png"],
     specifications: {
       Model: "12-645-E6",
       "Serial Number": "71-K1-1019",
@@ -1290,7 +834,7 @@ export const products: Product[] = [
     categoryId: "emd-12-645-e8",
     description:
       "EMD DG Set 12-645-E8 diesel generator. 2 units available. Used in excellent condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/EMD-logo.png"],
     specifications: {
       Model: "12-645-E8",
       Equipment: "Diesel Generator",
@@ -1314,7 +858,7 @@ export const products: Product[] = [
     categoryId: "emd-16-645-e8",
     description:
       "EMD DG Set 16-645-E8 diesel generators. 4 units available. Used in excellent condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/EMD-logo.png"],
     specifications: {
       Model: "16-645-E8",
       Equipment: "Diesel Generator",
@@ -1338,7 +882,7 @@ export const products: Product[] = [
     categoryId: "himsen-8h25-33p",
     description:
       "Premium Hyundai Himsen 8H25/33P propulsion engine. Unused condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Hyundai Himsen.jpg"],
     specifications: {
       Brand: "Hyundai Himsen",
       Model: "8H25/33P",
@@ -1362,7 +906,7 @@ export const products: Product[] = [
     categoryId: "cat-c18-gearbox",
     description:
       "Excellent Caterpillar C18 powerful engine with gearbox. Used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "C18",
       Equipment: "Engine With Gearbox",
@@ -1384,7 +928,7 @@ export const products: Product[] = [
     subCategory: undefined,
     categoryId: "mtu-16v2000-marine",
     description: "Marine engine MTU 16V2000. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "16V2000",
       Equipment: "Marine Engine",
@@ -1407,7 +951,7 @@ export const products: Product[] = [
     categoryId: "volvo-d6-350ab",
     description:
       "Volvo Penta D6 350A-B engine with drive and propeller. Fully overhauled condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/volvo-penta-.png"],
     specifications: {
       Model: "D6 350A-B AO",
       Equipment: "Engine with Drive and Propeller",
@@ -1430,7 +974,7 @@ export const products: Product[] = [
     categoryId: "mtu-16v4000-m90",
     description:
       "Powerful MTU 16V4000 M90 marine engine used as main engine. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "16V4000 M90",
       Equipment: "Main Marine Engine",
@@ -1453,7 +997,7 @@ export const products: Product[] = [
     categoryId: "mtu-12v2000-m90",
     description:
       "MTU 12V2000 M90 marine engine with gearbox. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "12V2000",
       Equipment: "Marine Engine With Gearbox",
@@ -1476,7 +1020,7 @@ export const products: Product[] = [
     categoryId: "cat-c32m-propulsion",
     description:
       "Used Caterpillar C32M marine propulsion engine. 1450 BHP. 4 units available. Slightly used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "C32M",
       Equipment: "Marine Propulsion Engine",
@@ -1500,7 +1044,7 @@ export const products: Product[] = [
     categoryId: "cat-c12-propulsion",
     description:
       "Caterpillar C12 marine propulsion engine. Generator engine marine and marine propulsion engine. Overhauled and ready to use.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "C12",
       Equipment: "Generator Engine Marine and Marine Propulsion Engine",
@@ -1523,7 +1067,7 @@ export const products: Product[] = [
     categoryId: "man-12v28-32-s",
     description:
       "MAN B&W 12V28/32 S marine engines with gearbox. Used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MAN.jpg"],
     specifications: {
       Model: "12V28/32 S",
       "Engine Type": "Marine",
@@ -1546,7 +1090,7 @@ export const products: Product[] = [
     subCategory: undefined,
     categoryId: "mtu-16v2000-v2",
     description: "Marine engine MTU 16V2000. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "16V2000",
       Equipment: "Marine Engine",
@@ -1569,7 +1113,7 @@ export const products: Product[] = [
     categoryId: "mtu-16v4000-m70-zf",
     description:
       "MTU 16V4000 M70 marine engine with ZF 7550A gearbox. Slightly used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "16V4000 M70",
       Gearbox: "ZF 7550A",
@@ -1593,7 +1137,7 @@ export const products: Product[] = [
     categoryId: "yanmar-6lpa",
     description:
       "YANMAR 6LPA high-speed diesel engine. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/yanmar-logo-png-.webp"],
     specifications: {
       Model: "6LPA",
       "Engine Type": "High Speed",
@@ -1615,7 +1159,7 @@ export const products: Product[] = [
     subCategory: undefined,
     categoryId: "yanmar-6ly3-stp",
     description: "YANMAR 6LY3-STP high-speed diesel engine. Unused condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/yanmar-logo-png-.webp"],
     specifications: {
       Model: "6LY3-STP",
       "Engine Type": "High Speed",
@@ -1638,7 +1182,7 @@ export const products: Product[] = [
     categoryId: "niigata-6mmg34hx",
     description:
       "NIIGATA 6MMG34HX marine diesel engine. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Niigata.png"],
     specifications: {
       Model: "6MMG34HX",
       "Engine Type": "Marine",
@@ -1660,7 +1204,7 @@ export const products: Product[] = [
     subCategory: undefined,
     categoryId: "mtu-12v4000-m90",
     description: "MTU 12V4000 M90 marine diesel engine. New condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
     specifications: {
       Model: "12V4000 M90",
       "Part Name": "Marine Engine",
@@ -1682,7 +1226,7 @@ export const products: Product[] = [
     subCategory: undefined,
     categoryId: "bergen-c25-33l8p",
     description: "BERGEN C25:33L8P marine engines. Unused condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Bergen-Engines-Web.webp"],
     specifications: {
       Model: "C25:33L8P",
       "Engine Type": "Marine Engine",
@@ -1704,7 +1248,7 @@ export const products: Product[] = [
     subCategory: undefined,
     categoryId: "bergen-brm-8",
     description: "BERGEN BRM-8 complete marine engine. Used condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/Bergen-Engines-Web.webp"],
     specifications: {
       Model: "BRM 8",
       "Engine Type": "Marine Engine",
@@ -1727,7 +1271,7 @@ export const products: Product[] = [
     categoryId: "cat-3612-marine",
     description:
       "Caterpillar 3612 marine diesel engine. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
     specifications: {
       Model: "3612",
       "Engine Type": "Marine",
@@ -1750,7 +1294,7 @@ export const products: Product[] = [
     categoryId: "man-d2842le412",
     description:
       "2010 MAN D2842LE412 diesel engine with gearbox. 588 kW, 1800 RPM. Used but in good condition.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+    images: ["/Assets/images/Logos/MAN.jpg"],
     specifications: {
       Model: "D2842 LE 412",
       "Power Output": "588 kW",
@@ -1770,24 +1314,951 @@ export const products: Product[] = [
   // ============================================================
   // GENERATORS SECTION
   // ============================================================
+  // Caterpillar Generators - 16 Products
+  // Deutz Generators - 1 Product
+
+  // ========== CATERPILLAR GENERATORS (16 PRODUCTS) ==========
+
+  // Generator 1: CAT C15 Generators
   {
     id: "prod-gen-001",
-    name: "Cummins 600KW Marine Generator",
-    slug: "cummins-600kw-marine-generator",
-    brandId: "cummins-18",
+    name: "CAT C15 Generators",
+    slug: "cat-c15-generators",
+    brandId: "caterpillar-8",
     mainCategory: "generators",
     subCategory: undefined,
-    categoryId: "cummins-600kw",
+    categoryId: "cat-c15-gen",
     description:
-      "Reliable 600KW diesel generator for auxiliary power generation onboard.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
+      "Caterpillar C15 diesel generator set. Industrial-grade power generation for marine and industrial applications with 1500 RPM operation.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
     specifications: {
-      "Power Output": "600 kW",
-      Voltage: "400-690 V",
-      Frequency: "50/60 Hz",
-      "Engine Type": "QSB5.9",
-      RPM: "1,500-1,800",
-      Cooling: "Water-cooled",
+      Brand: "Caterpillar",
+      Model: "C15",
+      Speed: "1500 rpm",
+      Condition: "Used / Good",
+      Equipment: "Generator",
+      "Fuel Type": "Diesel",
+      "Engine Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 2: Caterpillar 3056T Genset
+  {
+    id: "prod-gen-002",
+    name: "Caterpillar 3056T Genset",
+    slug: "caterpillar-3056t-genset",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-3056t-gen",
+    description:
+      "Caterpillar 3056T diesel generator set. Reliable power generation system designed for marine and industrial applications.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3056T",
+      Equipment: "Genset",
+      Condition: "Unused",
+      "Fuel Type": "Diesel",
+      "Engine Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 3: Containerized Caterpillar C18 Gensets
+  {
+    id: "prod-gen-003",
+    name: "Containerized Caterpillar C18 Gensets",
+    slug: "containerized-caterpillar-c18-gensets",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-c18-containerized-gen",
+    description:
+      "Containerized Caterpillar C18 diesel generator sets. Portable, containerized design for easy transport and deployment with reliable power generation.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "C18",
+      Equipment: "Containerized Genset",
+      Configuration: "Containerized",
+      Condition: "Slightly Used",
+      "Fuel Type": "Diesel",
+      "Engine Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 4: 1994 Industrial Caterpillar 3616 Powerplant Genset Engine
+  {
+    id: "prod-gen-004",
+    name: "1994 Industrial Caterpillar 3616 Powerplant Genset Engine 5793 H",
+    slug: "caterpillar-3616-powerplant-genset-1994",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-3616-powerplant-gen",
+    description:
+      "1994 Caterpillar 3616 industrial powerplant diesel generator engine. Power plant genset configuration with 5793 operating hours. Industrial-grade reliability.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3616",
+      Year: "1994",
+      Equipment: "Power Plant Genset Engine",
+      Type: "Industrial Powerplant",
+      "Operating Hours": "5793 H",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 5: CAT G3116B 1320 kVA Gas Generator
+  {
+    id: "prod-gen-005",
+    name: "CAT G3116B 1320 kVA Gas Generator for Sale I 2011 Model I",
+    slug: "cat-g3116b-1320kva-gas-generator",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-g3116b-gas-gen",
+    description:
+      "Caterpillar G3116B 1320 kVA gas generator. 2011 model designed for reliable power generation from natural gas fuel.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "G3116B",
+      Year: "2011",
+      "Power Output": "1320 kVA",
+      Quantity: "1 Unit",
+      Condition: "Used / Excellent condition",
+      "Fuel Type": "Gas",
+      "Running Hours": "7,600 hrs",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 6: CAT 3616 1387 kVA Diesel Genset
+  {
+    id: "prod-gen-006",
+    name: "CAT 3616 1387 kVA Diesel Genset for Sale I Low Running Hours I",
+    slug: "cat-3616-1387kva-diesel-genset",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-3616-1387kva",
+    description:
+      "Caterpillar 3616 1387 kVA diesel generator set. Low running hours configuration for reliable power generation.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3616",
+      "Power Output": "1387 kVA",
+      Quantity: "3 Units",
+      Condition: "Used / Excellent condition",
+      "Fuel Type": "Diesel",
+      "Running Hours": "1000 & 1800 hrs",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 7: CAT 3616 Diesel Genset I 1625 kVA 1500 RPM
+  {
+    id: "prod-gen-007",
+    name: "CAT 3616 Diesel Genset I 1625 kVA 1500 RPM Industrial Generator",
+    slug: "cat-3616-1625kva-diesel-genset",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-3616-1625kva",
+    description:
+      "Caterpillar 3616 diesel generator set with 1625 kVA power output at 1500 RPM. Industrial-grade generator for continuous power generation.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3616",
+      "Power Output": "1625 kVA",
+      RPM: "1500",
+      Quantity: "1 Unit",
+      Condition: "Used / Excellent condition",
+      "Fuel Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 8: CAT 3616B Diesel Generator 2000 kVA
+  {
+    id: "prod-gen-008",
+    name: "CAT 3616B Diesel Generator 2000 kVA - Industrial Power Genset for",
+    slug: "cat-3616b-2000kva-diesel-generator",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-3616b-2000kva",
+    description:
+      "Caterpillar 3616B diesel generator with 2000 kVA power output. Industrial-grade generator for demanding power generation applications.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3616B",
+      "Power Output": "2000 kVA",
+      Quantity: "1 Unit",
+      Condition: "Used / Excellent condition",
+      "Fuel Type": "Diesel",
+      Type: "Industrial Diesel Generator",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 9: AT 3616 Genset Engine for Sale I 4320 kW Industrial
+  {
+    id: "prod-gen-009",
+    name: "AT 3616 Genset Engine for Sale I 4320 kW Industrial Diesel General",
+    slug: "at-3616-genset-engine-4320kw",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "at-3616-4320kw",
+    description:
+      "Caterpillar 3616 genset engine with 4320 kW industrial power output. Designed for industrial diesel power generation applications.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3616",
+      "Power Output": "4320 kW",
+      Quantity: "1 Unit",
+      Condition: "Used / Excellent condition",
+      "Fuel Type": "Diesel",
+      "Engine Type": "Industrial Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 10: Caterpillar C32 Diesel Generator - 800kW Containerized 50Hz
+  {
+    id: "prod-gen-010",
+    name: "Caterpillar C32 Diesel Generator - 800kW Containerized 50Hz",
+    slug: "caterpillar-c32-800kw-containerized-diesel",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-c32-800kw-containerized",
+    description:
+      "Caterpillar C32 diesel generator with 800 kW power output in containerized configuration. 50 Hz frequency for marine and industrial use.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar (CAT)",
+      Model: "C32",
+      "Power Output": "800 kW / 1000 kVA",
+      Frequency: "50 Hz",
+      Condition: "Used / Good Working",
+      Configuration: "Containerized",
+      "Fuel Type": "Diesel",
+      Generator: "C32",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 11: Caterpillar C9 Diesel Generator Set 1296 kVA - Marine
+  {
+    id: "prod-gen-011",
+    name: "Caterpillar C9 Diesel Generator Set 1296 kVA I 1800 RPM - Marine",
+    slug: "caterpillar-c9-1296kva-diesel-generator-marine",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-c9-1296kva-marine",
+    description:
+      "Caterpillar C9 diesel generator set with 1296 kVA power output at 1800 RPM. Marine-grade generator for vessel power generation.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3512C",
+      "Power Output": "1296 kVA",
+      RPM: "1800",
+      Quantity: "1 Unit",
+      Condition: "Used / Excellent condition",
+      Type: "Marine Generator",
+      "Fuel Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 12: Caterpillar C32 Diesel Generator I 800 kW I 2019
+  {
+    id: "prod-gen-012",
+    name: "Caterpillar C32 Diesel Generator I 800 kW I 2019 Powerful Used",
+    slug: "caterpillar-c32-800kw-2019-diesel-generator",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-c32-800kw-2019",
+    description:
+      "Caterpillar C32 diesel generator with 800 kW power output from 2019. Powerful and reliable generator for industrial applications.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "C32",
+      Year: "2019",
+      "Power Output": "800 kW / 1210 kVA",
+      Frequency: "50 Hz",
+      RPM: "1500",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 13: Reliable Caterpillar C18 Marine Generator for Sale - Used Low
+  {
+    id: "prod-gen-013",
+    name: "Reliable Caterpillar C18 Marine Generator for Sale - Used Low",
+    slug: "reliable-caterpillar-c18-marine-generator-used",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-c18-marine-generator",
+    description:
+      "Reliable Caterpillar C18 marine generator for sale. Used in low-hour condition, perfect for marine vessel power generation.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "C18",
+      Quantity: "2 Units",
+      Condition: "Used / Excellent condition",
+      Type: "Marine Generator",
+      "Fuel Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 14: Premium Caterpillar 3512C Industrial Genset for Sale - Low Hours
+  {
+    id: "prod-gen-014",
+    name: "Premium Caterpillar 3512C Industrial Genset for Sale - Low",
+    slug: "premium-caterpillar-3512c-industrial-genset-low",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-3512c-industrial-low",
+    description:
+      "Premium Caterpillar 3512C industrial generator set for sale. Low operational hours with excellent condition.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3512C",
+      Quantity: "1 Unit",
+      Condition: "Used / Excellent condition",
+      "Fuel Type": "Diesel",
+      Type: "Industrial Genset",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 15: Containerized CAT C15 Diesel Generator - 500 kVA / 400 kW
+  {
+    id: "prod-gen-015",
+    name: "Containerized CAT C15 Diesel Generator - 500 kVA / 400 kW - L",
+    slug: "containerized-cat-c15-500kva-400kw-diesel",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-c15-500kva-containerized",
+    description:
+      "Containerized Caterpillar C15 diesel generator with 500 kVA / 400 kW power output. Industrial-grade containerized genset.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "C15",
+      "Power Output": "400 kW / 500 kVA",
+      Frequency: "50 Hz / 60 Hz",
+      Condition: "Used / Good",
+      Configuration: "Containerized",
+      "Fuel Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 16: CAT 3508B Generator
+  {
+    id: "prod-gen-016",
+    name: "CAT 3508B Generator",
+    slug: "cat-3508b-generator",
+    brandId: "caterpillar-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "cat-3508b-generator",
+    description:
+      "Caterpillar 3508B industrial diesel generator. Reliable power generation for marine and industrial applications.",
+    images: ["/Assets/images/Logos/caterpillar-2.svg"],
+    thumbnail: "/Assets/images/Logos/caterpillar-2.svg",
+    specifications: {
+      Brand: "Caterpillar",
+      Model: "3508B",
+      Equipment: "Generator",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+      "Engine Type": "Industrial Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // ========== DEUTZ GENERATORS (1 PRODUCT) ==========
+
+  // Generator 17: Deutz MWM TBD 616 V8 Full Portable Genset
+  {
+    id: "prod-gen-017",
+    name: "Deutz MWM TBD 616 V8 Full Portable Genset",
+    slug: "deutz-mwm-tbd-616-v8-full-portable-genset",
+    brandId: "deutz-3",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "deutz-tbd616-v8-gen",
+    description:
+      "Deutz MWM TBD 616 V8 full portable diesel generator set. Compact and mobile design with V8 diesel engine. Reliable power generation for temporary power needs.",
+    images: ["/Assets/images/Logos/Deutz_Logo.svg.png"],
+    thumbnail: "/Assets/images/Logo/Deutz_Logo.svg.png",
+    specifications: {
+      Brand: "Deutz",
+      Model: "MWM TBD 616 V8",
+      "Generator Type": "Full Portable Genset",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+      "Engine Type": "V8 Diesel",
+      Configuration: "Portable Genset",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // ========== EMD GENERATORS (4 PRODUCTS) ==========
+
+  // Generator 18: Premium EMD 12-645E3 Engine - High-Performance & Reliable
+  {
+    id: "prod-gen-018",
+    name: "Premium EMD 12-645E3 Engine – High-Performance & Reliable",
+    slug: "premium-emd-12-645e3-engine-high-performance",
+    brandId: "emd-22",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "emd-12-645e3-engine",
+    description:
+      "Premium EMD 12-645E3 marine diesel engine. High-performance and reliable engine block designed for marine propulsion and power generation applications.",
+    images: ["/Assets/images/Logos/EMD-logo.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "EMD",
+      Model: "12-645 E3",
+      Quantity: "3 Units",
+      Condition: "Used / Excellent condition",
+      Type: "Marine Diesel Engine",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "12-Cylinder",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 19: Premium EMD 12-645E3 Engine - High-Performance & Reliable (Variant)
+  {
+    id: "prod-gen-019",
+    name: "Premium EMD 12-645E3 Engine – High-Performance & Reliable",
+    slug: "premium-emd-12-645e3-engine-reliable-variant",
+    brandId: "emd-22",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "emd-12-645e3-reliable",
+    description:
+      "Premium EMD 12-645E3 marine diesel engine. High-performance and reliable power unit for marine and industrial power generation.",
+    images: ["/Assets/images/Logos/EMD-logo.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "EMD",
+      Model: "12-645 E3",
+      Quantity: "3 Units",
+      Condition: "Used / Excellent condition",
+      Type: "Marine Diesel Engine",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "12-Cylinder",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 20: EMD DG Set - 12-645-E8 Diesel Generator
+  {
+    id: "prod-gen-020",
+    name: "EMD DG Set – 12-645-E8 Diesel Generator",
+    slug: "emd-dg-set-12-645-e8-diesel-generator",
+    brandId: "emd-22",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "emd-12-645-e8-dg",
+    description:
+      "EMD DG Set with 12-645-E8 diesel generator configuration. Industrial-grade generator set for reliable power generation with excellent condition.",
+    images: ["/Assets/images/Logos/EMD-logo.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "EMD",
+      Model: "12-645 E8",
+      Quantity: "2 Units",
+      Condition: "Used / Excellent condition",
+      Type: "Diesel Generator Set",
+      "Fuel Type": "Diesel",
+      "Equipment Type": "DG Set",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 21: EMD DG Set - 16-645-E8 Diesel Generators
+  {
+    id: "prod-gen-021",
+    name: "EMD DG Set – 16-645-E8 Diesel Generators",
+    slug: "emd-dg-set-16-645-e8-diesel-generators",
+    brandId: "emd-22",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "emd-16-645-e8-dg",
+    description:
+      "EMD DG Set with 16-645-E8 diesel generators. High-capacity industrial generator set for demanding power generation applications. Excellent condition.",
+    images: ["/Assets/images/Logos/EMD-logo.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "EMD",
+      Model: "16-645 E8",
+      Quantity: "4 Units",
+      Condition: "Used / Excellent condition",
+      Type: "Diesel Generator Set",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "16-Cylinder",
+      "Equipment Type": "DG Set",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // ========== MITSUBISHI GENERATORS (4 PRODUCTS) ==========
+
+  // Generator 22: Mitsubishi S16N PTA GENERATOR Engine Only
+  {
+    id: "prod-gen-022",
+    name: "Mitsubishi S16N PTA GENERATOR Engine Only",
+    slug: "mitsubishi-s16n-pta-generator-engine-only",
+    brandId: "mitsubishi-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "mitsubishi-s16n-pta-engine",
+    description:
+      "Mitsubishi S16N PTA diesel generator engine. High-quality marine diesel engine designed for generator applications with reliable performance.",
+    images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "Mitsubishi",
+      Model: "S16N PTA",
+      Type: "Generator Engine",
+      "Part Name": "GENERATOR",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "16-Cylinder",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 23: Mitsubishi S16R-PTA2 Diesel Generator – 1317 kW
+  {
+    id: "prod-gen-023",
+    name: "Mitsubishi S16R-PTA2 Diesel Generator – 1317 kW",
+    slug: "mitsubishi-s16r-pta2-diesel-generator-1317kw",
+    brandId: "mitsubishi-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "mitsubishi-s16r-pta2",
+    description:
+      "Mitsubishi S16R-PTA2 diesel generator with 1317 kW power output. Unused with zero working hours, ideal for marine and industrial applications.",
+    images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "Mitsubishi",
+      Model: "S16R-PTA2",
+      "Power Output": "1317 kW",
+      Speed: "1500 RPM",
+      Frequency: "50 Hz",
+      Condition: "Unused (Zero working hours)",
+      Quantity: "2 Units",
+      "Fuel Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 24: Mitsubishi S6N PTA2 GENERATOR
+  {
+    id: "prod-gen-024",
+    name: "Mitsubishi S6N PTA2 GENERATOR",
+    slug: "mitsubishi-s6n-pta2-generator",
+    brandId: "mitsubishi-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "mitsubishi-s6n-pta2",
+    description:
+      "Mitsubishi S6N PTA2 marine diesel generator. Compact and efficient generator for marine propulsion and power generation applications.",
+    images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "Mitsubishi",
+      Model: "S6N PTA2",
+      Type: "Marine Generator",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "6-Cylinder",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 25: Mitsubishi S16N PTA GENERATOR
+  {
+    id: "prod-gen-025",
+    name: "Mitsubishi S16N PTA GENERATOR",
+    slug: "mitsubishi-s16n-pta-generator",
+    brandId: "mitsubishi-8",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "mitsubishi-s16n-pta",
+    description:
+      "Mitsubishi S16N PTA diesel generator. Reliable and high-performance generator engine for marine and industrial power generation needs.",
+    images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "Mitsubishi",
+      Model: "S16N PTA",
+      Type: "Generator",
+      "Part Name": "GENERATOR",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "16-Cylinder",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // ========== MTU GENERATORS (2 PRODUCTS) ==========
+
+  // Generator 26: MTU 16V4000 Diesel Generator Set – 2000 kva
+  {
+    id: "prod-gen-026",
+    name: "MTU 16V4000 Diesel Generator Set – 2000 kva",
+    slug: "mtu-16v4000-diesel-generator-set-2000kva",
+    brandId: "mtu-24",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "mtu-16v4000",
+    description:
+      "MTU 16V4000 diesel generator set with 2000 kva capacity. Industrial-grade generator for marine and onshore power generation applications. 50 Hz frequency.",
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "MTU",
+      Model: "16V4000",
+      "Power Capacity": "2000 kva",
+      Frequency: "50 Hz",
+      Equipment: "Industrial Genset",
+      Condition: "Used / Very Good",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "16V",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 27: MTU 16V2000 G85 Containerized Diesel GENSET – 1115 kW
+  {
+    id: "prod-gen-027",
+    name: "MTU 16V2000 G85 Containerized Diesel GENSET – 1115 kW",
+    slug: "mtu-16v2000-g85-containerized-diesel-genset-1115kw",
+    brandId: "mtu-24",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "mtu-16v2000-g85",
+    description:
+      "MTU 16V2000 G85 containerized diesel generator set with 1115 kW power output. Industrial-grade containerized genset designed for stationary or mobile installation. 60 Hz frequency.",
+    images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "MTU",
+      Model: "16V2000 G85",
+      "Power Output": "1115 kW",
+      Frequency: "60 Hz",
+      Equipment: "Industrial Genset",
+      Configuration: "Containerized",
+      Condition: "Used / Very Good",
+      "Fuel Type": "Diesel",
+      "Engine Type": "16V",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // ========== WARTSILA GENERATORS (4 PRODUCTS) ==========
+
+  // Generator 28: Wärtsilä W32 Complete Genset, 7050 kW, 750 RPM
+  {
+    id: "prod-gen-028",
+    name: "Wärtsilä W32 Complete Genset, 7050 kW, 750 RPM",
+    slug: "wartsila-w32-complete-genset-7050kw-750rpm",
+    brandId: "wartsila-16",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "wartsila-w32",
+    description:
+      "Wärtsilä W32 complete marine generator set with 7050 kW power output and 750 RPM speed. Marine and industrial grade generator for reliable power generation.",
+    images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "Wärtsilä",
+      Model: "W32",
+      "Power Output": "7050 kW",
+      Speed: "750 RPM",
+      Equipment: "Complete Genset",
+      "Engine Type": "Marine/Industrial Generator",
+      Condition: "Used",
+      "Fuel Type": "Diesel",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 29: Wärtsilä 8L20 Complete Genset, 1240 kW, 900 RPM
+  {
+    id: "prod-gen-029",
+    name: "Wärtsilä 8L20 Complete Genset, 1240 kW, 900 RPM",
+    slug: "wartsila-8l20-complete-genset-1240kw-900rpm",
+    brandId: "wartsila-16",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "wartsila-8l20",
+    description:
+      "Wärtsilä 8L20 complete marine generator set with 1240 kW power capacity and 900 RPM speed. Industrial-grade complete genset for marine applications.",
+    images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "Wärtsilä",
+      Model: "8L20",
+      "Power Capacity": "1240 kW",
+      Speed: "900 RPM",
+      Equipment: "Complete Genset",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "8-Cylinder",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 30: Wärtsilä W18V32 Complete Generator Sets, 60 Hz, 7290 kW
+  {
+    id: "prod-gen-030",
+    name: "Wärtsilä W18V32 Complete Generator Sets, 60 Hz, 7290 kW",
+    slug: "wartsila-w18v32-complete-generator-sets-60hz-7290kw",
+    brandId: "wartsila-16",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "wartsila-w18v32",
+    description:
+      "2001 Wärtsilä W18V32 complete generator sets with 7290 kW power output at 60 Hz frequency. Complete genset and engine spares included. Minimal working hours.",
+    images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "Wärtsilä",
+      Model: "W18V32",
+      "Power Output": "7290 kW",
+      Frequency: "60 Hz",
+      Equipment: "Complete Genset and Engine Spares",
+      Condition: "Used / Less Working Hours",
+      Year: "2001",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "18V",
+    },
+    price: 0,
+    inStock: true,
+    featured: false,
+    enquiryCount: 0,
+    createdAt: new Date("2025-12-14"),
+    updatedAt: new Date("2025-12-14"),
+  },
+
+  // Generator 31: Wärtsilä 8L20 Generator Set
+  {
+    id: "prod-gen-031",
+    name: "Wärtsilä 8L20 Generator Set",
+    slug: "wartsila-8l20-generator-set",
+    brandId: "wartsila-16",
+    mainCategory: "generators",
+    subCategory: undefined,
+    categoryId: "wartsila-8l20-gen",
+    description:
+      "Wärtsilä 8L20 marine generator set. Reliable and efficient marine-grade generator for power generation applications.",
+    images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
+    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    specifications: {
+      Brand: "Wärtsilä",
+      Model: "8L20",
+      "Generator Type": "Marine",
+      Equipment: "Generator Set",
+      Condition: "Used / Good",
+      "Fuel Type": "Diesel",
+      "Engine Configuration": "8-Cylinder",
     },
     price: 0,
     inStock: true,
@@ -1800,32 +2271,8 @@ export const products: Product[] = [
   // ============================================================
   // TURBOCHARGERS SECTION
   // ============================================================
-  {
-    id: "prod-turbo-001",
-    name: "MAN TCR22 Turbocharger",
-    slug: "man-tcr22-turbocharger",
-    brandId: "man-7",
-    mainCategory: "turbochargers",
-    subCategory: undefined,
-    categoryId: "man-tcr22",
-    description:
-      "High-efficiency radial turbocharger for medium-speed marine engines.",
-    images: ["/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg"],
-    specifications: {
-      Model: "TCR22",
-      Type: "Radial",
-      "Compressor Diameter": "400 mm",
-      "Max Speed": "19,000 rpm",
-      "Pressure Ratio": "3.8:1",
-      Weight: "420 kg",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
+  // No products in this category at the moment
+  // Display "No Brand Available" UI on turbochargers pages
 ];
 
 /**

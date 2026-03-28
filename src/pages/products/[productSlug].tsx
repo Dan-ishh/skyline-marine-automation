@@ -71,6 +71,7 @@ export default function ProductDetailPage() {
           name: "AUTOMATION",
           slug: productSlug,
           brandId: "dummy-brand",
+          mainCategory: "marine-spare-parts",
           category: "Marine Automation Systems",
           description:
             "All of our products are of the highest possible quality. To assure product quality, we carry out extensive tests and thus guarantee functionality and quality before our products reach your vessels. Feel free to contact us at the below mentioned addresses.",
