@@ -1,0 +1,204 @@
+.marineSparePartsPage {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 32px;
+  font-size: 14px;
+  color: #666;
+
+  a {
+    color: #0066cc;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.separator {
+  color: #ccc;
+}
+
+.current {
+  color: #333;
+  font-weight: 600;
+}
+
+.categoryHeader {
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+  padding: 40px 0;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #eee;
+}
+
+.categoryHeaderContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.categoryInfo {
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #003366;
+    margin: 0 0 16px 0;
+  }
+}
+
+.categoryDescription {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0;
+}
+
+.subcategoriesSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 12px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionSubtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.subcategoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.subcategoryCard {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 28px 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+
+  &:hover {
+    border-color: #003366;
+    box-shadow: 0 8px 24px rgba(0, 51, 102, 0.12);
+    transform: translateY(-4px);
+
+    .arrowIcon {
+      color: #003366;
+      transform: translateX(4px);
+    }
+
+    h3 {
+      color: #003366;
+    }
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #003366;
+    margin: 16px 0 8px 0;
+    transition: color 0.3s ease;
+  }
+
+  p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+.subcategoryIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+}
+
+.subcategoryContent {
+  flex: 1;
+  width: 100%;
+}
+
+.arrowIcon {
+  color: #999;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 12px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .categoryHeader {
+    padding: 30px 0;
+  }
+
+  .categoryInfo {
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  .categoryDescription {
+    font-size: 14px;
+  }
+
+  .subcategoriesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .subcategoryCard {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subcategoriesGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .categoryInfo {
+    h1 {
+      font-size: 20px;
+    }
+  }
+}

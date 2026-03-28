@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
 import Head from "next/head";
 import { marineSparePartsItems } from "@/src/data/menuData";
-import { brands } from "@/src/data";
 import { CategoryPageSkeleton } from "@/src/Components";
 
 export default function MarineSparePartDetailPage() {
@@ -49,7 +47,7 @@ export default function MarineSparePartDetailPage() {
         <Head>
           <title>Loading... - Skyline Marine Automation</title>
         </Head>
-        <CategoryPageSkeleton gridCount={brands.length} />
+        <CategoryPageSkeleton gridCount={6} />
       </>
     );
   }
@@ -88,70 +86,62 @@ export default function MarineSparePartDetailPage() {
             <div className="category-info">
               <h1>{sparePart.label}</h1>
               <p className="category-description">{categoryDescription}</p>
-              <div className="category-stats">
-                <span className="stat-item">
-                  <strong>{brands.length}</strong> Brands Available
-                </span>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* Brands Grid */}
+        {/* No Brands Available - Marine Spare Parts Coming Soon */}
         <section className="brands-grid-section">
           <div className="container">
-            <h2>Available Brands for {sparePart.label}</h2>
-            <div className="brands-grid">
-              {brands.map((brand) => (
-                <div key={brand.id} className="brand-card">
-                  <Link href={`/brands/${brand.slug}?from=marine-spare-parts`}>
-                    <div className="brand-card-image">
-                      {brand.logo ? (
-                        <Image
-                          src={brand.logo}
-                          alt={brand.name}
-                          width={120}
-                          height={60}
-                          objectFit="contain"
-                        />
-                      ) : (
-                        <div className="brand-placeholder">{brand.name}</div>
-                      )}
-                    </div>
-                    <div className="brand-card-content">
-                      <h3>{brand.name}</h3>
-                      <p>{brand.description}</p>
-                      <div className="brand-card-footer">
-                        <span className="product-count">
-                          {brand.productCount} Products
-                        </span>
-                        <span className="arrow">→</span>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              ))}
+            <h2>Available Brands</h2>
+            <div className="no-brands-available">
+              <svg
+                width="100"
+                height="100"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ margin: "0 auto 20px", opacity: 0.6 }}
+              >
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  stroke="#ccc"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <path d="M 30 40 Q 50 60 70 40" stroke="#ccc" strokeWidth="3" />
+                <circle cx="40" cy="35" r="3" fill="#ccc" />
+                <circle cx="60" cy="35" r="3" fill="#ccc" />
+              </svg>
+              <h3>No Brands Available</h3>
+              <p>
+                No brands with {sparePart.label.toLowerCase()} products are
+                currently available.
+              </p>
+              <p style={{ fontSize: "14px", color: "#999", marginTop: "10px" }}>
+                Please check back soon as we continue to expand our{" "}
+                {sparePart.label.toLowerCase()} inventory.
+              </p>
+              <Link
+                href="/marine-spare-parts"
+                style={{
+                  display: "inline-block",
+                  marginTop: "20px",
+                  padding: "10px 20px",
+                  backgroundColor: "#003366",
+                  color: "white",
+                  textDecoration: "none",
+                  borderRadius: "6px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                }}
+              >
+                ← Back to Categories
+              </Link>
             </div>
           </div>
-        </section>
-
-        {/* Back Button */}
-        <section style={{ padding: "40px 20px", textAlign: "center" }}>
-          <Link
-            href="/marine-spare-parts"
-            className="btn-back"
-            style={{
-              display: "inline-block",
-              padding: "12px 24px",
-              backgroundColor: "#003d82",
-              color: "white",
-              textDecoration: "none",
-              borderRadius: "4px",
-              transition: "all 0.3s ease",
-            }}
-          >
-            ← Back to Marine Spare Parts
-          </Link>
         </section>
       </main>
     </>
