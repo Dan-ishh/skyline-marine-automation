@@ -2,17 +2,35 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
+import Image from "next/image";
 import { marineSparePartsItems } from "@/src/data/menuData";
 import { CategoryPageSkeleton } from "@/src/Components";
+import { getBrandsByCategory } from "@/src/utils/dataUtils";
+import type { Brand } from "@/src/types";
+import styles from "./MarineSparePartDetail.module.scss";
 
 export default function MarineSparePartDetailPage() {
   const router = useRouter();
   const { slug } = router.query;
   const [isLoading, setIsLoading] = useState(true);
+  const [brands, setBrands] = useState<Brand[]>([]);
 
   useEffect(() => {
     // Simulate 1-second data fetching delay
     if (slug) {
+      const slugStr = typeof slug === "string" ? slug : slug[0];
+      const sparePart = marineSparePartsItems.find(
+        (item) => item.slug === slugStr
+      );
+      if (sparePart) {
+        // Get brands that have products in this subcategory
+        const filteredBrands = getBrandsByCategory(
+          "marine-spare-parts",
+          slugStr
+        );
+        setBrands(filteredBrands);
+      }
+
       const timer = setTimeout(() => {
         setIsLoading(false);
       }, 1000);
@@ -22,9 +40,10 @@ export default function MarineSparePartDetailPage() {
   }, [slug]);
 
   // Find the spare part item
-  const sparePart = marineSparePartsItems.find((item) => item.slug === slug);
+  const slugStr = typeof slug === "string" ? slug : slug?.[0];
+  const sparePart = marineSparePartsItems.find((item) => item.slug === slugStr);
 
-  if (!sparePart && slug) {
+  if (!sparePart && slugStr) {
     return (
       <>
         <Head>
@@ -94,53 +113,93 @@ export default function MarineSparePartDetailPage() {
         <section className="brands-grid-section">
           <div className="container">
             <h2>Available Brands</h2>
-            <div className="no-brands-available">
-              <svg
-                width="100"
-                height="100"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                style={{ margin: "0 auto 20px", opacity: 0.6 }}
-              >
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="45"
-                  stroke="#ccc"
-                  strokeWidth="2"
+            {brands.length === 0 ? (
+              <div className="no-brands-available">
+                <svg
+                  width="100"
+                  height="100"
+                  viewBox="0 0 100 100"
                   fill="none"
-                />
-                <path d="M 30 40 Q 50 60 70 40" stroke="#ccc" strokeWidth="3" />
-                <circle cx="40" cy="35" r="3" fill="#ccc" />
-                <circle cx="60" cy="35" r="3" fill="#ccc" />
-              </svg>
-              <h3>No Brands Available</h3>
-              <p>
-                No brands with {sparePart.label.toLowerCase()} products are
-                currently available.
-              </p>
-              <p style={{ fontSize: "14px", color: "#999", marginTop: "10px" }}>
-                Please check back soon as we continue to expand our{" "}
-                {sparePart.label.toLowerCase()} inventory.
-              </p>
-              <Link
-                href="/marine-spare-parts"
-                style={{
-                  display: "inline-block",
-                  marginTop: "20px",
-                  padding: "10px 20px",
-                  backgroundColor: "#003366",
-                  color: "white",
-                  textDecoration: "none",
-                  borderRadius: "6px",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                }}
-              >
-                ← Back to Categories
-              </Link>
-            </div>
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ margin: "0 auto 20px", opacity: 0.6 }}
+                >
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    stroke="#ccc"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M 30 40 Q 50 60 70 40"
+                    stroke="#ccc"
+                    strokeWidth="3"
+                  />
+                  <circle cx="40" cy="35" r="3" fill="#ccc" />
+                  <circle cx="60" cy="35" r="3" fill="#ccc" />
+                </svg>
+                <h3>No Brands Available</h3>
+                <p>
+                  No brands with {sparePart.label.toLowerCase()} products are
+                  currently available.
+                </p>
+                <p
+                  style={{ fontSize: "14px", color: "#999", marginTop: "10px" }}
+                >
+                  Please check back soon as we continue to expand our{" "}
+                  {sparePart.label.toLowerCase()} inventory.
+                </p>
+                <Link
+                  href="/marine-spare-parts"
+                  style={{
+                    display: "inline-block",
+                    marginTop: "20px",
+                    padding: "10px 20px",
+                    backgroundColor: "#003366",
+                    color: "white",
+                    textDecoration: "none",
+                    borderRadius: "6px",
+                    fontSize: "14px",
+                    fontWeight: "600",
+                  }}
+                >
+                  ← Back to Categories
+                </Link>
+              </div>
+            ) : (
+              <div className={styles.brandsGrid}>
+                {brands.map((brand) => (
+                  <Link
+                    key={brand.id}
+                    href={`/marine-spare-parts/${slug}/[brandId]`}
+                    as={`/marine-spare-parts/${slug}/${brand.slug}`}
+                  >
+                    <div className={styles.brandCard}>
+                      {brand.logo ? (
+                        <div className={styles.logoContainer}>
+                          <Image
+                            src={brand.logo}
+                            alt={brand.name}
+                            width={150}
+                            height={80}
+                            objectFit="contain"
+                          />
+                        </div>
+                      ) : (
+                        <div className={styles.noLogo}>{brand.name}</div>
+                      )}
+                      <h3>{brand.name}</h3>
+                      {brand.description && (
+                        <p className={styles.description}>
+                          {brand.description}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>

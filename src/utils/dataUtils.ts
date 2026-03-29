@@ -91,6 +91,25 @@ export const getProductsByBrand = (brandId: string): Product[] => {
 };
 
 /**
+ * Get products by brand and subcategory (for marine spare parts)
+ * Alias for getProductsByBrandAndCategory with subCategory
+ *
+ * @example
+ * // Get all Wärtsilä air valve products
+ * getProductsByBrandAndSubcategory("wartsila-16", "air-valve")
+ */
+export const getProductsByBrandAndSubcategory = (
+  brandId: string,
+  subCategory: string
+): Product[] => {
+  return getProductsByBrandAndCategory(
+    brandId,
+    "marine-spare-parts",
+    subCategory
+  );
+};
+
+/**
  * ============================================================
  * BRAND FILTERING FUNCTIONS
  * ============================================================
