@@ -4,7 +4,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import { marineSparePartsItems } from "@/src/data/menuData";
-import { CategoryPageSkeleton } from "@/src/Components";
+import { CategoryPageSkeleton, NoItemsAvailable } from "@/src/Components";
 import { getBrandsByCategory } from "@/src/utils/dataUtils";
 import type { Brand } from "@/src/types";
 import styles from "./MarineSparePartDetail.module.scss";
@@ -114,59 +114,10 @@ export default function MarineSparePartDetailPage() {
           <div className="container">
             <h2>Available Brands</h2>
             {brands.length === 0 ? (
-              <div className="no-brands-available">
-                <svg
-                  width="100"
-                  height="100"
-                  viewBox="0 0 100 100"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ margin: "0 auto 20px", opacity: 0.6 }}
-                >
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="45"
-                    stroke="#ccc"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <path
-                    d="M 30 40 Q 50 60 70 40"
-                    stroke="#ccc"
-                    strokeWidth="3"
-                  />
-                  <circle cx="40" cy="35" r="3" fill="#ccc" />
-                  <circle cx="60" cy="35" r="3" fill="#ccc" />
-                </svg>
-                <h3>No Brands Available</h3>
-                <p>
-                  No brands with {sparePart.label.toLowerCase()} products are
-                  currently available.
-                </p>
-                <p
-                  style={{ fontSize: "14px", color: "#999", marginTop: "10px" }}
-                >
-                  Please check back soon as we continue to expand our{" "}
-                  {sparePart.label.toLowerCase()} inventory.
-                </p>
-                <Link
-                  href="/marine-spare-parts"
-                  style={{
-                    display: "inline-block",
-                    marginTop: "20px",
-                    padding: "10px 20px",
-                    backgroundColor: "#003366",
-                    color: "white",
-                    textDecoration: "none",
-                    borderRadius: "6px",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                  }}
-                >
-                  ← Back to Categories
-                </Link>
-              </div>
+              <NoItemsAvailable
+                itemType="brands"
+                message={`No brands with ${sparePart?.label.toLowerCase()} products are currently available.`}
+              />
             ) : (
               <div className={styles.brandsGrid}>
                 {brands.map((brand) => (

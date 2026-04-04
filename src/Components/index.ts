@@ -32,4 +32,7 @@ export {
   SparePartsGridSkeleton,
   CategoryPageSkeleton,
 } from "./Skeleton";
+
+// Empty State Components
+export { default as NoItemsAvailable } from "./NoItemsAvailable";
 // export { Error } from './Error';

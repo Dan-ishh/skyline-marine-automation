@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import { getBrandsByCategory } from "@/src/utils/dataUtils";
-import { CategoryPageSkeleton } from "@/src/Components";
+import { CategoryPageSkeleton, NoItemsAvailable } from "@/src/Components";
 
 export default function GeneratorsPage() {
   const router = useRouter();
@@ -77,9 +77,7 @@ export default function GeneratorsPage() {
           <div className="container">
             <h2>Available Brands</h2>
             {categoryBrands.length === 0 ? (
-              <div className="no-brands-available">
-                <p>No brands available in this category at the moment.</p>
-              </div>
+              <NoItemsAvailable itemType="brands" />
             ) : (
               <div className="brands-grid">
                 {categoryBrands.map((brand) => (

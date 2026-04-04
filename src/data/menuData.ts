@@ -100,15 +100,15 @@ export const mainCategories: MainCategory[] = [
 /**
  * MARINE SPARE PARTS SUB-ITEMS
  * These items appear in the popover menu on hover (desktop) or accordion (mobile)
- * Based on the provided image
+ * Currently showing only subcategories with products:
+ * - Connecting Rod: 21 products
+ * - Crankshaft: 23 products
+ * - Cylinder Liner: 60 products
+ * - Cylinder Head: 81 products
+ * - Piston: 64 products
  */
 export const marineSparePartsItems: MenuSubItem[] = [
-  {
-    id: "spare-air-valve",
-    label: "Air Valve",
-    slug: "air-valve",
-    href: "/marine-spare-parts/air-valve",
-  },
+  // ACTIVE SUBCATEGORIES WITH PRODUCTS
   {
     id: "spare-cylinder-head",
     label: "Cylinder head",
@@ -128,46 +128,10 @@ export const marineSparePartsItems: MenuSubItem[] = [
     href: "/marine-spare-parts/connecting-rod",
   },
   {
-    id: "spare-indicator-valve",
-    label: "Indicator Valve",
-    slug: "indicator-valve",
-    href: "/marine-spare-parts/indicator-valve",
-  },
-  {
-    id: "spare-piston-head",
-    label: "Piston Head",
-    slug: "piston-head",
-    href: "/marine-spare-parts/piston-head",
-  },
-  {
-    id: "spare-piston-rod",
-    label: "Piston Rod",
-    slug: "piston-rod",
-    href: "/marine-spare-parts/piston-rod",
-  },
-  {
-    id: "spare-piston-skirt",
-    label: "Piston Skirt",
-    slug: "piston-skirt",
-    href: "/marine-spare-parts/piston-skirt",
-  },
-  {
-    id: "spare-cylinder-head-water-jacket",
-    label: "Cylinder Head Water Jacket",
-    slug: "cylinder-head-water-jacket",
-    href: "/marine-spare-parts/cylinder-head-water-jacket",
-  },
-  {
-    id: "spare-cylinder-water-jacket",
-    label: "cylinder water jacket",
-    slug: "cylinder-water-jacket",
-    href: "/marine-spare-parts/cylinder-water-jacket",
-  },
-  {
-    id: "spare-camshaft",
-    label: "camshaft",
-    slug: "camshaft",
-    href: "/marine-spare-parts/camshaft",
+    id: "spare-piston",
+    label: "Piston",
+    slug: "piston",
+    href: "/marine-spare-parts/piston",
   },
   {
     id: "spare-crankshaft",
@@ -175,30 +139,62 @@ export const marineSparePartsItems: MenuSubItem[] = [
     slug: "crankshaft",
     href: "/marine-spare-parts/crankshaft",
   },
-  {
-    id: "spare-fuel-injector",
-    label: "Fuel injector",
-    slug: "fuel-injector",
-    href: "/marine-spare-parts/fuel-injector",
-  },
-  {
-    id: "spare-safety-valve",
-    label: "Safety valve",
-    slug: "safety-valve",
-    href: "/marine-spare-parts/safety-valve",
-  },
-  {
-    id: "spare-valve-box",
-    label: "Valve Box",
-    slug: "valve-box",
-    href: "/marine-spare-parts/valve-box",
-  },
-  {
-    id: "spare-valve-seat",
-    label: "Valve seat",
-    slug: "valve-seat",
-    href: "/marine-spare-parts/valve-seat",
-  },
+
+  // COMMENTED OUT SUBCATEGORIES (Coming Soon - No Products Yet)
+  // {
+  //   id: "spare-air-valve",
+  //   label: "Air Valve",
+  //   slug: "air-valve",
+  //   href: "/marine-spare-parts/air-valve",
+  // },
+  // {
+  //   id: "spare-indicator-valve",
+  //   label: "Indicator Valve",
+  //   slug: "indicator-valve",
+  //   href: "/marine-spare-parts/indicator-valve",
+  // },
+  // {
+  //   id: "spare-cylinder-head-water-jacket",
+  //   label: "Cylinder Head Water Jacket",
+  //   slug: "cylinder-head-water-jacket",
+  //   href: "/marine-spare-parts/cylinder-head-water-jacket",
+  // },
+  // {
+  //   id: "spare-cylinder-water-jacket",
+  //   label: "cylinder water jacket",
+  //   slug: "cylinder-water-jacket",
+  //   href: "/marine-spare-parts/cylinder-water-jacket",
+  // },
+  // {
+  //   id: "spare-camshaft",
+  //   label: "camshaft",
+  //   slug: "camshaft",
+  //   href: "/marine-spare-parts/camshaft",
+  // },
+  // {
+  //   id: "spare-fuel-injector",
+  //   label: "Fuel injector",
+  //   slug: "fuel-injector",
+  //   href: "/marine-spare-parts/fuel-injector",
+  // },
+  // {
+  //   id: "spare-safety-valve",
+  //   label: "Safety valve",
+  //   slug: "safety-valve",
+  //   href: "/marine-spare-parts/safety-valve",
+  // },
+  // {
+  //   id: "spare-valve-box",
+  //   label: "Valve Box",
+  //   slug: "valve-box",
+  //   href: "/marine-spare-parts/valve-box",
+  // },
+  // {
+  //   id: "spare-valve-seat",
+  //   label: "Valve seat",
+  //   slug: "valve-seat",
+  //   href: "/marine-spare-parts/valve-seat",
+  // },
 ];
 
 /**

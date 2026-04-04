@@ -37,6 +37,7 @@ export interface Product {
     | "cylinder-liner"
     | "connecting-rod"
     | "indicator-valve"
+    | "piston"
     | "piston-head"
     | "piston-rod"
     | "piston-skirt"
