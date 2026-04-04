@@ -22,146 +22,144 @@ export default function Home() {
   const { openInquiryModal } = useUIStore();
 
   // State for sliders
-  const [stockSlide, setStockSlide] = useState(0);
-  const [recentSlide, setRecentSlide] = useState(0);
+  const [marineSparePartsSlide, setMarineSparePartsSlide] = useState(0);
+  const [enginesSlide, setEnginesSlide] = useState(0);
+  const [generatorsSlide, setGeneratorsSlide] = useState(0);
 
   // Loading states
-  const [isLoadingStock, setIsLoadingStock] = useState(true);
-  const [isLoadingRecent, setIsLoadingRecent] = useState(true);
+  const [isLoadingMarineSparePartsSlide, setIsLoadingMarineSparePartsSlide] =
+    useState(true);
+  const [isLoadingEnginesSlide, setIsLoadingEnginesSlide] = useState(true);
+  const [isLoadingGeneratorsSlide, setIsLoadingGeneratorsSlide] =
+    useState(true);
 
-  // Specific stock brands to showcase with custom slugs
-  const stockBrands = [
-    { name: "STORK WERKSPOOR", slug: "stork-werkspoor" },
-    { name: "MAN B&W MAIN ENGINE", slug: "man-bandw-main-engine" },
-    { name: "SCHALLER", slug: "schaller" },
-    { name: "INGERSOLL RAND", slug: "ingersoll-rand" },
-    { name: "DAIHATSU", slug: "daihatsu" },
-    { name: "ALLEN DIESEL", slug: "allen-diesel" },
-    { name: "YANMAR", slug: "yanmar" },
-    { name: "BREATHING COMPRESSOR", slug: "breathing-compressor" },
-    { name: "WARTSILA", slug: "wartsila" },
-  ];
-
-  // Get featured stock brands with their data
-  const stockBrandsWithInquiries = stockBrands
-    .map((stockBrand) => {
-      // Try to find matching brand in brands data
-      const matchingBrand = brands.find((brand) => {
-        const brandUpper = brand.name.toUpperCase();
-        const stockUpper = stockBrand.name.toUpperCase();
-        // Check for partial matches
-        return (
-          brandUpper.includes(stockUpper) ||
-          stockUpper.includes(brandUpper) ||
-          brandUpper
-            .replace(/\s+/g, "")
-            .includes(stockUpper.replace(/\s+/g, ""))
-        );
-      });
-
-      if (matchingBrand) {
-        // Use existing brand data but override slug and displayName
-        const brandProducts = products.filter(
-          (p) => p.brandId === matchingBrand.id && p.inStock
-        );
-        const totalInquiries = brandProducts.reduce(
-          (sum, p) => sum + p.enquiryCount,
-          0
-        );
-        return {
-          ...matchingBrand,
-          displayName: stockBrand.name, // Use the display name from stockBrands
-          slug: stockBrand.slug, // Use custom slug from stockBrands
-          totalInquiries,
-          stockCount: brandProducts.length,
-        };
-      } else {
-        // Create placeholder for brands not in data
-        return {
-          id: `placeholder-${stockBrand.slug}`,
-          name: stockBrand.name,
-          displayName: stockBrand.name,
-          slug: stockBrand.slug,
-          logo: "/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg",
-          description: `${stockBrand.name} marine equipment`,
-          website: "#",
-          productCount: 0,
-          totalInquiries: 0,
-          stockCount: 5, // Placeholder stock count
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      }
-    })
-    .filter((brand) => brand.stockCount > 0);
-
-  // Get 10 most recent products (sorted by createdAt)
-  const recentProducts = [...products]
+  // Get 20 most recent Marine Spare Parts products (regardless of sub-category)
+  const recentMarineSparePartsProducts = [...products]
+    .filter((p) => p.mainCategory === "marine-spare-parts")
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     )
-    .slice(0, 10);
+    .slice(0, 20);
 
-  // Simulate loading for stock brands
+  // Get 20 most recent Complete Engine products
+  const recentEnginesProducts = [...products]
+    .filter((p) => p.mainCategory === "complete-engine")
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+    .slice(0, 20);
+
+  // Get 20 most recent Generators products
+  const recentGeneratorsProducts = [...products]
+    .filter((p) => p.mainCategory === "generators")
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+    .slice(0, 20);
+
+  // Simulate loading for Marine Spare Parts
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoadingStock(false);
+      setIsLoadingMarineSparePartsSlide(false);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Simulate loading for recent products
+  // Simulate loading for Engines
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoadingRecent(false);
+      setIsLoadingEnginesSlide(false);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Auto-rotate stock brands slider every 4 seconds
+  // Simulate loading for Generators
   useEffect(() => {
-    if (stockBrandsWithInquiries.length > 0) {
+    const timer = setTimeout(() => {
+      setIsLoadingGeneratorsSlide(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Auto-rotate marine spare parts slider every 4 seconds
+  useEffect(() => {
+    if (recentMarineSparePartsProducts.length > 0) {
       const interval = setInterval(() => {
-        setStockSlide(
-          (prev) => (prev + 1) % Math.ceil(stockBrandsWithInquiries.length / 4)
+        setMarineSparePartsSlide(
+          (prev) =>
+            (prev + 1) % Math.ceil(recentMarineSparePartsProducts.length / 4)
         );
       }, 4000);
       return () => clearInterval(interval);
     }
-  }, [stockBrandsWithInquiries.length]);
+  }, [recentMarineSparePartsProducts.length]);
 
-  // Auto-rotate recent products slider every 4 seconds
+  // Auto-rotate engines slider every 4 seconds
   useEffect(() => {
-    if (recentProducts.length > 0) {
+    if (recentEnginesProducts.length > 0) {
       const interval = setInterval(() => {
-        setRecentSlide(
-          (prev) => (prev + 1) % Math.ceil(recentProducts.length / 4)
+        setEnginesSlide(
+          (prev) => (prev + 1) % Math.ceil(recentEnginesProducts.length / 4)
         );
       }, 4000);
       return () => clearInterval(interval);
     }
-  }, [recentProducts.length]);
+  }, [recentEnginesProducts.length]);
 
-  const nextStockSlide = () => {
-    setStockSlide(
-      (prev) => (prev + 1) % Math.ceil(stockBrandsWithInquiries.length / 4)
+  // Auto-rotate generators slider every 4 seconds
+  useEffect(() => {
+    if (recentGeneratorsProducts.length > 0) {
+      const interval = setInterval(() => {
+        setGeneratorsSlide(
+          (prev) => (prev + 1) % Math.ceil(recentGeneratorsProducts.length / 4)
+        );
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [recentGeneratorsProducts.length]);
+
+  // Navigation functions for Marine Spare Parts
+  const nextMarineSparePartsSlide = () => {
+    setMarineSparePartsSlide(
+      (prev) =>
+        (prev + 1) % Math.ceil(recentMarineSparePartsProducts.length / 4)
     );
   };
 
-  const prevStockSlide = () => {
-    setStockSlide((prev) =>
-      prev === 0 ? Math.ceil(stockBrandsWithInquiries.length / 4) - 1 : prev - 1
+  const prevMarineSparePartsSlide = () => {
+    setMarineSparePartsSlide((prev) =>
+      prev === 0
+        ? Math.ceil(recentMarineSparePartsProducts.length / 4) - 1
+        : prev - 1
     );
   };
 
-  const nextRecentSlide = () => {
-    setRecentSlide((prev) => (prev + 1) % Math.ceil(recentProducts.length / 4));
+  // Navigation functions for Engines
+  const nextEnginesSlide = () => {
+    setEnginesSlide(
+      (prev) => (prev + 1) % Math.ceil(recentEnginesProducts.length / 4)
+    );
   };
 
-  const prevRecentSlide = () => {
-    setRecentSlide((prev) =>
-      prev === 0 ? Math.ceil(recentProducts.length / 4) - 1 : prev - 1
+  const prevEnginesSlide = () => {
+    setEnginesSlide((prev) =>
+      prev === 0 ? Math.ceil(recentEnginesProducts.length / 4) - 1 : prev - 1
+    );
+  };
+
+  // Navigation functions for Generators
+  const nextGeneratorsSlide = () => {
+    setGeneratorsSlide(
+      (prev) => (prev + 1) % Math.ceil(recentGeneratorsProducts.length / 4)
+    );
+  };
+
+  const prevGeneratorsSlide = () => {
+    setGeneratorsSlide((prev) =>
+      prev === 0 ? Math.ceil(recentGeneratorsProducts.length / 4) - 1 : prev - 1
     );
   };
 
@@ -172,6 +170,8 @@ export default function Home() {
   const handleInventoryClick = () => {
     router.push("/marine-spare-parts");
   };
+
+  console.log("recentMarineSparePartsProducts", recentMarineSparePartsProducts);
 
   return (
     <>
@@ -267,14 +267,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Available Stock Brands Slider */}
-        <section className="home-page__stock-section">
+        {/* Recent Marine Spare Parts Slider */}
+        <section className="home-page__slider-section home-page__slider-section--marine-spare-parts">
           <div className="container">
             <div className="home-page__slider-header">
               <h2 className="home-page__slider-title">
-                Available <span>Stock</span>
+                Recent <span>Marine Spare Parts</span>
               </h2>
-              <Link href="/stock" className="home-page__view-all">
+              <Link href="/marine-spare-parts" className="home-page__view-all">
                 View All →
               </Link>
             </div>
@@ -282,8 +282,9 @@ export default function Home() {
             <div className="home-page__carousel">
               <button
                 className="home-page__carousel-btn home-page__carousel-btn--prev"
-                onClick={prevStockSlide}
+                onClick={prevMarineSparePartsSlide}
                 aria-label="Previous"
+                disabled={recentMarineSparePartsProducts.length === 0}
               >
                 ‹
               </button>
@@ -291,93 +292,32 @@ export default function Home() {
               <div className="home-page__carousel-track">
                 <div
                   className="home-page__carousel-slides"
-                  style={{ transform: `translateX(-${stockSlide * 100}%)` }}
+                  style={{
+                    transform: `translateX(-${marineSparePartsSlide * 100}%)`,
+                  }}
                 >
-                  {isLoadingStock
-                    ? Array.from({ length: 4 }).map((_, index) => (
-                        <BrandCardSkeleton key={index} />
-                      ))
-                    : stockBrandsWithInquiries.map((brand) => (
-                        <Link
-                          key={brand.id}
-                          href={`/stock/${brand.slug}`}
-                          className="home-page__stock-brand-card"
-                        >
-                          <div className="home-page__stock-brand-image">
-                            <img
-                              src={brand.logo}
-                              alt={brand.displayName || brand.name}
-                            />
-                            <div className="home-page__stock-brand-overlay">
-                              <span className="home-page__stock-brand-name">
-                                {brand.displayName || brand.name}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="home-page__stock-brand-info">
-                            <p className="home-page__stock-brand-count">
-                              {brand.stockCount}{" "}
-                              {brand.stockCount === 1 ? "product" : "products"}{" "}
-                              {/* in stock */}
-                            </p>
-                          </div>
-                        </Link>
-                      ))}
-                </div>
-              </div>
-
-              <button
-                className="home-page__carousel-btn home-page__carousel-btn--next"
-                onClick={nextStockSlide}
-                aria-label="Next"
-              >
-                ›
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Recent Products Slider */}
-        <section className="home-page__slider-section home-page__slider-section--recent">
-          <div className="container">
-            <div className="home-page__slider-header">
-              <h2 className="home-page__slider-title">
-                Recent <span>Products</span>
-              </h2>
-              <Link href="/products" className="home-page__view-all">
-                View All →
-              </Link>
-            </div>
-
-            <div className="home-page__carousel">
-              <button
-                className="home-page__carousel-btn home-page__carousel-btn--prev"
-                onClick={prevRecentSlide}
-                aria-label="Previous"
-              >
-                ‹
-              </button>
-
-              <div className="home-page__carousel-track">
-                <div
-                  className="home-page__carousel-slides"
-                  style={{ transform: `translateX(-${recentSlide * 100}%)` }}
-                >
-                  {isLoadingRecent
+                  {isLoadingMarineSparePartsSlide
                     ? Array.from({ length: 4 }).map((_, index) => (
                         <ProductCardSkeleton key={index} />
                       ))
-                    : recentProducts.map((product) => (
+                    : recentMarineSparePartsProducts.map((product) => (
                         <Link
                           key={product.id}
                           href={`/products/${product.slug}`}
                           className="home-page__product-card"
                         >
                           <div className="home-page__product-image">
-                            <img src={product.thumbnail} alt={product.name} />
+                            <img
+                              src={product.thumbnail}
+                              alt={product.name}
+                              onError={(e) => {
+                                e.currentTarget.src =
+                                  "/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg";
+                              }}
+                            />
                             <div className="home-page__product-overlay">
                               <span className="home-page__product-category">
-                                {getProductCategoryName(product)}
+                                Marine Spare Parts
                               </span>
                             </div>
                           </div>
@@ -386,8 +326,7 @@ export default function Home() {
                               {product.name}
                             </h3>
                             <p className="home-page__product-brand">
-                              {getProductCategoryName(product) ||
-                                "Unknown Category"}
+                              {getProductCategoryName(product)}
                             </p>
                             {product.enquiryCount > 0 && (
                               <span className="home-page__enquiry-badge">
@@ -402,8 +341,175 @@ export default function Home() {
 
               <button
                 className="home-page__carousel-btn home-page__carousel-btn--next"
-                onClick={nextRecentSlide}
+                onClick={nextMarineSparePartsSlide}
                 aria-label="Next"
+                disabled={recentMarineSparePartsProducts.length === 0}
+              >
+                ›
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Recent Complete Engines Slider */}
+        <section className="home-page__slider-section home-page__slider-section--engines">
+          <div className="container">
+            <div className="home-page__slider-header">
+              <h2 className="home-page__slider-title">
+                Recent <span>Complete Engines</span>
+              </h2>
+              <Link href="/complete-engine" className="home-page__view-all">
+                View All →
+              </Link>
+            </div>
+
+            <div className="home-page__carousel">
+              <button
+                className="home-page__carousel-btn home-page__carousel-btn--prev"
+                onClick={prevEnginesSlide}
+                aria-label="Previous"
+                disabled={recentEnginesProducts.length === 0}
+              >
+                ‹
+              </button>
+
+              <div className="home-page__carousel-track">
+                <div
+                  className="home-page__carousel-slides"
+                  style={{ transform: `translateX(-${enginesSlide * 100}%)` }}
+                >
+                  {isLoadingEnginesSlide
+                    ? Array.from({ length: 4 }).map((_, index) => (
+                        <ProductCardSkeleton key={index} />
+                      ))
+                    : recentEnginesProducts.map((product) => (
+                        <Link
+                          key={product.id}
+                          href={`/products/${product.slug}`}
+                          className="home-page__product-card"
+                        >
+                          <div className="home-page__product-image">
+                            <img
+                              src={product.thumbnail}
+                              alt={product.name}
+                              onError={(e) => {
+                                e.currentTarget.src =
+                                  "/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg";
+                              }}
+                            />
+                            <div className="home-page__product-overlay">
+                              <span className="home-page__product-category">
+                                Complete Engine
+                              </span>
+                            </div>
+                          </div>
+                          <div className="home-page__product-info">
+                            <h3 className="home-page__product-name">
+                              {product.name}
+                            </h3>
+                            <p className="home-page__product-brand">
+                              {getProductCategoryName(product)}
+                            </p>
+                            {product.enquiryCount > 0 && (
+                              <span className="home-page__enquiry-badge">
+                                {product.enquiryCount} enquiries
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
+                </div>
+              </div>
+
+              <button
+                className="home-page__carousel-btn home-page__carousel-btn--next"
+                onClick={nextEnginesSlide}
+                aria-label="Next"
+                disabled={recentEnginesProducts.length === 0}
+              >
+                ›
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Recent Generators Slider */}
+        <section className="home-page__slider-section home-page__slider-section--generators">
+          <div className="container">
+            <div className="home-page__slider-header">
+              <h2 className="home-page__slider-title">
+                Recent <span>Generators</span>
+              </h2>
+              <Link href="/generators" className="home-page__view-all">
+                View All →
+              </Link>
+            </div>
+
+            <div className="home-page__carousel">
+              <button
+                className="home-page__carousel-btn home-page__carousel-btn--prev"
+                onClick={prevGeneratorsSlide}
+                aria-label="Previous"
+                disabled={recentGeneratorsProducts.length === 0}
+              >
+                ‹
+              </button>
+
+              <div className="home-page__carousel-track">
+                <div
+                  className="home-page__carousel-slides"
+                  style={{
+                    transform: `translateX(-${generatorsSlide * 100}%)`,
+                  }}
+                >
+                  {isLoadingGeneratorsSlide
+                    ? Array.from({ length: 4 }).map((_, index) => (
+                        <ProductCardSkeleton key={index} />
+                      ))
+                    : recentGeneratorsProducts.map((product) => (
+                        <Link
+                          key={product.id}
+                          href={`/products/${product.slug}`}
+                          className="home-page__product-card"
+                        >
+                          <div className="home-page__product-image">
+                            <img
+                              src={product.thumbnail}
+                              alt={product.name}
+                              onError={(e) => {
+                                e.currentTarget.src =
+                                  "/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg";
+                              }}
+                            />
+                            <div className="home-page__product-overlay">
+                              <span className="home-page__product-category">
+                                Generators
+                              </span>
+                            </div>
+                          </div>
+                          <div className="home-page__product-info">
+                            <h3 className="home-page__product-name">
+                              {product.name}
+                            </h3>
+                            <p className="home-page__product-brand">
+                              {getProductCategoryName(product)}
+                            </p>
+                            {product.enquiryCount > 0 && (
+                              <span className="home-page__enquiry-badge">
+                                {product.enquiryCount} enquiries
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
+                </div>
+              </div>
+
+              <button
+                className="home-page__carousel-btn home-page__carousel-btn--next"
+                onClick={nextGeneratorsSlide}
+                aria-label="Next"
+                disabled={recentGeneratorsProducts.length === 0}
               >
                 ›
               </button>

@@ -10,8 +10,10 @@ export default function Footer() {
 
   const quickLinks = [
     { label: "Home", href: "/" },
-    { label: "Stock", href: "/stock" },
-    { label: "Products", href: "/products" },
+    { label: "Marine Spare Parts", href: "/marine-spare-parts" },
+    { label: "Complete Engines", href: "/complete-engine" },
+    { label: "Generators", href: "/generators" },
+    { label: "Turbochargers", href: "/turbochargers" },
     { label: "Contact Us", href: "/contact" },
   ];
 

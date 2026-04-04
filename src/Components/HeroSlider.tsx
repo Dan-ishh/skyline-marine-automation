@@ -25,7 +25,7 @@ const slides: Slide[] = [
       "Your trusted source for high-quality marine engines, automation systems, and equipment",
     image: "/Assets/images/Banner/ship-engine.jpg",
     cta: "Explore Products",
-    ctaLink: "/products",
+    ctaLink: "/marine-spare-parts",
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const slides: Slide[] = [
       "State-of-the-art automation and control systems for modern vessels",
     image: "/Assets/images/Banner/panel.jpg",
     cta: "View Automation",
-    ctaLink: "/stock",
+    ctaLink: "/generators",
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ const slides: Slide[] = [
     description: "Reliable power solutions from world-leading manufacturers",
     image: "/Assets/images/Banner/shipport.jpg",
     cta: "Discover More",
-    ctaLink: "/products",
+    ctaLink: "/complete-engine",
   },
   //   {
   //     id: 4,
