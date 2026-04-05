@@ -9,7 +9,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getProductCategoryName } from "@/src/utils/productUtils";
-import { useProductStore, useUIStore } from "@/src/store";
+import { useUIStore } from "@/src/store";
 import {
   HeroSlider,
   BrandCardSkeleton,
@@ -49,7 +49,11 @@ export default function Home() {
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     )
-    .slice(0, 20);
+    .slice(0, 20)
+    .map((product) => ({
+      ...product,
+      brandSlug: brands.find((b) => b.id === product.brandId)?.slug,
+    }));
 
   // Get 20 most recent Generators products
   const recentGeneratorsProducts = [...products]
@@ -58,7 +62,11 @@ export default function Home() {
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     )
-    .slice(0, 20);
+    .slice(0, 20)
+    .map((product) => ({
+      ...product,
+      brandSlug: brands.find((b) => b.id === product.brandId)?.slug,
+    }));
 
   // Simulate loading for Marine Spare Parts
   useEffect(() => {
@@ -170,8 +178,6 @@ export default function Home() {
   const handleInventoryClick = () => {
     router.push("/marine-spare-parts");
   };
-
-  console.log("recentMarineSparePartsProducts", recentMarineSparePartsProducts);
 
   return (
     <>
@@ -303,12 +309,12 @@ export default function Home() {
                     : recentMarineSparePartsProducts.map((product) => (
                         <Link
                           key={product.id}
-                          href={`/products/${product.slug}`}
+                          href={`/marine-spare-parts/${product?.subCategory}/product/${product.slug}`}
                           className="home-page__product-card"
                         >
                           <div className="home-page__product-image">
                             <img
-                              src={product.thumbnail}
+                              src={product.images?.[0] || product.thumbnail}
                               alt={product.name}
                               onError={(e) => {
                                 e.currentTarget.src =
@@ -385,12 +391,12 @@ export default function Home() {
                     : recentEnginesProducts.map((product) => (
                         <Link
                           key={product.id}
-                          href={`/products/${product.slug}`}
+                          href={`complete-engine/${product.brandSlug}/${product.slug}`}
                           className="home-page__product-card"
                         >
                           <div className="home-page__product-image">
                             <img
-                              src={product.thumbnail}
+                              src={product.images?.[0] || product.thumbnail}
                               alt={product.name}
                               onError={(e) => {
                                 e.currentTarget.src =
@@ -469,12 +475,12 @@ export default function Home() {
                     : recentGeneratorsProducts.map((product) => (
                         <Link
                           key={product.id}
-                          href={`/products/${product.slug}`}
+                          href={`/generators/${product.brandSlug}/${product.slug}`}
                           className="home-page__product-card"
                         >
                           <div className="home-page__product-image">
                             <img
-                              src={product.thumbnail}
+                              src={product.images?.[0] || product.thumbnail}
                               alt={product.name}
                               onError={(e) => {
                                 e.currentTarget.src =

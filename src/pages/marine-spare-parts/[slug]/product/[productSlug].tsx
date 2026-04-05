@@ -1,10 +1,7 @@
 /**
- * Complete Engine Product Detail Page
- * Route: /complete-engine/[brandSlug]/[productSlug]
- * Displays detailed information about a specific complete engine product
- *
- * Example: /complete-engine/caterpillar/cat-c32-diesel-generator-806kw-2019
- * Shows: Full product details, specifications, images, inquiry form
+ * Marine Spare Parts Product Detail Page - Catch-all Route
+ * Route: /marine-spare-parts/[slug]/product/[productSlug]
+ * Displays detailed information about a specific marine spare parts product
  */
 
 import { useEffect, useState } from "react";
@@ -12,68 +9,66 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { useBrandStore, useUIStore } from "@/src/store";
+import { useUIStore } from "@/src/store";
 import { CategoryPageSkeleton } from "@/src/Components";
 import {
-  getProductsByBrandAndCategory,
-  getCategoryBreadcrumb,
+  getProductsByBrandAndSubcategory,
   getProductBySlug,
+  getBrandById,
 } from "@/src/utils/dataUtils";
-import type { Product } from "@/src/types";
+import { marineSparePartsItems } from "@/src/data/menuData";
+import type { Product, Brand } from "@/src/types";
 import styles from "./ProductDetail.module.scss";
 
-const CATEGORY = "complete-engine";
-
-export default function CompleteEngineProductDetailPage() {
+export default function MarineSparePartProductDetailPage() {
   const router = useRouter();
-  const { brandSlug, productSlug } = router.query;
-
-  const {
-    selectedBrand,
-    loading: brandLoading,
-    fetchBrandBySlug,
-  } = useBrandStore();
-
+  const { slug, productSlug } = router.query;
   const { openInquiryModal } = useUIStore();
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [brand, setBrand] = useState<Brand | null>(null);
+  const [sparePart, setSparePart] = useState<any>(null);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [linkCopied, setLinkCopied] = useState(false);
 
-  // Fetch brand when slug changes
+  // Initialize component
   useEffect(() => {
-    if (brandSlug && typeof brandSlug === "string") {
-      fetchBrandBySlug(brandSlug);
-    }
-  }, [brandSlug, fetchBrandBySlug]);
+    if (slug && productSlug) {
+      // Find the spare part category
+      const slugStr = typeof slug === "string" ? slug : slug[0];
+      const productSlugStr =
+        typeof productSlug === "string" ? productSlug : productSlug[0];
 
-  // Fetch product and related products when brand and product slug change
-  useEffect(() => {
-    if (productSlug && typeof productSlug === "string" && selectedBrand) {
-      // Get the specific product
-      const foundProduct = getProductBySlug(productSlug);
+      const sparePartItem = marineSparePartsItems.find(
+        (item) => item.slug === slugStr
+      );
+      setSparePart(sparePartItem);
 
-      if (
-        foundProduct &&
-        foundProduct.brandId === selectedBrand.id &&
-        foundProduct.mainCategory === CATEGORY
-      ) {
+      // Find the product by slug
+      const foundProduct = getProductBySlug(productSlugStr);
+      if (foundProduct && sparePartItem) {
         setProduct(foundProduct);
 
-        // Get related products (same brand, same category, exclude current)
-        const related = getProductsByBrandAndCategory(
-          selectedBrand.id,
-          CATEGORY
-        ).filter((p) => p.id !== foundProduct.id);
-
-        setRelatedProducts(related);
+        // Get the brand
+        if (foundProduct.brandId) {
+          const foundBrand = getBrandById(foundProduct.brandId);
+          if (foundBrand) {
+            setBrand(foundBrand);
+            // Get related products (same brand, same category, exclude current)
+            const related = getProductsByBrandAndSubcategory(
+              foundProduct.brandId,
+              slugStr
+            ).filter((p) => p.id !== foundProduct.id);
+            setRelatedProducts(related);
+          }
+        }
       }
 
       setIsLoading(false);
     }
-  }, [productSlug, selectedBrand]);
+  }, [slug, productSlug]);
 
   // Handle image carousel
   const nextImage = () => {
@@ -100,7 +95,7 @@ export default function CompleteEngineProductDetailPage() {
   };
 
   // Loading state
-  if (isLoading || brandLoading) {
+  if (isLoading) {
     return (
       <>
         <Head>
@@ -113,8 +108,8 @@ export default function CompleteEngineProductDetailPage() {
     );
   }
 
-  // Product not found or doesn't belong to this brand/category
-  if (!product) {
+  // Product not found
+  if (!product || !sparePart) {
     return (
       <>
         <Head>
@@ -124,13 +119,15 @@ export default function CompleteEngineProductDetailPage() {
           <section className={styles.errorSection}>
             <h1>Product Not Found</h1>
             <p>The product you're looking for doesn't exist.</p>
-            {selectedBrand && (
-              <Link href={`/complete-engine/${selectedBrand.slug}`}>
-                ← Back to {selectedBrand.name}
+            {sparePart && (
+              <Link href={`/marine-spare-parts/${sparePart.slug}`}>
+                ← Back to {sparePart.label}
               </Link>
             )}
-            {!selectedBrand && (
-              <Link href="/complete-engine">← Back to Complete Engine</Link>
+            {!sparePart && (
+              <Link href="/marine-spare-parts">
+                ← Back to Marine Spare Parts
+              </Link>
             )}
           </section>
         </main>
@@ -138,25 +135,6 @@ export default function CompleteEngineProductDetailPage() {
     );
   }
 
-  // Brand not found
-  if (!selectedBrand) {
-    return (
-      <>
-        <Head>
-          <title>Brand Not Found - Skyline Marine Automation</title>
-        </Head>
-        <main className={styles.productDetailPage}>
-          <section className={styles.errorSection}>
-            <h1>Brand Not Found</h1>
-            <p>The brand you're looking for doesn't exist.</p>
-            <Link href="/complete-engine">← Back to Complete Engine</Link>
-          </section>
-        </main>
-      </>
-    );
-  }
-
-  const categoryBreadcrumb = getCategoryBreadcrumb(CATEGORY);
   const currentImage =
     product.images && product.images.length > 0
       ? product.images[currentImageIndex]
@@ -166,7 +144,7 @@ export default function CompleteEngineProductDetailPage() {
     <>
       <Head>
         <title>
-          {product.name} - {selectedBrand.name} - Complete Engine - Skyline
+          {product.name} - {brand?.name || "Marine Spare Parts"} - Skyline
           Marine Automation
         </title>
         <meta name="description" content={product.description} />
@@ -180,13 +158,21 @@ export default function CompleteEngineProductDetailPage() {
         <nav className={styles.breadcrumb}>
           <Link href="/">Home</Link>
           <span className={styles.separator}>/</span>
-          <Link href={`/${categoryBreadcrumb.slug}`}>
-            {categoryBreadcrumb.name}
-          </Link>
+          <Link href="/marine-spare-parts">Marine Spare Parts</Link>
           <span className={styles.separator}>/</span>
-          <Link href={`/complete-engine/${selectedBrand.slug}`}>
-            {selectedBrand.name}
+          <Link href={`/marine-spare-parts/${sparePart.slug}`}>
+            {sparePart.label}
           </Link>
+          {brand && (
+            <>
+              <span className={styles.separator}>/</span>
+              <Link
+                href={`/marine-spare-parts/${sparePart.slug}/${brand.slug}`}
+              >
+                {brand.name}
+              </Link>
+            </>
+          )}
           <span className={styles.separator}>/</span>
           <span className={styles.current}>{product.name}</span>
         </nav>
@@ -199,7 +185,7 @@ export default function CompleteEngineProductDetailPage() {
               <div className={styles.mainImage}>
                 {currentImage ? (
                   <Image
-                    src={selectedBrand.logo}
+                    src={currentImage}
                     alt={product.name}
                     width={500}
                     height={400}
@@ -257,25 +243,25 @@ export default function CompleteEngineProductDetailPage() {
             {/* Product Info Section */}
             <div className={styles.infoSection}>
               {/* Brand Info */}
-              {/* {selectedBrand.logo && (
+              {brand?.logo && (
                 <div className={styles.brandBadge}>
                   <Image
-                    src={selectedBrand.logo}
-                    alt={selectedBrand.name}
+                    src={brand.logo}
+                    alt={brand.name}
                     width={80}
                     height={50}
                     objectFit="contain"
                   />
                 </div>
-              )} */}
+              )}
 
               {/* Product Title */}
               <h1 className={styles.productTitle}>{product.name}</h1>
 
               {/* Product Meta */}
               <div className={styles.productMeta}>
-                <span className={styles.category}>Complete Engine</span>
-                <span className={styles.brand}>{selectedBrand.name}</span>
+                <span className={styles.category}>{sparePart.label}</span>
+                {brand && <span className={styles.brand}>{brand.name}</span>}
                 {product.inStock && (
                   <span className={styles.inStock}>In Stock</span>
                 )}
@@ -315,8 +301,8 @@ export default function CompleteEngineProductDetailPage() {
                     openInquiryModal({
                       productId: product.id,
                       productName: product.name,
-                      brandId: selectedBrand.id,
-                      brandName: selectedBrand.name,
+                      brandId: brand?.id || "",
+                      brandName: brand?.name || "Marine Spare Parts",
                     })
                   }
                 >
@@ -339,7 +325,7 @@ export default function CompleteEngineProductDetailPage() {
                 </div>
                 <div className={styles.infoItem}>
                   <span className={styles.label}>Category:</span>
-                  <span className={styles.value}>Complete Engine</span>
+                  <span className={styles.value}>{sparePart.label}</span>
                 </div>
                 {product.createdAt && (
                   <div className={styles.infoItem}>
@@ -358,17 +344,27 @@ export default function CompleteEngineProductDetailPage() {
         {relatedProducts.length > 0 && (
           <section className={styles.relatedProducts}>
             <div className="container">
-              <h2>More {selectedBrand.name} Complete Engine Products</h2>
+              <h2>
+                More {brand?.name} {sparePart.label} Products
+              </h2>
               <div className={styles.productsGrid}>
                 {relatedProducts.slice(0, 6).map((relProduct) => (
                   <div key={relProduct.id} className={styles.productCard}>
                     <Link
-                      href={`/complete-engine/${selectedBrand.slug}/${relProduct.slug}`}
+                      href={`/marine-spare-parts/${sparePart.slug}/product/${relProduct.slug}`}
                     >
                       <div className={styles.productImage}>
                         {relProduct.images && relProduct.images.length > 0 ? (
                           <Image
                             src={relProduct.images[0]}
+                            alt={relProduct.name}
+                            width={300}
+                            height={200}
+                            objectFit="cover"
+                          />
+                        ) : relProduct.thumbnail ? (
+                          <Image
+                            src={relProduct.thumbnail}
                             alt={relProduct.name}
                             width={300}
                             height={200}
@@ -397,12 +393,60 @@ export default function CompleteEngineProductDetailPage() {
         {/* Back Button */}
         <section className={styles.backSection}>
           <div className="container">
-            <Link href={`/complete-engine/${selectedBrand.slug}`}>
-              ← Back to {selectedBrand.name} Products
-            </Link>
+            {brand ? (
+              <Link
+                href={`/marine-spare-parts/${sparePart.slug}/${brand.slug}`}
+              >
+                ← Back to {brand.name} Products
+              </Link>
+            ) : (
+              <Link href={`/marine-spare-parts/${sparePart.slug}`}>
+                ← Back to {sparePart.label}
+              </Link>
+            )}
           </div>
         </section>
       </main>
     </>
   );
+}
+
+export async function getStaticProps({
+  params,
+}: {
+  params: { slug: string; productSlug: string };
+}) {
+  // Validate that the slug exists in marine spare parts
+  const validSlug = marineSparePartsItems.some(
+    (item) => item.slug === params.slug
+  );
+
+  if (!validSlug) {
+    return {
+      notFound: true,
+    };
+  }
+
+  // Validate that the product exists
+  const product = getProductBySlug(params.productSlug);
+  if (!product) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {},
+    revalidate: 3600, // Revalidate every hour
+  };
+}
+
+export async function getStaticPaths() {
+  // Generate paths for all product slugs across all marine spare parts categories
+  // We'll use fallback: 'blocking' to generate pages on-demand
+  // This is more efficient than pre-generating all paths at build time
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
 }

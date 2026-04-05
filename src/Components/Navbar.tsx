@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { mainNavigation, marineSparePartsItems } from "@/src/data/menuData";
+import Searchbar from "./Searchbar";
 
 export default function Navbar() {
   const router = useRouter();
@@ -128,7 +129,8 @@ export default function Navbar() {
         </div>
 
         <nav className="navbar__main">
-          <div className="navbar__container">
+          {/* Top Row: Logo + Searchbar + CTA */}
+          <div className="navbar__container navbar__container--top">
             <Link href="/" className="navbar__logo">
               <Image
                 src="/Assets/images/Banner/skyline-black.svg"
@@ -139,6 +141,28 @@ export default function Navbar() {
               />
             </Link>
 
+            <Searchbar />
+
+            <Link href="/contact" className="navbar__cta">
+              Request a Free Quote
+            </Link>
+
+            <button
+              className={`navbar__hamburger ${
+                isMobileMenuOpen ? "navbar__hamburger--active" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <span className="navbar__hamburger-line"></span>
+              <span className="navbar__hamburger-line"></span>
+              <span className="navbar__hamburger-line"></span>
+            </button>
+          </div>
+
+          {/* Bottom Row: Navigation Menu */}
+          <div className="navbar__container navbar__container--bottom">
             <ul className="navbar__nav">
               {mainNavigation.map((link) => (
                 <li
@@ -214,23 +238,6 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-
-            <Link href="/contact" className="navbar__cta">
-              Request a Free Quote
-            </Link>
-
-            <button
-              className={`navbar__hamburger ${
-                isMobileMenuOpen ? "navbar__hamburger--active" : ""
-              }`}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle mobile menu"
-              aria-expanded={isMobileMenuOpen}
-            >
-              <span className="navbar__hamburger-line"></span>
-              <span className="navbar__hamburger-line"></span>
-              <span className="navbar__hamburger-line"></span>
-            </button>
           </div>
         </nav>
 

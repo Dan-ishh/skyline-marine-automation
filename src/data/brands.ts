@@ -67,7 +67,7 @@ export const brands: Brand[] = [
     id: "man-bw-6",
     name: "MAN B&W",
     slug: "man-bw",
-    logo: "/Assets/images/Logos/MAN.jpg",
+    logo: "/Assets/images/Logos/Man-logo.png",
     description: "World-leading two-stroke marine diesel engines.",
     website: "https://www.man-es.com",
     productCount: 60,

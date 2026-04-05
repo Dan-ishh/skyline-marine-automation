@@ -169,15 +169,15 @@ export default function InquiryPopup({
         phone: phoneValue, // Use the international phone format
         subject: `${formData.subject} - Skyline Marine Inquiry`,
         message: `
-Company: ${formData.companyName || "Not provided"}
-Phone: ${phoneValue}
-Product: ${prefilledData?.productName || "General Inquiry"}
+          Company: ${formData.companyName || "Not provided"}
+          Phone: ${phoneValue}
+          Product: ${prefilledData?.productName || "General Inquiry"}
 
-Message:
-${formData.message}
+          Message:
+          ${formData.message}
 
----
-Submitted via Skyline Marine website
+          ---
+          Submitted via Skyline Marine website
         `.trim(),
         from_name: formData.name,
         replyto: formData.email,
@@ -224,13 +224,13 @@ Submitted via Skyline Marine website
 
         // Show user-friendly error
         alert(
-          `Unable to send inquiry: ${errorMessage}\n\nPlease try again or contact us directly at skylinemarine1993@gmail.com`
+          `Unable to send inquiry: ${errorMessage}\n\nPlease try again or contact us directly at info@skylinemarine.co`
         );
       }
     } catch (error) {
       console.error("Error sending inquiry via Web3Forms:", error);
       alert(
-        "Failed to send inquiry. Please try again or contact us directly at skylinemarine1993@gmail.com"
+        "Failed to send inquiry. Please try again or contact us directly at info@skylinemarine.co"
       );
     } finally {
       setIsSubmitting(false);

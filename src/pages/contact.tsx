@@ -121,15 +121,15 @@ export default function ContactPage() {
         phone: phoneValue, // Use the international phone format
         subject: `${formData.subject} - Skyline Marine Inquiry`,
         message: `
-Company: ${formData.companyName || "Not provided"}
-Phone: ${phoneValue}
-Product: "General Inquiry"
+          Company: ${formData.companyName || "Not provided"}
+          Phone: ${phoneValue}
+          Product: "General Inquiry"
 
-Message:
-${formData.message}
+          Message:
+          ${formData.message}
 
----
-Submitted via Skyline Marine website
+          ---
+          Submitted via Skyline Marine website
         `.trim(),
         from_name: formData.name,
         replyto: formData.email,
@@ -179,14 +179,14 @@ Submitted via Skyline Marine website
         console.error("Web3Forms Error:", errorMessage);
         setMessageType("error");
         setSubmitMessage(
-          `Unable to send message: ${errorMessage}. Please try again or contact us directly at skylinemarine1993@gmail.com`
+          `Unable to send message: ${errorMessage}. Please try again or contact us directly at info@skylinemarine.co`
         );
       }
     } catch (error) {
       console.error("Error sending inquiry via Web3Forms:", error);
       setMessageType("error");
       setSubmitMessage(
-        "Failed to send message. Please try again or contact us directly at skylinemarine1993@gmail.com"
+        "Failed to send message. Please try again or contact us directly at info@skylinemarine.co"
       );
     } finally {
       setIsSubmitting(false);

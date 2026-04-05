@@ -1,0 +1,30 @@
+/**
+ * DEPRECATED: This file has been moved to /product/[productSlug].tsx
+ * This redirect ensures backward compatibility if anyone uses the old route
+ */
+
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+export default function OldProductPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to the new route structure if accessed
+    if (router.query.slug && router.query.productId) {
+      const slug = Array.isArray(router.query.slug)
+        ? router.query.slug[0]
+        : router.query.slug;
+      const productId = Array.isArray(router.query.productId)
+        ? router.query.productId[0]
+        : router.query.productId;
+
+      router.replace(
+        `/marine-spare-parts/${slug}/product/${productId}`
+      );
+    }
+  }, [router]);
+
+  return null;
+}
+

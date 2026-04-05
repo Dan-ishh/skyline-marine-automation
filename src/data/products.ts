@@ -2692,7 +2692,6 @@ export const products: Product[] = [
     updatedAt: new Date("2025-12-14"),
   },
 
-
   // ============================================================
   // CYLINDER HEAD PRODUCTS (81 products)
   // ============================================================
@@ -2944,7 +2943,8 @@ export const products: Product[] = [
     mainCategory: "marine-spare-parts",
     subCategory: "cylinder-head",
     categoryId: "caterpillar-36003606--with-valve-fitting",
-    description: "CATERPILLAR 3600/3606 Cylinder Head with Valve Fitting - Used / Good",
+    description:
+      "CATERPILLAR 3600/3606 Cylinder Head with Valve Fitting - Used / Good",
     images: ["/Assets/images/Products/contact-for-photo.png"],
     thumbnail: "/Assets/images/Products/contact-for-photo.png",
     specifications: {
@@ -6480,7 +6480,7 @@ export const products: Product[] = [
     categoryId: "man-d2842le",
     description:
       "MAN B&W D2842LE industrial diesel engine with 420 kW output at 1800 RPM. Slightly used condition.",
-    images: ["/Assets/images/Logos/MAN.jpg"],
+    images: ["/Assets/images/Logos/Man-logo.png"],
     specifications: {
       Model: "D2842LE",
       "Power Output": "420 kW",
@@ -7072,7 +7072,7 @@ export const products: Product[] = [
     categoryId: "volvo-d6-350ab",
     description:
       "Volvo Penta D6 350A-B engine with drive and propeller. Fully overhauled condition.",
-    images: ["/Assets/images/Logos/volvo-penta-.png"],
+    images: ["/Assets/images/Logos/Volvo-logo.png"],
     specifications: {
       Model: "D6 350A-B AO",
       Equipment: "Engine with Drive and Propeller",
@@ -7188,7 +7188,7 @@ export const products: Product[] = [
     categoryId: "man-12v28-32-s",
     description:
       "MAN B&W 12V28/32 S marine engines with gearbox. Used condition.",
-    images: ["/Assets/images/Logos/MAN.jpg"],
+    images: ["/Assets/images/Logos/Man-logo.png"],
     specifications: {
       Model: "12V28/32 S",
       "Engine Type": "Marine",
@@ -7258,7 +7258,7 @@ export const products: Product[] = [
     categoryId: "yanmar-6lpa",
     description:
       "YANMAR 6LPA high-speed diesel engine. Used but in good condition.",
-    images: ["/Assets/images/Logos/yanmar-logo-png-.webp"],
+    images: ["/Assets/images/Logos/Yanmar_logo.png"],
     specifications: {
       Model: "6LPA",
       "Engine Type": "High Speed",
@@ -7280,7 +7280,7 @@ export const products: Product[] = [
     subCategory: undefined,
     categoryId: "yanmar-6ly3-stp",
     description: "YANMAR 6LY3-STP high-speed diesel engine. Unused condition.",
-    images: ["/Assets/images/Logos/yanmar-logo-png-.webp"],
+    images: ["/Assets/images/Logos/Yanmar_logo.png"],
     specifications: {
       Model: "6LY3-STP",
       "Engine Type": "High Speed",
@@ -7415,7 +7415,7 @@ export const products: Product[] = [
     categoryId: "man-d2842le412",
     description:
       "2010 MAN D2842LE412 diesel engine with gearbox. 588 kW, 1800 RPM. Used but in good condition.",
-    images: ["/Assets/images/Logos/MAN.jpg"],
+    images: ["/Assets/images/Logos/Man-logo.png"],
     specifications: {
       Model: "D2842 LE 412",
       "Power Output": "588 kW",
@@ -7967,7 +7967,7 @@ export const products: Product[] = [
     description:
       "Premium EMD 12-645E3 marine diesel engine. High-performance and reliable engine block designed for marine propulsion and power generation applications.",
     images: ["/Assets/images/Logos/EMD-logo.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/EMD-logo.png",
     specifications: {
       Brand: "EMD",
       Model: "12-645 E3",
@@ -7976,97 +7976,6 @@ export const products: Product[] = [
       Type: "Marine Diesel Engine",
       "Fuel Type": "Diesel",
       "Engine Configuration": "12-Cylinder",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Generator 19: Premium EMD 12-645E3 Engine - High-Performance & Reliable (Variant)
-  {
-    id: "prod-gen-019",
-    name: "Premium EMD 12-645E3 Engine – High-Performance & Reliable",
-    slug: "premium-emd-12-645e3-engine-reliable-variant",
-    brandId: "emd-22",
-    mainCategory: "generators",
-    subCategory: undefined,
-    categoryId: "emd-12-645e3-reliable",
-    description:
-      "Premium EMD 12-645E3 marine diesel engine. High-performance and reliable power unit for marine and industrial power generation.",
-    images: ["/Assets/images/Logos/EMD-logo.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
-    specifications: {
-      Brand: "EMD",
-      Model: "12-645 E3",
-      Quantity: "3 Units",
-      Condition: "Used / Excellent condition",
-      Type: "Marine Diesel Engine",
-      "Fuel Type": "Diesel",
-      "Engine Configuration": "12-Cylinder",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Generator 20: EMD DG Set - 12-645-E8 Diesel Generator
-  {
-    id: "prod-gen-020",
-    name: "EMD DG Set – 12-645-E8 Diesel Generator",
-    slug: "emd-dg-set-12-645-e8-diesel-generator",
-    brandId: "emd-22",
-    mainCategory: "generators",
-    subCategory: undefined,
-    categoryId: "emd-12-645-e8-dg",
-    description:
-      "EMD DG Set with 12-645-E8 diesel generator configuration. Industrial-grade generator set for reliable power generation with excellent condition.",
-    images: ["/Assets/images/Logos/EMD-logo.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
-    specifications: {
-      Brand: "EMD",
-      Model: "12-645 E8",
-      Quantity: "2 Units",
-      Condition: "Used / Excellent condition",
-      Type: "Diesel Generator Set",
-      "Fuel Type": "Diesel",
-      "Equipment Type": "DG Set",
-    },
-    price: 0,
-    inStock: true,
-    featured: false,
-    enquiryCount: 0,
-    createdAt: new Date("2025-12-14"),
-    updatedAt: new Date("2025-12-14"),
-  },
-
-  // Generator 21: EMD DG Set - 16-645-E8 Diesel Generators
-  {
-    id: "prod-gen-021",
-    name: "EMD DG Set – 16-645-E8 Diesel Generators",
-    slug: "emd-dg-set-16-645-e8-diesel-generators",
-    brandId: "emd-22",
-    mainCategory: "generators",
-    subCategory: undefined,
-    categoryId: "emd-16-645-e8-dg",
-    description:
-      "EMD DG Set with 16-645-E8 diesel generators. High-capacity industrial generator set for demanding power generation applications. Excellent condition.",
-    images: ["/Assets/images/Logos/EMD-logo.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
-    specifications: {
-      Brand: "EMD",
-      Model: "16-645 E8",
-      Quantity: "4 Units",
-      Condition: "Used / Excellent condition",
-      Type: "Diesel Generator Set",
-      "Fuel Type": "Diesel",
-      "Engine Configuration": "16-Cylinder",
-      "Equipment Type": "DG Set",
     },
     price: 0,
     inStock: true,
@@ -8090,7 +7999,7 @@ export const products: Product[] = [
     description:
       "Mitsubishi S16N PTA diesel generator engine. High-quality marine diesel engine designed for generator applications with reliable performance.",
     images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png",
     specifications: {
       Brand: "Mitsubishi",
       Model: "S16N PTA",
@@ -8120,7 +8029,7 @@ export const products: Product[] = [
     description:
       "Mitsubishi S16R-PTA2 diesel generator with 1317 kW power output. Unused with zero working hours, ideal for marine and industrial applications.",
     images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png",
     specifications: {
       Brand: "Mitsubishi",
       Model: "S16R-PTA2",
@@ -8151,7 +8060,7 @@ export const products: Product[] = [
     description:
       "Mitsubishi S6N PTA2 marine diesel generator. Compact and efficient generator for marine propulsion and power generation applications.",
     images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png",
     specifications: {
       Brand: "Mitsubishi",
       Model: "S6N PTA2",
@@ -8180,7 +8089,7 @@ export const products: Product[] = [
     description:
       "Mitsubishi S16N PTA diesel generator. Reliable and high-performance generator engine for marine and industrial power generation needs.",
     images: ["/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/Mitsubishi_motors_new_logo.svg.png",
     specifications: {
       Brand: "Mitsubishi",
       Model: "S16N PTA",
@@ -8212,7 +8121,7 @@ export const products: Product[] = [
     description:
       "MTU 16V4000 diesel generator set with 2000 kva capacity. Industrial-grade generator for marine and onshore power generation applications. 50 Hz frequency.",
     images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png",
     specifications: {
       Brand: "MTU",
       Model: "16V4000",
@@ -8243,7 +8152,7 @@ export const products: Product[] = [
     description:
       "MTU 16V2000 G85 containerized diesel generator set with 1115 kW power output. Industrial-grade containerized genset designed for stationary or mobile installation. 60 Hz frequency.",
     images: ["/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/MTU_Aero_Engines_Logo.svg.png",
     specifications: {
       Brand: "MTU",
       Model: "16V2000 G85",
@@ -8277,7 +8186,7 @@ export const products: Product[] = [
     description:
       "Wärtsilä W32 complete marine generator set with 7050 kW power output and 750 RPM speed. Marine and industrial grade generator for reliable power generation.",
     images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Products/Logos/Wärtsilä_logo.png",
     specifications: {
       Brand: "Wärtsilä",
       Model: "W32",
@@ -8308,7 +8217,7 @@ export const products: Product[] = [
     description:
       "Wärtsilä 8L20 complete marine generator set with 1240 kW power capacity and 900 RPM speed. Industrial-grade complete genset for marine applications.",
     images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/Wärtsilä_logo.png",
     specifications: {
       Brand: "Wärtsilä",
       Model: "8L20",
@@ -8339,7 +8248,7 @@ export const products: Product[] = [
     description:
       "2001 Wärtsilä W18V32 complete generator sets with 7290 kW power output at 60 Hz frequency. Complete genset and engine spares included. Minimal working hours.",
     images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/Wärtsilä_logo.png",
     specifications: {
       Brand: "Wärtsilä",
       Model: "W18V32",
@@ -8371,7 +8280,7 @@ export const products: Product[] = [
     description:
       "Wärtsilä 8L20 marine generator set. Reliable and efficient marine-grade generator for power generation applications.",
     images: ["/Assets/images/Logos/Wärtsilä_logo.png"],
-    thumbnail: "/Assets/images/Products/Diesel-engine-And-Generators-v1.jpg",
+    thumbnail: "/Assets/images/Logos/Wärtsilä_logo.png",
     specifications: {
       Brand: "Wärtsilä",
       Model: "8L20",

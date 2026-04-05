@@ -152,7 +152,7 @@ export default function MarineSparePartBrandPage() {
                   {products.map((product) => (
                     <Link
                       key={product.id}
-                      href={`/products/${product.slug}`}
+                      href={`/marine-spare-parts/${slug}/product/${product.slug}`}
                       className={styles.productCard}
                     >
                       <div className={styles.imageContainer}>

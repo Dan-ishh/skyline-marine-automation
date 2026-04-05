@@ -111,13 +111,13 @@ export const marineSparePartsItems: MenuSubItem[] = [
   // ACTIVE SUBCATEGORIES WITH PRODUCTS
   {
     id: "spare-cylinder-head",
-    label: "Cylinder head",
+    label: "Cylinder Head",
     slug: "cylinder-head",
     href: "/marine-spare-parts/cylinder-head",
   },
   {
     id: "spare-cylinder-liner",
-    label: "Cylinder liner",
+    label: "Cylinder Liner",
     slug: "cylinder-liner",
     href: "/marine-spare-parts/cylinder-liner",
   },
