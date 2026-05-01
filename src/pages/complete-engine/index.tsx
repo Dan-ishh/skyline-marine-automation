@@ -10,18 +10,26 @@ export default function CompleteEnginePage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [categoryBrands, setCategoryBrands] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Get only brands that have complete-engine products
-    const brandsWithProducts = getBrandsByCategory("complete-engine");
-    setCategoryBrands(brandsWithProducts);
+    try {
+      // Get only brands that have complete-engine products
+      const brandsWithProducts = getBrandsByCategory("complete-engine");
+      setCategoryBrands(brandsWithProducts || []);
+      setError(null);
+    } catch (err) {
+      console.error("Error loading complete engines:", err);
+      setError("Failed to load complete engines. Please try again later.");
+      setCategoryBrands([]);
+    } finally {
+      // Simulate 1-second data fetching delay
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
 
-    // Simulate 1-second data fetching delay
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const categoryName = "Complete Engine";
@@ -35,6 +43,33 @@ export default function CompleteEnginePage() {
           <title>{categoryName} - Brands & Products - Skyline Marine</title>
         </Head>
         <CategoryPageSkeleton gridCount={12} />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Head>
+          <title>{categoryName} - Brands & Products - Skyline Marine</title>
+        </Head>
+        <main className="category-page">
+          <nav className="breadcrumb">
+            <Link href="/">Home</Link>
+            <span className="separator">/</span>
+            <span className="current">{categoryName}</span>
+          </nav>
+          <section className="category-header">
+            <div className="category-header-content">
+              <div className="category-info">
+                <h1>{categoryName}</h1>
+                <p className="category-description" style={{ color: "red" }}>
+                  {error}
+                </p>
+              </div>
+            </div>
+          </section>
+        </main>
       </>
     );
   }

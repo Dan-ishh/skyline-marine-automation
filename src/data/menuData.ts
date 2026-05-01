@@ -139,6 +139,12 @@ export const marineSparePartsItems: MenuSubItem[] = [
     slug: "crankshaft",
     href: "/marine-spare-parts/crankshaft",
   },
+  {
+    id: "spare-engine-block",
+    label: "Engine Block",
+    slug: "engine-block",
+    href: "/marine-spare-parts/engine-block",
+  },
 
   // COMMENTED OUT SUBCATEGORIES (Coming Soon - No Products Yet)
   // {

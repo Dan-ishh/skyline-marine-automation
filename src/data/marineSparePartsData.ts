@@ -128,6 +128,13 @@ export const marineSparePartsSubCategories: MarineSparePartSubCategory[] = [
     description: "Valve seat components and replacements",
     order: 16,
   },
+  {
+    id: "msp-017",
+    name: "Engine Block",
+    slug: "engine-block",
+    description: "Engine Block assemblies and components",
+    order: 16,
+  },
 ];
 
 /**

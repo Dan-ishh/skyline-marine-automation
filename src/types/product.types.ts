@@ -38,6 +38,7 @@ export interface Product {
     | "connecting-rod"
     | "indicator-valve"
     | "piston"
+    | "engine-block"
     | "piston-head"
     | "piston-rod"
     | "piston-skirt"
