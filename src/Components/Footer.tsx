@@ -47,12 +47,12 @@ export default function Footer() {
                 >
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
-                <span>Skyline Marine</span>
+                <span> SKYLINE MARINE - ISO 9001:2015 Certified </span>
               </div>
               <address className="footer__address">
-                Skyline Marine
+                Plot No. F/15/4/17,
                 <br />
-                VIP (Vibrant Industrial Park),
+                Lal Delo Nari Road, Kumbharwada,
                 <br />
                 Bhavnagar, Gujarat, India, 364001
               </address>

@@ -178,6 +178,45 @@ const getSubcategoryIcon = (slug: string) => {
           />
         </svg>
       );
+    case "engine-block":
+      return (
+        <svg
+          width="60"
+          height="60"
+          viewBox="0 0 60 60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="10"
+            y="15"
+            width="40"
+            height="30"
+            rx="3"
+            fill="#E8F0FF"
+            stroke="#003D7A"
+            strokeWidth="2"
+          />
+          <circle cx="18" cy="24" r="2.5" fill="#003D7A" />
+          <circle cx="30" cy="24" r="2.5" fill="#003D7A" />
+          <circle cx="42" cy="24" r="2.5" fill="#003D7A" />
+          <circle cx="18" cy="35" r="2.5" fill="#003D7A" />
+          <circle cx="30" cy="35" r="2.5" fill="#003D7A" />
+          <circle cx="42" cy="35" r="2.5" fill="#003D7A" />
+          <path
+            d="M14 18H46"
+            stroke="#003D7A"
+            strokeWidth="1.5"
+            opacity="0.5"
+          />
+          <path
+            d="M14 30H46"
+            stroke="#003D7A"
+            strokeWidth="1.5"
+            opacity="0.5"
+          />
+        </svg>
+      );
     default:
       return (
         <svg

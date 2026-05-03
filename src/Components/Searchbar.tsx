@@ -57,6 +57,7 @@ export default function Searchbar() {
       return () => clearTimeout(debounceTimer);
     } else {
       setFilteredProducts([]);
+      setShowResults(false);
       setIsLoading(false);
     }
   }, [searchQuery]);

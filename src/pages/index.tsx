@@ -25,12 +25,15 @@ export default function Home() {
   const [marineSparePartsSlide, setMarineSparePartsSlide] = useState(0);
   const [enginesSlide, setEnginesSlide] = useState(0);
   const [generatorsSlide, setGeneratorsSlide] = useState(0);
+  const [turbochargerSlide, setTurbochargerSlide] = useState(0);
 
   // Loading states
   const [isLoadingMarineSparePartsSlide, setIsLoadingMarineSparePartsSlide] =
     useState(true);
   const [isLoadingEnginesSlide, setIsLoadingEnginesSlide] = useState(true);
   const [isLoadingGeneratorsSlide, setIsLoadingGeneratorsSlide] =
+    useState(true);
+  const [isLoadingTurbochargerSlide, setIsLoadingTurbochargerSlide] =
     useState(true);
 
   // Get 20 most recent Marine Spare Parts products (regardless of sub-category)
@@ -68,6 +71,19 @@ export default function Home() {
       brandSlug: brands.find((b) => b.id === product.brandId)?.slug,
     }));
 
+  // Get 20 most recent Turbochargers products
+  const recentTurbochargerProducts = [...products]
+    .filter((p) => p.mainCategory === "turbochargers")
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+    .slice(0, 20)
+    .map((product) => ({
+      ...product,
+      brandSlug: brands.find((b) => b.id === product.brandId)?.slug,
+    }));
+
   // Simulate loading for Marine Spare Parts
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -88,6 +104,14 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoadingGeneratorsSlide(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Simulate loading for Turbochargers
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadingTurbochargerSlide(false);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
@@ -129,6 +153,19 @@ export default function Home() {
     }
   }, [recentGeneratorsProducts.length]);
 
+  // Auto-rotate turbochargers slider every 4 seconds
+  useEffect(() => {
+    if (recentTurbochargerProducts.length > 0) {
+      const interval = setInterval(() => {
+        setTurbochargerSlide(
+          (prev) =>
+            (prev + 1) % Math.ceil(recentTurbochargerProducts.length / 4)
+        );
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [recentTurbochargerProducts.length]);
+
   // Navigation functions for Marine Spare Parts
   const nextMarineSparePartsSlide = () => {
     setMarineSparePartsSlide(
@@ -168,6 +205,21 @@ export default function Home() {
   const prevGeneratorsSlide = () => {
     setGeneratorsSlide((prev) =>
       prev === 0 ? Math.ceil(recentGeneratorsProducts.length / 4) - 1 : prev - 1
+    );
+  };
+
+  // Navigation functions for Turbochargers
+  const nextTurbochargerSlide = () => {
+    setTurbochargerSlide(
+      (prev) => (prev + 1) % Math.ceil(recentTurbochargerProducts.length / 4)
+    );
+  };
+
+  const prevTurbochargerSlide = () => {
+    setTurbochargerSlide((prev) =>
+      prev === 0
+        ? Math.ceil(recentTurbochargerProducts.length / 4) - 1
+        : prev - 1
     );
   };
 
@@ -238,8 +290,16 @@ export default function Home() {
 
         {/* Info Section */}
         <section className="info-section">
-          <div className="container">
+          <div className="container" style={{ textAlign: "center" }}>
             <h2>Why Choose Our Spare Parts?</h2>
+            <p>
+              SKYLINE MARINE is an{" "}
+              <span style={{ color: "#FF8C00", fontWeight: "bold" }}>
+                ISO 9001:2015
+              </span>{" "}
+              Certified Company, delivering high-quality marine engines, spare
+              parts, and industrial solutions to clients worldwide.
+            </p>
             <div className="info-grid">
               <div className="info-card">
                 <h3>Genuine Parts</h3>
@@ -516,6 +576,90 @@ export default function Home() {
                 onClick={nextGeneratorsSlide}
                 aria-label="Next"
                 disabled={recentGeneratorsProducts.length === 0}
+              >
+                ›
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Recent Turbochargers Slider */}
+        <section className="home-page__slider-section home-page__slider-section--turbochargers">
+          <div className="container">
+            <div className="home-page__slider-header">
+              <h2 className="home-page__slider-title">
+                Recent <span>Turbochargers</span>
+              </h2>
+              <Link href="/turbochargers" className="home-page__view-all">
+                View All →
+              </Link>
+            </div>
+
+            <div className="home-page__carousel">
+              <button
+                className="home-page__carousel-btn home-page__carousel-btn--prev"
+                onClick={prevTurbochargerSlide}
+                aria-label="Previous"
+                disabled={recentTurbochargerProducts.length === 0}
+              >
+                ‹
+              </button>
+
+              <div className="home-page__carousel-track">
+                <div
+                  className="home-page__carousel-slides"
+                  style={{
+                    transform: `translateX(-${turbochargerSlide * 100}%)`,
+                  }}
+                >
+                  {isLoadingTurbochargerSlide
+                    ? Array.from({ length: 4 }).map((_, index) => (
+                        <ProductCardSkeleton key={index} />
+                      ))
+                    : recentTurbochargerProducts.map((product) => (
+                        <Link
+                          key={product.id}
+                          href={`/turbochargers/${product.brandSlug}/${product.slug}`}
+                          className="home-page__product-card"
+                        >
+                          <div className="home-page__product-image">
+                            <img
+                              src={product.images?.[0] || product.thumbnail}
+                              alt={product.name}
+                              onError={(e) => {
+                                e.currentTarget.src =
+                                  "/Assets/images/Products/marine-Equipment-and-accesories-v1.jpg";
+                              }}
+                            />
+                            <div className="home-page__product-overlay">
+                              <span className="home-page__product-category">
+                                Turbochargers
+                              </span>
+                            </div>
+                          </div>
+                          <div className="home-page__product-info">
+                            <h3 className="home-page__product-name">
+                              {product.name}
+                            </h3>
+                            <p className="home-page__product-brand">
+                              {getProductCategoryName(product)}
+                            </p>
+                            {product.enquiryCount > 0 && (
+                              <span className="home-page__enquiry-badge">
+                                {product.enquiryCount} enquiries
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
+                </div>
+              </div>
+
+              <button
+                className="home-page__carousel-btn home-page__carousel-btn--next"
+                onClick={nextTurbochargerSlide}
+                aria-label="Next"
+                disabled={recentTurbochargerProducts.length === 0}
               >
                 ›
               </button>

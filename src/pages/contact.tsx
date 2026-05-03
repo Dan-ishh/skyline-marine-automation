@@ -238,8 +238,12 @@ export default function ContactPage() {
                 </div>
                 <h3 className="contact-page__info-title">Office</h3>
                 <p className="contact-page__info-text">
-                  VIP (Vibrant Industrial Park), Bhavnagar, Gujarat, India,
-                  364001.
+                  SKYLINE MARINE{" "}
+                  <span style={{ color: "#FF8C00", fontWeight: "bold" }}>
+                    (ISO 9001:2015 Certified)
+                  </span>
+                  <br /> Plot No. F/15/4/17, Lal Delo Nari Road, Kumbharwada
+                  Bhavnagar, Gujarat 364001 India
                 </p>
               </div>
 
@@ -282,8 +286,8 @@ export default function ContactPage() {
                 </div>
                 <h3 className="contact-page__info-title">Call Us</h3>
                 <p className="contact-page__info-text">
-                  Call Us Now
-                  <br />
+                  {/* Call Us Now
+                  <br /> */}
                   <a href="tel:+917016439122">+91 70164 39122</a>
                 </p>
               </div>
