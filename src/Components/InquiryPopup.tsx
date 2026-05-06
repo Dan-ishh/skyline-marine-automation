@@ -224,13 +224,13 @@ export default function InquiryPopup({
 
         // Show user-friendly error
         alert(
-          `Unable to send inquiry: ${errorMessage}\n\nPlease try again or contact us directly at info@skylinemarine.co`
+          `Unable to send inquiry: ${errorMessage}\n\nPlease try again or contact us directly at info@skylinemarinehub.com`
         );
       }
     } catch (error) {
       console.error("Error sending inquiry via Web3Forms:", error);
       alert(
-        "Failed to send inquiry. Please try again or contact us directly at info@skylinemarine.co"
+        "Failed to send inquiry. Please try again or contact us directly at info@skylinemarinehub.com"
       );
     } finally {
       setIsSubmitting(false);

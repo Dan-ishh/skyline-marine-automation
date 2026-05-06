@@ -316,8 +316,8 @@ export default function ProductDetailPage() {
                 <div className="product-detail__contact-info">
                   <p className="product-detail__inquiry-text">
                     To inquire further for {product.name}, kindly email us at{" "}
-                    <a href={`mailto:info@skylinemarine.co`}>
-                      info@skylinemarine.co
+                    <a href={`mailto:info@skylinemarinehub.com`}>
+                      info@skylinemarinehub.com
                     </a>{" "}
                     or contact us on{" "}
                     <a href="tel:+917016439122">+91 70164 39122</a>

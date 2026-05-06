@@ -52,10 +52,10 @@ export default function Navbar() {
               <span className="navbar__contact-label">Send Us an Email</span>
               <div className="navbar__contact-links">
                 <a
-                  href="mailto:info@skylinemarine.co"
+                  href="mailto:info@skylinemarinehub.com"
                   className="navbar__contact-link"
                 >
-                  info@skylinemarine.co
+                  info@skylinemarinehub.com
                 </a>
               </div>
             </div>
@@ -332,7 +332,9 @@ export default function Navbar() {
           <div className="navbar__mobile-contact">
             <div className="navbar__mobile-contact-group">
               <h4>Email</h4>
-              <a href="mailto:info@skylinemarine.co">info@skylinemarine.co</a>
+              <a href="mailto:info@skylinemarinehub.com">
+                info@skylinemarine.co
+              </a>
             </div>
             <div className="navbar__mobile-contact-group">
               <h4>Phone</h4>

@@ -179,14 +179,14 @@ export default function ContactPage() {
         console.error("Web3Forms Error:", errorMessage);
         setMessageType("error");
         setSubmitMessage(
-          `Unable to send message: ${errorMessage}. Please try again or contact us directly at info@skylinemarine.co`
+          `Unable to send message: ${errorMessage}. Please try again or contact us directly at info@skylinemarinehub.com`
         );
       }
     } catch (error) {
       console.error("Error sending inquiry via Web3Forms:", error);
       setMessageType("error");
       setSubmitMessage(
-        "Failed to send message. Please try again or contact us directly at info@skylinemarine.co"
+        "Failed to send message. Please try again or contact us directly at info@skylinemarinehub.com"
       );
     } finally {
       setIsSubmitting(false);
@@ -311,8 +311,8 @@ export default function ContactPage() {
                 <p className="contact-page__info-text">
                   Need Help?
                   <br />
-                  <a href="mailto:info@skylinemarine.co">
-                    info@skylinemarine.co
+                  <a href="mailto:info@skylinemarinehub.com">
+                    info@skylinemarinehub.com
                   </a>
                 </p>
               </div>
